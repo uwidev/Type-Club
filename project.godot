@@ -18,19 +18,12 @@ _global_script_class_icons={
 config/name="New Game Project"
 config/icon="res://icon.png"
 
-<<<<<<< HEAD
 [display]
-=======
-[autoload]
->>>>>>> 5406a54984c3b65d87b539275a2734ef438ed0bb
 
-GlobalVariables="*res://Scripts/GlobalVariables.gd"
+window/size/width=1920
+window/size/height=1080
 
-<<<<<<< HEAD
 [editor_plugins]
-=======
-[display]
->>>>>>> 5406a54984c3b65d87b539275a2734ef438ed0bb
 
 enabled=PoolStringArray( "GodotTIE" )
 

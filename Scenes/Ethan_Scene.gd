@@ -13,13 +13,13 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func _unhandled_input(event):
+func _unhandled_input(event): #LineEdit must have mouse_filter set to 'ignore' in order to prevent mouse input
 	if event is InputEventKey:
 		if event.scancode == KEY_Q:
-			get_child(0).set_focus_mode(2)
-			get_child(0).grab_focus()
+			get_child(0).set_focus_mode(2) #Allow Text box to focused
+			get_child(0).grab_focus() #Focus onto textbox
 		elif event.scancode == KEY_ESCAPE:
-			get_child(0).set_focus_mode(0)
+			get_child(0).set_focus_mode(0) #prevents textbox from being focused
 
 func _on_LineEdit_text_entered(new_text):
 	get_child(0).clear()

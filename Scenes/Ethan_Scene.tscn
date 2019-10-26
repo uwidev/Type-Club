@@ -10,4 +10,5 @@ margin_left = 580.749
 margin_top = 461.868
 margin_right = 1624.75
 margin_bottom = 736.868
+mouse_filter = 2
 [connection signal="text_entered" from="LineEdit" to="." method="_on_LineEdit_text_entered"]
