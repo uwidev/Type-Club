@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/health_aesthetics.gd" type="Script" id=1]
+[ext_resource path="res://Assets/ui/life.png" type="Texture" id=2]
+
+[node name="Life" type="Control"]
+margin_left = 1024.0
+margin_top = 992.0
+margin_right = 1064.0
+margin_bottom = 1032.0
+script = ExtResource( 1 )
+
+[node name="Right" type="TextureProgress" parent="."]
+margin_right = 832.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 432, 25 )
+value = 100.0
+texture_progress = ExtResource( 2 )
+tint_progress = Color( 0.772549, 0.247059, 0.247059, 1 )
+nine_patch_stretch = true
+
+[node name="Left" type="TextureProgress" parent="."]
+margin_left = -960.0
+margin_right = -128.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 432, 25 )
+value = 100.0
+texture_progress = ExtResource( 2 )
+fill_mode = 1
+tint_progress = Color( 0.772549, 0.247059, 0.247059, 1 )
+nine_patch_stretch = true
