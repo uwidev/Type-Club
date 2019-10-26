@@ -22,5 +22,5 @@ func _process(delta):
 
 #Not an actual signal function
 func signalReceived():
-	GlobalVariables.switchScene("res://Scenes/Annie_Scene.tscn")
+	GlobalVariables.switchScene("res://Scenes/Annie_Scene_2.tscn")
 	
