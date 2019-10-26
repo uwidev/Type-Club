@@ -18,15 +18,25 @@ _global_script_class_icons={
 config/name="New Game Project"
 config/icon="res://icon.png"
 
+<<<<<<< HEAD
+=======
+[autoload]
+
+GlobalVariables="*res://Scripts/GlobalVariables.gd"
+
+>>>>>>> de43bc0ca67d487d9a54814df8758d000b1a4f94
 [display]
 
 window/size/width=1920
 window/size/height=1080
 
+<<<<<<< HEAD
 [editor_plugins]
 
 enabled=PoolStringArray( "GodotTIE" )
 
+=======
+>>>>>>> de43bc0ca67d487d9a54814df8758d000b1a4f94
 [rendering]
 
 environment/default_environment="res://default_env.tres"

@@ -1,4 +1,5 @@
 extends Node
+#Must be attached to a node (on the main scene)
 
 # Declare member variables here. Examples:
 # var a = 2
