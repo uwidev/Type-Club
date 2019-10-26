@@ -18,15 +18,11 @@ _global_script_class_icons={
 config/name="New Game Project"
 config/icon="res://icon.png"
 
+[autoload]
+
+GlobalVariables="*res://Scripts/GlobalVariables.gd"
+
 [display]
-<<<<<<< HEAD
-
-window/size/width=1920
-window/size/height=1080
-
-[editor_plugins]
-=======
->>>>>>> 2eee17f23ce6bb6e43b80a86b4866af063efa212
 
 window/size/width=1920
 window/size/height=1080
