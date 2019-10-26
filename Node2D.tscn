@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Sprite.gd" type="Script" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 231.332, 273.979 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+[connection signal="timeout" from="Timer" to="Sprite" method="_on_Timer_timeout"]
