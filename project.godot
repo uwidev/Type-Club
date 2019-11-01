@@ -27,6 +27,10 @@ GlobalVariables="*res://Scripts/GlobalVariables.gd"
 window/size/width=1920
 window/size/height=1080
 
+[editor_plugins]
+
+enabled=PoolStringArray( "GodotTIE" )
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

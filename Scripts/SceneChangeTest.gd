@@ -4,7 +4,6 @@ extends Sprite
 # var a = 2
 # var b = "text"
 var counter = 0
-var current_scene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
