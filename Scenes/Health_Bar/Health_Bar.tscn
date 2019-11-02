@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/health_aesthetics.gd" type="Script" id=1]
-[ext_resource path="res://Assets/ui/life.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/RichTextLabel.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Health_Bar/health_aesthetics.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/TypeEngine.gd" type="Script" id=2]
+[ext_resource path="res://Assets/ui/life.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/RichTextLabel.gd" type="Script" id=4]
 
 [node name="Life" type="Control"]
 margin_left = 1024.0
@@ -18,6 +19,10 @@ margin_right = 160.0
 margin_bottom = -661.5
 mouse_filter = 2
 align = 1
+placeholder_text = "Type Something Here"
+caret_blink = true
+caret_blink_speed = 1.0
+script = ExtResource( 2 )
 
 [node name="Right" type="TextureProgress" parent="."]
 margin_left = 84.0
@@ -26,7 +31,7 @@ margin_right = 916.0
 margin_bottom = -434.5
 rect_pivot_offset = Vector2( 432, 25 )
 value = 59.0
-texture_progress = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
 tint_progress = Color( 0.772549, 0.247059, 0.247059, 1 )
 nine_patch_stretch = true
 
@@ -37,7 +42,7 @@ margin_right = 1.0
 margin_bottom = -437.5
 rect_pivot_offset = Vector2( 432, 25 )
 value = 100.0
-texture_progress = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
 fill_mode = 1
 tint_progress = Color( 0.772549, 0.247059, 0.247059, 1 )
 nine_patch_stretch = true
@@ -48,9 +53,11 @@ margin_top = 3.88495
 margin_right = 113.863
 margin_bottom = 111.885
 text = "TEXT TEXT TEXT "
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="Timer" type="Timer" parent="RichTextLabel"]
 wait_time = 0.1
 autostart = true
+[connection signal="text_entered" from="LineEdit" to="LineEdit" method="_on_LineEdit_text_entered"]
+[connection signal="wrongInput" from="LineEdit" to="." method="_on_LineEdit_wrongInput"]
 [connection signal="timeout" from="RichTextLabel/Timer" to="RichTextLabel" method="_on_Timer_timeout"]
