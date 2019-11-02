@@ -16,7 +16,10 @@ _global_script_class_icons={
 [application]
 
 config/name="Type Club"
+<<<<<<< HEAD
 run/main_scene="res://Scenes/title.tscn"
+=======
+>>>>>>> 7ed03a5dbdbc718ec5d1d1e5a964691fbec7e16c
 config/icon="res://icon.png"
 
 [autoload]
@@ -33,6 +36,7 @@ window/stretch/aspect="keep"
 [editor_plugins]
 
 enabled=PoolStringArray( "GodotTIE" )
+<<<<<<< HEAD
 
 
 [editor_plugins]
@@ -44,6 +48,8 @@ window/stretch/aspect="keep"
 [editor_plugins]
 
 enabled=PoolStringArray( "GodotTIE" )
+=======
+>>>>>>> 7ed03a5dbdbc718ec5d1d1e5a964691fbec7e16c
 
 [rendering]
 
