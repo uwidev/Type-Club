@@ -6,14 +6,12 @@ Annie;More lines
 Annie;More lines
 Annie;More lines
 Annie;More lines
-Image;res://Assets/SKKTV.png
 Tommy;Super Kawaii Kaiju is on! YESSSSSS!!!
 Mom;Have you finished your homework yet honey?
 Prompt;No
 Tommy;Mayyyyybe.
 Annie;TestingBreak
 Scene;res://Scenes/Annie_scene_2.tscn
-Image;res://Assets/hwShreads.png
 Tommy;GRAAAAAAGH!!!
 Mom;What, Tommy what did you do!? How are you gonna finish your homework now?
 Narrator;You go through elementary school and meet a girl named Caroline. You become fast friends and you realize you have a crush on her, but you’re too scared to confess.
