@@ -24,6 +24,7 @@ func readScript(scriptFile):
 	textEngine.reset()
 	textEngine.set_state(textEngine.STATE_OUTPUT)
 	textEngine.set_color(Color(100,100,100))		#Doesn't seem to affect color
+# warning-ignore:unused_variable
 	for i in range(GlobalVariables.scriptLine):		#Skip to the right line
 		script.get_line()
 	
@@ -37,7 +38,10 @@ func readNextLine():
 		afterSC = readLine.substr(semiColon+1,readLine.length()-semiColon)
 		if readLine.begins_with("Prompt"):
 			textEngine.buff_input()
+			textEngine.buff_text("\n",0)
+			textEngine.buff_break()
 		elif readLine.begins_with("Image"):
+			textEngine.buff_break()				#Temp
 			pass
 #			image = Image.new()
 #			image.load(afterSC)
@@ -47,11 +51,13 @@ func readNextLine():
 			GlobalVariables.switchScene(afterSC)
 		else:
 			charName = readLine.substr(0,semiColon)
-			textEngine.buff_text(charName+"\n",0)
-			textEngine.buff_text(afterSC,0.05)
+			if charName != "Narrator":
+				textEngine.buff_text(charName+"\n",0)
+			textEngine.buff_text(afterSC,0.04)
 			textEngine.buff_break()
-		textEngine.buff_clear()	
+			textEngine.buff_text("\n",0)
 	
 
-func _on_Text_Engine_buff_cleared():
+
+func _on_Text_Engine_resume_break():
 	readNextLine()
