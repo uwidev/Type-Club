@@ -26,5 +26,6 @@ func _on_LineEdit_text_entered(new_text):
 	for i in list:
 		if new_text == i:
 			print(new_text)
+			list.erase(new_text) #Deletes the Entry
 			return
 	print("Wrong Word")

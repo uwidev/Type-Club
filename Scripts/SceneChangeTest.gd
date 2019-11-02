@@ -4,7 +4,6 @@ extends Sprite
 # var a = 2
 # var b = "text"
 var counter = 0
-var current_scene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,7 +12,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # warning-ignore:unused_argument
 func _process(delta):
-	if counter > 100:
+	if counter > 200:
 		signalReceived()
 	var moveRight = Vector2(1,0)
 	translate(moveRight)
