@@ -3,6 +3,7 @@
 [ext_resource path="res://Scripts/Ethan_Scene.gd" type="Script" id=1]
 
 [node name="Ethan_Scene" type="Node2D"]
+editor/display_folded = true
 script = ExtResource( 1 )
 
 [node name="LineEdit" type="LineEdit" parent="."]
