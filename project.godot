@@ -15,15 +15,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Type Club"
-<<<<<<< HEAD
-run/main_scene="res://Scenes/title.tscn"
-=======
->>>>>>> 7ed03a5dbdbc718ec5d1d1e5a964691fbec7e16c
+config/name="New Game Project"
 config/icon="res://icon.png"
 
 [autoload]
-
 GlobalVariables="*res://Scripts/GlobalVariables.gd"
 
 [display]
