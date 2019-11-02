@@ -22,10 +22,8 @@ func _process(delta):
 	
 	set_text(str(m)+":"+str(s)+":"+str(ms))
 	current_time = m + s + ms
-	secondshealth = 60*m + s + .01*ms
+	secondshealth = 60*m + s + .1*ms
 	var life = get_parent().get_node("Right")
-	print(secondshealth)
-	print(max_time)
 	life.value = float(secondshealth)/float(max_time) * 100.0
 	# life.value = life.value - 1
 	pass 
