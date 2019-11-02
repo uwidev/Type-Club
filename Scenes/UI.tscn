@@ -3,9 +3,10 @@
 [ext_resource path="res://Scenes/DialogueBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Health_Bar/health_bar_official.tscn" type="PackedScene" id=2]
 
-[node name="MarginContainer" type="MarginContainer"]
+[node name="UI" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_min_size = Vector2( 1920, 1080 )
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 custom_constants/margin_bottom = 100
@@ -16,7 +17,7 @@ margin_right = 1820.0
 margin_bottom = 980.0
 custom_constants/separation = 24
 
-[node name="Control" type="Control" parent="VBoxContainer"]
+[node name="Blank" type="Control" parent="VBoxContainer"]
 margin_right = 1720.0
 margin_bottom = 700.0
 rect_min_size = Vector2( 0, 700 )
