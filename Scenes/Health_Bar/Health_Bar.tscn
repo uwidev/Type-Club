@@ -25,11 +25,7 @@ margin_top = -466.5
 margin_right = 916.0
 margin_bottom = -434.5
 rect_pivot_offset = Vector2( 432, 25 )
-<<<<<<< HEAD
 value = 59.0
-=======
-value = 50.0
->>>>>>> c7730597c436f7fab2d324afe746b4fce7bc3331
 texture_progress = ExtResource( 2 )
 tint_progress = Color( 0.772549, 0.247059, 0.247059, 1 )
 nine_patch_stretch = true
@@ -45,7 +41,6 @@ texture_progress = ExtResource( 2 )
 fill_mode = 1
 tint_progress = Color( 0.772549, 0.247059, 0.247059, 1 )
 nine_patch_stretch = true
-<<<<<<< HEAD
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = -114.137
@@ -59,6 +54,3 @@ script = ExtResource( 3 )
 wait_time = 0.1
 autostart = true
 [connection signal="timeout" from="RichTextLabel/Timer" to="RichTextLabel" method="_on_Timer_timeout"]
-=======
-[connection signal="text_entered" from="LineEdit" to="." method="_on_LineEdit_text_entered"]
->>>>>>> c7730597c436f7fab2d324afe746b4fce7bc3331
