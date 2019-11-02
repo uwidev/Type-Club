@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/title_buttons.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/title_button.tscn" type="PackedScene" id=2]
+
+
+[node name="Menu Buttons" type="VBoxContainer"]
+anchor_right = 1.0
+margin_right = -1877.0
+margin_bottom = 86.0
+custom_constants/separation = 40
+script = ExtResource( 1 )
+
+[node name="new_game" parent="." instance=ExtResource( 2 )]
+margin_right = 357.0
+focus_neighbour_top = NodePath("../exit")
+focus_next = NodePath("../load_game")
+focus_previous = NodePath("../exit")
+focus_mode = 2
+enabled_focus_mode = 2
+text = "New Game"
+
+[node name="load_game" parent="." instance=ExtResource( 2 )]
+margin_top = 88.0
+margin_right = 357.0
+margin_bottom = 136.0
+focus_next = NodePath("../options")
+focus_previous = NodePath("../new_game")
+focus_mode = 2
+enabled_focus_mode = 2
+text = "Load Game"
+
+[node name="options" parent="." instance=ExtResource( 2 )]
+margin_top = 176.0
+margin_right = 357.0
+margin_bottom = 224.0
+focus_next = NodePath("../exit")
+focus_previous = NodePath("../load_game")
+focus_mode = 2
+enabled_focus_mode = 2
+text = "Options"
+
+[node name="exit" parent="." instance=ExtResource( 2 )]
+margin_top = 264.0
+margin_right = 357.0
+margin_bottom = 312.0
+focus_neighbour_bottom = NodePath("../new_game")
+focus_next = NodePath("../new_game")
+focus_previous = NodePath("../options")
+focus_mode = 2
+enabled_focus_mode = 2
+text = "Exit"
+
+[editable path="new_game"]
