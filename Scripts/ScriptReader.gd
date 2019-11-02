@@ -33,6 +33,9 @@ func readScript(scriptFile):
 func readNextLine():
 	GlobalVariables.scriptLine += 1
 	if(script.eof_reached() != true):
+#		if(textEngine._label.get_line_count()+3-textEngine._label.get_lines_skipped() > textEngine._max_lines):
+##			textEngine.buff_text("\n\n\n",0)
+#			textEngine.buff_clear()
 		readLine = script.get_line()
 		semiColon = readLine.find(";")
 		afterSC = readLine.substr(semiColon+1,readLine.length()-semiColon)
@@ -47,6 +50,7 @@ func readNextLine():
 			GlobalVariables.switchScene(afterSC)
 			#send signal here
 		else:
+			print(GlobalVariables.scriptLine)
 			charName = readLine.substr(0,semiColon)
 			if charName != "Narrator":
 				textEngine.buff_text(charName+"\n",0)
