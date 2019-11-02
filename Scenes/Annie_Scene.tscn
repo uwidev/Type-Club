@@ -7,7 +7,7 @@
 [ext_resource path="res://Assets/Cave-Story.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=1]
-size = 50
+size = 70
 font_data = ExtResource( 5 )
 
 [node name="SceneStuff" type="Node2D"]
@@ -26,10 +26,10 @@ margin_right = 1919.0
 margin_bottom = 1077.0
 
 [node name="Text_Engine" type="ReferenceRect" parent="Control/Panel"]
-margin_left = 447.661
-margin_top = 606.329
-margin_right = 1495.66
-margin_bottom = 903.329
+margin_left = 45.3916
+margin_top = 37.0332
+margin_right = 1876.39
+margin_bottom = 963.033
 script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
@@ -37,4 +37,4 @@ __meta__ = {
 FONT = SubResource( 1 )
 
 [node name="Node" type="Node" parent="."]
-[connection signal="buff_cleared" from="Control/Panel/Text_Engine" to="Control" method="_on_Text_Engine_buff_cleared"]
+[connection signal="resume_break" from="Control/Panel/Text_Engine" to="Control" method="_on_Text_Engine_resume_break"]
