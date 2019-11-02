@@ -7,7 +7,7 @@ var readLine	#Individual line read
 var semiColon	#Index of semicolon
 var charName	#Name of character speaking
 var afterSC		#Text after the semicolon
-var image		#Image to load
+#var image		#Image to load
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,12 +43,9 @@ func readNextLine():
 		elif readLine.begins_with("Image"):
 			textEngine.buff_break()				#Temp
 			pass
-#			image = Image.new()
-#			image.load(afterSC)
-#			var imgTexture = ImageTexture.new()
-#			imgTexture.create_from_image(image)
 		elif readLine.begins_with("Scene"):
 			GlobalVariables.switchScene(afterSC)
+			#send signal here
 		else:
 			charName = readLine.substr(0,semiColon)
 			if charName != "Narrator":
@@ -58,6 +55,9 @@ func readNextLine():
 			textEngine.buff_text("\n",0)
 	
 
-
 func _on_Text_Engine_resume_break():
 	readNextLine()
+
+func _input(ev):
+	if ev is InputEventKey and ev.scancode == KEY_SPACE and not ev.echo:
+        textEngine.set_buff_speed(0)
