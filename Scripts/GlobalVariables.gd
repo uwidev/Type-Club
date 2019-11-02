@@ -7,9 +7,7 @@ var scriptLine = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var root = get_tree().get_root()
-	#Gets the current scene cuz its the last child
-	current_scene = root.get_child(root.get_child_count()-1)
+	pass
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,7 +18,9 @@ func switchScene(path):
 	call_deferred("deferredSwitchScene",path)
 	
 func deferredSwitchScene(path):
-	current_scene.free()
+	var root = get_tree().get_root()
+	#Gets the current scene cuz its the last child
+	root.get_child(root.get_child_count()-1).free()
 	
 	var s = ResourceLoader.load(path)
 	
