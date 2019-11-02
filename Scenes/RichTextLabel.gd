@@ -1,10 +1,10 @@
 extends RichTextLabel
 
 var ms = 0
-var s = 0
-var m = 2
+var s = 10
+var m = 0
 var current_time = 100
-var max_time 
+var max_time = m*60+s
 var secondshealth
 
 
@@ -24,7 +24,10 @@ func _process(delta):
 	current_time = m + s + ms
 	secondshealth = 60*m + s + .01*ms
 	var life = get_parent().get_node("Right")
-	life.value = secondshealth/60 * 100
+	print(secondshealth)
+	print(max_time)
+	life.value = float(secondshealth)/float(max_time) * 100.0
+	# life.value = life.value - 1
 	pass 
 
 

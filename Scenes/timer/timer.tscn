@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/RichTextLabel.gd" type="Script" id=1]
+
+[node name="RichTextLabel" type="RichTextLabel"]
+margin_left = 10.7518
+margin_top = -461.16
+margin_right = 132.752
+margin_bottom = -340.16
+text = "TEXT TEXT TEXT "
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+[connection signal="ready" from="Timer" to="." method="_on_Timer_ready"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
