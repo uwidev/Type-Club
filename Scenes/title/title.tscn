@@ -93,6 +93,7 @@ margin_bottom = 316.0
 texture = SubResource( 4 )
 
 [node name="Menu Buttons" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2" instance=ExtResource( 3 )]
+editor/display_folded = true
 anchor_right = 0.0
 margin_top = 316.0
 margin_right = 788.0
