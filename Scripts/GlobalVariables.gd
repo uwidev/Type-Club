@@ -2,9 +2,8 @@ extends Node
 #Must be attached to a node (on the main scene)
 
 # Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var current_scene = null
+var scriptLine = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

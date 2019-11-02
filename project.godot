@@ -16,13 +16,20 @@ _global_script_class_icons={
 [application]
 
 config/name="New Game Project"
-run/main_scene="res://Scenes/Ethan_Scene.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
+
+[editor_plugins]
+
+enabled=PoolStringArray( "GodotTIE" )
+
+[editor_plugins]
+
+enabled=PoolStringArray( "GodotTIE" )
 
 [rendering]
 
