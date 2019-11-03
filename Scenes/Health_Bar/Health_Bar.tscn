@@ -1,8 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/ui/life.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Health_Bar/timer/timer.tscn" type="PackedScene" id=2]
-
+[ext_resource path="res://Scenes/Health_Bar/timer.tscn" type="PackedScene" id=2]
 
 [node name="Life" type="Control"]
 margin_left = 1024.0

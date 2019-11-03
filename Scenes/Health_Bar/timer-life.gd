@@ -4,8 +4,6 @@ var total_time
 var minutes
 var seconds
 var miliseconds
-var paused_time
-var temp
 
 export(int) var MaxTimeLife = 20
 export(bool) var Autostart
@@ -44,31 +42,34 @@ func _process(delta):
 	# Modify Life Bar
 	life_bar.set_value(timer.get_time_left()/MaxTimeLife*life_bar.get_max())
 	
-#	# Testing/Debugging purposes
-#	if Input.is_action_just_pressed("ui_right"):
-#		if not timer.is_paused():
-#			paused(true)
-#		else:
-#			paused(false)
-#
-#	if Input.is_action_just_pressed("ui_left"):
-#		offset_life_percent(0.2)
+	# Testing/Debugging purposes
+	if Input.is_action_just_pressed("ui_right"):
+		if not timer.is_paused():
+			paused(true)
+		else:
+			paused(false)
+
+	if Input.is_action_just_pressed("ui_left"):
+		offset_life_percent(.2)
 	
 # Given an number, offset life by that much
 func offset_life(time):
-	timer.set_wait_time(timer.get_time_left()+time)
-	timer.start()
-	life_bar.set_value(timer.get_time_left()/MaxTimeLife*life_bar.get_max())
+	if time is int or time is float:
+		timer.set_wait_time(timer.get_time_left()+time)
+		timer.start()
+		life_bar.set_value(timer.get_time_left()/MaxTimeLife*life_bar.get_max())
 
 # Given a decimal, offset life by that much
 func offset_life_percent(percent):
-	timer.set_wait_time(min(timer.get_time_left()*(1+percent), MaxTimeLife))
-	timer.start()
-	life_bar.set_value(timer.get_time_left()/MaxTimeLife*life_bar.get_max())
+	if percent is int or percent is float:
+		timer.set_wait_time(min(timer.get_time_left()*(1+percent), MaxTimeLife))
+		timer.start()
+		life_bar.set_value(timer.get_time_left()/MaxTimeLife*life_bar.get_max())
 	
 # Accepts boolean to pause or unpause
 func paused(boo):
-	timer.set_paused(boo)
+	if boo is bool:
+		timer.set_paused(boo)
 
 #func _unhandled_input(event): #LineEdit must have mouse_filter set to 'ignore' in order to prevent mouse input
 #	if event is InputEventKey:
