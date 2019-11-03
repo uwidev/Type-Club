@@ -10,7 +10,6 @@
 
 [node name="Key Click" type="AudioStreamPlayer"]
 stream = ExtResource( 1 )
-pitch_scale = 4.0
 script = ExtResource( 2 )
 enabled = true
 key_down_a = [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ) ]
