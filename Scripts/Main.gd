@@ -1,28 +1,31 @@
 extends Control
 
 # Declare member variables here. Examples:
-var last_scene_name = null
+var open_scenes = []
 # var b = "text"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_load_scene("res://Scenes/title/title.tscn", "title")
-	last_scene_name = "title"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
-func _load_scene(scene_path, node_name):
-	print(last_scene_name)
-	if last_scene_name:
-		self.get_tree().get_root().find_node(last_scene_name, true, false).free()
-		print("freeing...")
-	var scene = load(scene_path)
-	var scene_instance = scene.instance()
+func _load_scene(scene_path, node_name, delete=true):
+	print(open_scenes, node_name)
+	if delete:
+		for scene in open_scenes:
+			print("freeing...", scene, self.get_child(self.get_child_count()-1))
+			self.get_child(self.get_child_count()-1).free()
+			# Lower line is preserved as a comment
+			# just in case we ever make a child that we can't access via the last index
+			# self.find_node(scene, true, false).free()
+	open_scenes.append(node_name)
+	var scene_instance = load(scene_path).instance()
 	scene_instance.set_name(node_name)
 	add_child(scene_instance)
-	print("added loaded scene!")
+	print("added loaded scene!", node_name)
 
 func _on_transition(scene_path, node_name):
 	# Can't directly call because we can't free until the signal stops emitting and calling

@@ -1,6 +1,5 @@
-extends Control
+extends "../LoadableScene.gd"
 
-signal transition
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
