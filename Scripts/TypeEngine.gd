@@ -3,9 +3,12 @@ extends LineEdit
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var list = ["Bob", "Gill", "Gary"]
-signal correctInput
-signal wrongInput
+var totalList = []
+var goodList  = []
+var badList = []
+var wordDict = {}
+signal input
+signal emptyList #Win Condition
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,10 +29,32 @@ func _unhandled_input(event): #LineEdit must have mouse_filter set to 'ignore' i
 
 func _on_LineEdit_text_entered(new_text):
 	self.clear()
-	for i in list:
-		if new_text == i:
-			list.erase(new_text) #Deletes the Entry
-			emit_signal("correctInput")
+	if goodList.empty():
+		emit_signal("emptyList")
+		return
+	for i in totalList:
+		
+		if new_text == i && wordDict[i] > 0:
+			goodList.erase(new_text) #Deletes the Entry
+			totalList.erase(new_text)
+			if goodList.empty():
+				emit_signal("emptyList") #Done with level
+				return
+				
+			emit_signal("input", wordDict[i]) #If given dict, pass WordDict[i]
 			return
-	print("Wrong Word")
-	emit_signal("wrongInput")
+			
+		elif new_text == i && wordDict[i] <= 0: #If 'bad' word, no erasure, submits points for deduction
+			emit_signal("input", wordDict[i])
+			return
+			
+	emit_signal("input", 5) #Random value for wrong word
+	
+	
+	#Add Victory/Loss Manager
+
+
+func _on_GameLoop_sendDictList(dict, tlist, glist):
+	totalList = tlist
+	wordDict = dict
+	goodList = glist
