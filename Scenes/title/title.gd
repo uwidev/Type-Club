@@ -1,4 +1,4 @@
-extends "../LoadableScene.gd"
+extends "res://Scenes/LoadableScene.gd"
 
 # Declare member variables here. Examples:
 # var a = 2

@@ -18,6 +18,7 @@ func _load_scene(scene_path, node_name, delete=true):
 		for scene in open_scenes:
 			print("freeing...", scene, self.get_child(self.get_child_count()-1))
 			self.get_child(self.get_child_count()-1).free()
+			open_scenes.remove(scene)
 			# Lower line is preserved as a comment
 			# just in case we ever make a child that we can't access via the last index
 			# self.find_node(scene, true, false).free()

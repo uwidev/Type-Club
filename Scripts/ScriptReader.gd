@@ -1,4 +1,4 @@
-extends Control
+extends "res://Scenes/LoadableScene.gd"
 
 # Declare member variables here. Examples:
 var textEngine
@@ -47,8 +47,9 @@ func readNextLine():
 			textEngine.buff_break()				#Temp
 			pass
 		elif readLine.begins_with("Scene"):
-			GlobalVariables.switchScene(afterSC)
-			#send signal here
+			# GlobalVariables.switchScene(afterSC)
+			print(afterSC)
+			emit_signal("transition", afterSC, "annieNext")
 		else:
 			print(GlobalVariables.scriptLine)
 			charName = readLine.substr(0,semiColon)
