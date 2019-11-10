@@ -1,12 +1,150 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/audio/Key Click.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/ui/mask_test.png" type="Texture" id=1]
+[ext_resource path="res://Assets/testCircle.png" type="Texture" id=2]
 
-[node name="Control" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
 
-[node name="UI" parent="." instance=ExtResource( 1 )]
+uniform sampler2D mask_texture;
 
-[node name="Key Click" parent="." instance=ExtResource( 2 )]
+void fragment() {
+    vec4 main = texture(TEXTURE, UV);
+	vec4 mask = texture(mask_texture, UV);
+	
+	main.a = 0.2126*mask.r + 0.7152*mask.g + 0.0722*mask.b;
+	
+    COLOR = main;
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/mask_texture = ExtResource( 1 )
+
+[sub_resource type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.776471, 0.180392, 0.180392, 1 )
+
+[node name="Sprite" type="Sprite"]
+material = SubResource( 5 )
+position = Vector2( 734.126, 300.031 )
+texture = ExtResource( 2 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+visible = false
+material = SubResource( 3 )
+margin_left = 822.816
+margin_top = 334.145
+margin_right = 1034.82
+margin_bottom = 555.145
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 200.0
+margin_bottom = 536.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 200, 50 )
+custom_styles/pressed = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Button6" type="Button" parent="ScrollContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 200.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 200, 50 )
+custom_styles/pressed = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Button2" type="Button" parent="ScrollContainer/VBoxContainer"]
+margin_top = 108.0
+margin_right = 200.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 200, 50 )
+custom_styles/pressed = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Button7" type="Button" parent="ScrollContainer/VBoxContainer"]
+margin_top = 162.0
+margin_right = 200.0
+margin_bottom = 212.0
+rect_min_size = Vector2( 200, 50 )
+custom_styles/pressed = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Button3" type="Button" parent="ScrollContainer/VBoxContainer"]
+margin_top = 216.0
+margin_right = 200.0
+margin_bottom = 266.0
+rect_min_size = Vector2( 200, 50 )
+custom_styles/pressed = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Button9" type="Button" parent="ScrollContainer/VBoxContainer"]
+margin_top = 270.0
+margin_right = 200.0
+margin_bottom = 320.0
+rect_min_size = Vector2( 200, 50 )
+custom_styles/pressed = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Button4" type="Button" parent="ScrollContainer/VBoxContainer"]
+margin_top = 324.0
+margin_right = 200.0
+margin_bottom = 374.0
+rect_min_size = Vector2( 200, 50 )
+custom_styles/pressed = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Button8" type="Button" parent="ScrollContainer/VBoxContainer"]
+margin_top = 378.0
+margin_right = 200.0
+margin_bottom = 428.0
+rect_min_size = Vector2( 200, 50 )
+custom_styles/pressed = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Button5" type="Button" parent="ScrollContainer/VBoxContainer"]
+margin_top = 432.0
+margin_right = 200.0
+margin_bottom = 482.0
+rect_min_size = Vector2( 200, 50 )
+custom_styles/pressed = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Button10" type="Button" parent="ScrollContainer/VBoxContainer"]
+margin_top = 486.0
+margin_right = 200.0
+margin_bottom = 536.0
+rect_min_size = Vector2( 200, 50 )
+custom_styles/pressed = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
