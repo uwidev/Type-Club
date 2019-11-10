@@ -8,7 +8,8 @@ enum {PREVIOUS = 1, NEXT = -1}
 #
 # word_lists will contain the list of words
 
-var words_list = ['0', '1', '2']
+#var words_list = ['0', '1', '2']		# Preset list for debugging
+var words_list = []
 var label_list = []
 var label_positions = []
 var label								# Temp var to hold labels
@@ -18,6 +19,8 @@ var assigner = CenterRoundIndex.new() 	# Tied to label_list as an index
 var scroll_width
 var half_width 							# Half of the total scroll width
 
+export(NodePath) var referenced_node_for_dictionary
+export(String) var dictionary_name
 export(bool) var focus_on_ready
 export(Theme) var font_theme			# Takes in a theme so it applies to all labels
 export(int) var word_spacing = 20
@@ -98,6 +101,8 @@ class CenterRoundIndex:
 
 
 func _ready():
+	words_list = get_node(referenced_node_for_dictionary).get(dictionary_name)
+	
 	if focus_on_ready:
 		grab_focus() # For debugging purposes
 	
@@ -155,10 +160,10 @@ func _set_labels():
 	for i in range(-half_width, half_width+1):
 		label_list[i].set_text(words_list[index])
 		label_positions[i] = Vector2(0.0, (min_spacing + word_spacing) * i)
-		index = helper.get_value()
 		label_list[i].set_position(label_positions[i])
-		
+	
 		helper.next()
+		index = helper.get_value()
 
 
 func _animate_and_update(mode):	
