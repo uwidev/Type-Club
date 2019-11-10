@@ -43,14 +43,14 @@ func _process(delta):
 	life_bar.set_value(timer.get_time_left()/MaxTimeLife*life_bar.get_max())
 	
 	# Testing/Debugging purposes
-	if Input.is_action_just_pressed("ui_right"):
-		if not timer.is_paused():
-			paused(true)
-		else:
-			paused(false)
-
-	if Input.is_action_just_pressed("ui_left"):
-		offset_life_percent(.2)
+#	if Input.is_action_just_pressed("ui_right"):
+#		if not timer.is_paused():
+#			paused(true)
+#		else:
+#			paused(false)
+#
+#	if Input.is_action_just_pressed("ui_left"):
+#		offset_life_percent(.2)
 	
 # Given an number, offset life by that much
 func offset_life(time):
