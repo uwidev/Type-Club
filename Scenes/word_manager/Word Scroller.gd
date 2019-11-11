@@ -22,6 +22,7 @@ var scroll_width
 var half_width 							# Half of the total scroll width
 var l_mat
 
+export(bool) var transparency = true
 export(NodePath) var referenced_node
 export(String) var dictionary_name
 export(String) var signal_end_typing
@@ -150,8 +151,10 @@ func create_format_label(): # -> returns a centercontainer with label child obje
 	label = Label.new()
 	label.set_name('label')
 	label.set_theme(font_theme)
-	label.set_material(label_material.duplicate())
-	label.set_script(label_tween)
+	
+	if transparency:
+		label.set_material(label_material.duplicate())
+		label.set_script(label_tween)
 	
 	center.add_child(label)
 	add_child(center)
@@ -181,15 +184,15 @@ func _set_labels():
 	index = helper.get_value()
 	for i in range(-half_width, half_width+1):
 		label = label_list[i].get_node('label')
-		l_mat = label.material
 		
-		l_mat.set_shader_param('extend', half_width)
-		l_mat.set_shader_param('height', min_spacing + word_spacing)
-		l_mat.set_shader_param('offset', (min_spacing + word_spacing) * i)
+		if transparency:
+			l_mat = label.material
+			l_mat.set_shader_param('extend', half_width)
+			l_mat.set_shader_param('height', min_spacing + word_spacing)
+			l_mat.set_shader_param('offset', (min_spacing + word_spacing) * i)
 		
-		label_positions[i] = Vector2(0.0, l_mat.get_shader_param('offset'))
-#		label_positions[i] = Vector2(0.0, (min_spacing + word_spacing) * i)
-		print(l_mat.get_shader_param('offset'), " | ", l_mat.get_shader_param('height'), " ", l_mat.get_shader_param('extend'))
+		label_positions[i] = Vector2(0.0, (min_spacing + word_spacing) * i)
+		# print(l_mat.get_shader_param('offset'), " | ", l_mat.get_shader_param('height'), " ", l_mat.get_shader_param('extend'))
 		label_list[i].set_position(label_positions[i])
 		
 		label_list[i].get_node('label').set_text(words_list[index])
@@ -209,12 +212,15 @@ func _animate_and_update(mode):
 	# Teleport the clipping label to the top/bottom
 	# Only select the labels that need to be moved
 	if mode == NEXT: # Moves up
+		if transparency:
+			label_list[-half_width].get_node('label')._curry_tween_label(label_positions[half_width])
 		label_list[-half_width].set_position(label_positions[half_width])
-		label_list[-half_width].get_node('label')._curry_tween_label(label_positions[half_width])
 		interval = range(-half_width+1, half_width+1)
 	elif mode == PREVIOUS: # Moves down
+		if transparency:
+			label_list[half_width].get_node('label')._curry_tween_label(label_positions[-half_width])
+			
 		label_list[half_width].set_position(label_positions[-half_width])
-		label_list[half_width].get_node('label')._curry_tween_label(label_positions[-half_width])
 		interval = range(-half_width, half_width+1-1)
 	
 	assigner.set_value(interval[0])
@@ -223,7 +229,8 @@ func _animate_and_update(mode):
 	# Actual animating part
 	for i in interval:
 		tween.interpolate_property(label_list[i], 'rect_position', label_positions[i], label_positions[i+mode], scroll_speed,  scroll_type, ease_type)
-		tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_label', label_positions[i], label_positions[i+mode], scroll_speed,  scroll_type, ease_type)
+		if transparency:
+			tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_label', label_positions[i], label_positions[i+mode], scroll_speed,  scroll_type, ease_type)
 		assigner.next()
 		
 		a_value = assigner.get_value()
@@ -235,12 +242,12 @@ func _animate_and_update(mode):
 		label = label_list.pop_front()
 		label_list.push_back(label)
 
-		label_list[half_width].get_node('label').set_text(words_list[selected.calc_offset(2)])
+		label_list[half_width].get_node('label').set_text(words_list[selected.calc_offset(half_width)])
 	elif mode == PREVIOUS:
 		label = label_list.pop_back()
 		label_list.push_front(label)
 
-		label_list[-half_width].get_node('label').set_text(words_list[selected.calc_offset(-2)])
+		label_list[-half_width].get_node('label').set_text(words_list[selected.calc_offset(-half_width)])
 
 
 func _input(event):

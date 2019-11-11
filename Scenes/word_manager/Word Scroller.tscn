@@ -22,6 +22,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 540.384 ]
 }
+transparency = false
 referenced_node = NodePath("[TEMP] Control")
 dictionary_name = "test_dict"
 signal_end_typing = "end_typing"
