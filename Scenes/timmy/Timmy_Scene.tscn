@@ -3,7 +3,7 @@
 [ext_resource path="res://Assets/ui/mask_test.png" type="Texture" id=1]
 [ext_resource path="res://Assets/testCircle.png" type="Texture" id=2]
 
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 uniform sampler2D mask_texture;
@@ -17,33 +17,34 @@ void fragment() {
     COLOR = main;
 }"
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 shader_param/mask_texture = ExtResource( 1 )
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id=3]
 
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 2 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.776471, 0.180392, 0.180392, 1 )
 
 [node name="Sprite" type="Sprite"]
-material = SubResource( 5 )
+material = SubResource( 2 )
 position = Vector2( 734.126, 300.031 )
 texture = ExtResource( 2 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-visible = false
-material = SubResource( 3 )
-margin_left = 822.816
-margin_top = 334.145
-margin_right = 1034.82
-margin_bottom = 555.145
+material = SubResource( 4 )
+use_parent_material = true
+margin_left = 216.286
+margin_top = 36.276
+margin_right = 428.29
+margin_bottom = 257.276
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+use_parent_material = true
 margin_right = 200.0
 margin_bottom = 536.0
 __meta__ = {
@@ -51,100 +52,110 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="ScrollContainer/VBoxContainer"]
+use_parent_material = true
 margin_right = 200.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 200, 50 )
-custom_styles/pressed = SubResource( 1 )
+custom_styles/pressed = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Button6" type="Button" parent="ScrollContainer/VBoxContainer"]
+use_parent_material = true
 margin_top = 54.0
 margin_right = 200.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 200, 50 )
-custom_styles/pressed = SubResource( 1 )
+custom_styles/pressed = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Button2" type="Button" parent="ScrollContainer/VBoxContainer"]
+use_parent_material = true
 margin_top = 108.0
 margin_right = 200.0
 margin_bottom = 158.0
 rect_min_size = Vector2( 200, 50 )
-custom_styles/pressed = SubResource( 1 )
+custom_styles/pressed = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Button7" type="Button" parent="ScrollContainer/VBoxContainer"]
+use_parent_material = true
 margin_top = 162.0
 margin_right = 200.0
 margin_bottom = 212.0
 rect_min_size = Vector2( 200, 50 )
-custom_styles/pressed = SubResource( 1 )
+custom_styles/pressed = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Button3" type="Button" parent="ScrollContainer/VBoxContainer"]
+use_parent_material = true
 margin_top = 216.0
 margin_right = 200.0
 margin_bottom = 266.0
 rect_min_size = Vector2( 200, 50 )
-custom_styles/pressed = SubResource( 1 )
+custom_styles/pressed = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Button9" type="Button" parent="ScrollContainer/VBoxContainer"]
+use_parent_material = true
 margin_top = 270.0
 margin_right = 200.0
 margin_bottom = 320.0
 rect_min_size = Vector2( 200, 50 )
-custom_styles/pressed = SubResource( 1 )
+custom_styles/pressed = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Button4" type="Button" parent="ScrollContainer/VBoxContainer"]
+use_parent_material = true
 margin_top = 324.0
 margin_right = 200.0
 margin_bottom = 374.0
 rect_min_size = Vector2( 200, 50 )
-custom_styles/pressed = SubResource( 1 )
+custom_styles/pressed = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Button8" type="Button" parent="ScrollContainer/VBoxContainer"]
+use_parent_material = true
 margin_top = 378.0
 margin_right = 200.0
 margin_bottom = 428.0
 rect_min_size = Vector2( 200, 50 )
-custom_styles/pressed = SubResource( 1 )
+custom_styles/pressed = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Button5" type="Button" parent="ScrollContainer/VBoxContainer"]
+use_parent_material = true
 margin_top = 432.0
 margin_right = 200.0
 margin_bottom = 482.0
 rect_min_size = Vector2( 200, 50 )
-custom_styles/pressed = SubResource( 1 )
+custom_styles/pressed = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Button10" type="Button" parent="ScrollContainer/VBoxContainer"]
+use_parent_material = true
 margin_top = 486.0
 margin_right = 200.0
 margin_bottom = 536.0
 rect_min_size = Vector2( 200, 50 )
-custom_styles/pressed = SubResource( 1 )
+custom_styles/pressed = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }

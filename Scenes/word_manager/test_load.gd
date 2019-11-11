@@ -1,6 +1,6 @@
 extends Control
 
-var test_list = ['0', '1', '2']
+var test_dict = {'0':0, '1':1, '2':2}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

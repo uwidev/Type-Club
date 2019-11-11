@@ -9,18 +9,22 @@ enum {PREVIOUS = 1, NEXT = -1}
 # word_lists will contain the list of words
 
 #var words_list = ['0', '1', '2']		# Preset list for debugging
+var words_dict = {}
 var words_list = []
 var label_list = []
 var label_positions = []
 var label								# Temp var to hold labels
+var center
 var min_spacing
 var selected = RoundIndex.new() 		# Tied to words_list as an index
 var assigner = CenterRoundIndex.new() 	# Tied to label_list as an index
 var scroll_width
 var half_width 							# Half of the total scroll width
+var l_mat
 
-export(NodePath) var referenced_node_for_dictionary
+export(NodePath) var referenced_node
 export(String) var dictionary_name
+export(String) var signal_end_typing
 export(bool) var focus_on_ready
 export(Theme) var font_theme			# Takes in a theme so it applies to all labels
 export(int) var word_spacing = 20
@@ -29,6 +33,8 @@ export(int) var extend = 2		# Amount of words extending from center, one directi
 export(float) var scroll_speed = 0.3
 export(int, 'Linear', 'Sine', 'Quint', 'Quart', 'Quad', 'Expo', 'Elastic', 'Cubic', 'Circ', 'Bounce', 'Back') var scroll_type
 export(int, 'Ease In', 'Ease Out', 'Ease In Out', 'Ease Out In (No Ease)') var ease_type
+export(Material) var label_material
+export(Resource) var label_tween
 
 onready var tween = get_node("Tween")
 
@@ -61,6 +67,8 @@ class RoundIndex:
 		
 	func set_max(m):
 		_max_index = m
+		if value > _max_index:
+			value = 0
 	
 	func get_max():
 		return _max_index
@@ -101,7 +109,11 @@ class CenterRoundIndex:
 
 
 func _ready():
-	words_list = get_node(referenced_node_for_dictionary).get(dictionary_name)
+	# Connect and setup from game loop control script
+	var ref_node = get_node(referenced_node)
+	# ref_node.connect(signal_end_typing, self, "_on_end_typing")			# Uncomment so can connect
+	words_dict = ref_node.get(dictionary_name)
+	words_list = words_dict.keys()
 	
 	if focus_on_ready:
 		grab_focus() # For debugging purposes
@@ -115,10 +127,8 @@ func _ready():
 	for i in range(-1, scroll_width):
 		label_list.append( create_format_label() )
 		label_positions.append(0)
-	
-	#print(label_list.size())
-	
-	min_spacing = label_list.front().get_size().y
+
+	min_spacing = label_list.front().get_node('label').get_size().y
 	
 	# Initializes max index for selected
 	selected.set_max(words_list.size()-1)
@@ -126,13 +136,26 @@ func _ready():
 	_set_labels()
 
 
+func _on_end_typing():
+	grab_focus()
+	selected.set_max(words_list.size()-1)
+	words_list = words_dict.keys()
+
+
 # Creates label and adds it as a child to current node
-func create_format_label(): # -> returns a label object
-	label = Label.new()
-	label.set_theme(font_theme)
-	add_child(label)
+func create_format_label(): # -> returns a centercontainer with label child object
+	center = CenterContainer.new()
+	center.set_use_top_left(true)
 	
-	return label
+	label = Label.new()
+	label.set_name('label')
+	label.set_theme(font_theme)
+	label.set_material(label_material.duplicate())
+	label.set_script(label_tween)
+	
+	center.add_child(label)
+	add_child(center)
+	return center
 
 
 # Called when you want to advance the list
@@ -140,7 +163,6 @@ func next():
 	selected.next()
 	#print(selected.get_value())
 	_animate_and_update(NEXT)
-
 
 
 # Called when you want to backtrack the list
@@ -158,12 +180,23 @@ func _set_labels():
 	
 	index = helper.get_value()
 	for i in range(-half_width, half_width+1):
-		label_list[i].set_text(words_list[index])
-		label_positions[i] = Vector2(0.0, (min_spacing + word_spacing) * i)
+		label = label_list[i].get_node('label')
+		l_mat = label.material
+		
+		l_mat.set_shader_param('extend', half_width)
+		l_mat.set_shader_param('height', min_spacing + word_spacing)
+		l_mat.set_shader_param('offset', (min_spacing + word_spacing) * i)
+		
+		label_positions[i] = Vector2(0.0, l_mat.get_shader_param('offset'))
+#		label_positions[i] = Vector2(0.0, (min_spacing + word_spacing) * i)
+		print(l_mat.get_shader_param('offset'), " | ", l_mat.get_shader_param('height'), " ", l_mat.get_shader_param('extend'))
 		label_list[i].set_position(label_positions[i])
+		
+		label_list[i].get_node('label').set_text(words_list[index])
 	
 		helper.next()
 		index = helper.get_value()
+	pass
 
 
 func _animate_and_update(mode):	
@@ -177,9 +210,11 @@ func _animate_and_update(mode):
 	# Only select the labels that need to be moved
 	if mode == NEXT: # Moves up
 		label_list[-half_width].set_position(label_positions[half_width])
+		label_list[-half_width].get_node('label')._curry_tween_label(label_positions[half_width])
 		interval = range(-half_width+1, half_width+1)
 	elif mode == PREVIOUS: # Moves down
 		label_list[half_width].set_position(label_positions[-half_width])
+		label_list[half_width].get_node('label')._curry_tween_label(label_positions[-half_width])
 		interval = range(-half_width, half_width+1-1)
 	
 	assigner.set_value(interval[0])
@@ -187,25 +222,25 @@ func _animate_and_update(mode):
 	a_value = assigner.get_value()
 	# Actual animating part
 	for i in interval:
-		tween.interpolate_property(label_list[i], "rect_position", label_positions[i], label_positions[i+mode], scroll_speed,  scroll_type, ease_type)
+		tween.interpolate_property(label_list[i], 'rect_position', label_positions[i], label_positions[i+mode], scroll_speed,  scroll_type, ease_type)
+		tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_label', label_positions[i], label_positions[i+mode], scroll_speed,  scroll_type, ease_type)
 		assigner.next()
-	
+		
 		a_value = assigner.get_value()
 	
-	
 	tween.start()
-	
+
 	# Update the label_list array such that it holds inegrity
 	if mode == NEXT:
 		label = label_list.pop_front()
 		label_list.push_back(label)
 
-		label_list[half_width].set_text(words_list[selected.calc_offset(2)])
+		label_list[half_width].get_node('label').set_text(words_list[selected.calc_offset(2)])
 	elif mode == PREVIOUS:
 		label = label_list.pop_back()
 		label_list.push_front(label)
 
-		label_list[-half_width].set_text(words_list[selected.calc_offset(-2)])
+		label_list[-half_width].get_node('label').set_text(words_list[selected.calc_offset(-2)])
 
 
 func _input(event):

@@ -1,24 +1,94 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/word_manager/Word Scroller.gd" type="Script" id=1]
 [ext_resource path="res://Themes/font.tres" type="Theme" id=2]
-[ext_resource path="res://Scenes/word_manager/test_load.gd" type="Script" id=3]
+[ext_resource path="res://Assets/materials/word_scroller.tres" type="Material" id=3]
+[ext_resource path="res://Scenes/word_manager/label_tween.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/word_manager/test_load.gd" type="Script" id=5]
+[ext_resource path="res://Assets/testCircle.png" type="Texture" id=6]
+
+[sub_resource type="Gradient" id=1]
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
 [node name="Word Scroller" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 focus_mode = 2
 script = ExtResource( 1 )
-referenced_node_for_dictionary = NodePath("Control")
-dictionary_name = "test_list"
+__meta__ = {
+"_edit_horizontal_guides_": [ 540.384 ]
+}
+referenced_node = NodePath("[TEMP] Control")
+dictionary_name = "test_dict"
+signal_end_typing = "end_typing"
 focus_on_ready = true
 font_theme = ExtResource( 2 )
 font_size = 50
-extend = 1
 scroll_type = 9
 ease_type = 1
+label_material = ExtResource( 3 )
+label_tween = ExtResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="Control" type="Control" parent="."]
+[node name="[TEMP] Control" type="Control" parent="."]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
-script = ExtResource( 3 )
+script = ExtResource( 5 )
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+light_mask = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -476.5
+margin_top = -338.0
+margin_right = 476.5
+margin_bottom = 338.0
+
+[node name="Mask Up" type="Light2D" parent="."]
+visible = false
+position = Vector2( 0, -171.073 )
+rotation = 1.5708
+scale = Vector2( 0.167323, 942.289 )
+texture = SubResource( 2 )
+mode = 3
+range_item_cull_mask = 2
+
+[node name="Mask Down" type="Light2D" parent="."]
+visible = false
+position = Vector2( 0, 171.741 )
+rotation = -1.5708
+scale = Vector2( 0.167, 940.119 )
+texture = SubResource( 2 )
+mode = 3
+range_item_cull_mask = 2
+shadow_item_cull_mask = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+use_top_left = true
+
+[node name="Label" type="Label" parent="CenterContainer"]
+light_mask = 2
+material = ExtResource( 3 )
+margin_left = -317.0
+margin_top = -73.0
+margin_right = 317.0
+margin_bottom = 72.0
+theme = ExtResource( 2 )
+text = "This is a test"
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+light_mask = 2
+position = Vector2( -107.947, 387.628 )
+scale = Vector2( 1.59504, 1.65708 )
+texture = ExtResource( 6 )
