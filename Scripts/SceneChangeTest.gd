@@ -12,11 +12,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # warning-ignore:unused_argument
 func _process(delta):
-	if counter > 200:
-		signalReceived()
-	var moveRight = Vector2(1,0)
-	translate(moveRight)
-	counter += 1
+	pass
+#	if counter > 200:
+#		signalReceived()
+#	var moveRight = Vector2(1,0)
+#	translate(moveRight)
+#	counter += 1
 	
 
 #Not an actual signal function

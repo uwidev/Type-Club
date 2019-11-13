@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float offset = 0;		// Offset from center
+uniform float extend = 3;		// How many labels exist from center to up -1
+uniform float height = 100;		// Pixels height per label
+
+void fragment(){
+	vec4 color = texture(TEXTURE, UV);
+	
+	color.a *= max( 0.0, ((height*(extend-.2)) - abs(offset))/((height*(extend))) );
+	
+	COLOR = color;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/offset = 0.0
+shader_param/extend = 3.0
+shader_param/height = 100.0

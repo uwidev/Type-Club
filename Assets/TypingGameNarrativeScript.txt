@@ -1,0 +1,96 @@
+﻿Image;Super Kawaii Kaiju on T.V.
+Narrator;You’re watching your favorite T.V. show, Super Kawaii Kaiju.
+Tommy;Super Kawaii Kaiju is on! YESSSSSS!!!
+Mom;Have you finished your homework yet honey?
+Tommy;Mayyyyybe.
+Mom;You have to do your homework before you can watch T.V. Tommy come on.
+Tommy;Ughhhhh fine.
+Image;Homework
+Tommy;Ugh this is sooooo boring. 
+Tommy;I wish I could be huge like kawaii kaiju and just fight my way through this dumb homework.
+Tommy;...
+Tommy;......
+Tommy;Hmmmmmmm.
+Scene;res://Scenes/Annie_Scene_2.tscn
+Image;Shows Tommy shredding his homework into pieces
+Narrator;You tear your homework to pieces.
+Tommy;GRAAAAAAGH!!!
+Mom;What, Tommy what did you do!? How are you gonna finish your homework now?
+Image;Tommy looks down at the shredded paper and looks back up again and gives a really sad face
+Narrator; You look down at your homework, and then look back up at your mom and cry.
+Narrator;Your mom hugs you
+Mom; It’s okay silly, just don’t do that again.
+Tommy;Okay. I’ll do my best to never attack my homework ever again.
+Narrator;You do a pretty good job and end up only shredding two other assignments.
+Narrator;You meet a girl named Caroline and become fast friends in elementary school.
+Tommy;Hey, do you wanna come to my birthday party?
+Caroline;Okay, sure!
+Narrator;On your birthday she gets you a Super Kawaii Kaiju action figure.
+Tommy;AAAAAAAAAA I love Super Kawaii Kaiju how did you know!?
+Caroline;You tell me the plot of every episode every other day. How could I NOT know?
+Tommy;Oh... Do you want me to stop telling you the plot of every episode every other day?
+Caroline;Mmmmmmmmmmmm no. I like hearing about it. If anything you could start telling me the plot of every episode every day.
+Narrator;You start telling her the plot of every episode every day and everyday 
+Narrator;You go through middle school and high school together. 
+Tommy;So, what college are you going to?
+Narrator;By some magic twist of fate you end up going to the same college.
+Narrator;Finally, one rainy day in spring, you muster up the courage to finally say…
+Prompt;I love you
+Narrator;She smiles.
+Caroline:I love you too.
+Narrator;You spend four great years of college together and graduate with a computer science degree, and so does she.
+Narrator;You both get a job in Nevada and start living together.
+Prompt;Life is good
+Narrator;Several years pass
+Narrator;One night you come home, and Caroline isn’t there. You’re worried, but you’re sure it’s fine. 
+Narrator;You go to sleep and wake up the next day to a phone call. Caroline got in a car accident.
+Narrator;She’s dead.
+Prompt;No
+Narrator;You go to work the next day pretending like nothing is wrong, acting as if it was all a lie.
+Tom;Ugh, this is so much work, I’m not gonna get home until like 1 A.M. I can’t do this!
+Scene;Computer fight scene
+Image;Tom punching their screen and breaking it while their boss walks in
+Boss;T-Tom! What the hell, why did you do that?!
+Tom;I, I don’t know. I’m sorry.
+Boss;I think you need to take a break, Tom. Take tomorrow off.
+Narrator;When you get home you do your best to ignore any thoughts about her, but it’s too quiet. 
+Narrator;She’s not here, telling you she loves you. She’s not here, making stupid jokes.
+Narrator;She’s not in bed next to you.
+Prompt;She’s dead
+Narrator;life goes on, an empty shell of what it was.
+Narrator;You retire at age 67 and buy a house on the beach.
+Narrator;One day, you see someone that looks just like Caroline walking along the beach. 
+Narrator;You run up to her and tap her on the back.
+Narrator;She turns around. It’s her.
+Prompt;You’re alive!
+Narrator;She looks at you with a confused face and asks who you are. 
+Narrator;You tell her everything and she still doesn’t remember.
+Narrator;She tells you her name is Carrie. She must have amnesia, or something, but you don’t care.
+Narrator;You ask her out on a date and you have a great time. 
+Narrator;It has to be her, she’s acting like she always used to, with her stupid jokes and funny stories.
+Narrator;It’s like you’re getting to meet her all over again.
+Prompt;It has to be her
+Narrator;After 2 years, you get married and spend most of your time sitting on the beach with Carrie.
+Prompt;life is good
+Narrator;After 3 happy years you go to the doctor and he tells you you’re dying.
+Prompt;Okay
+Narrator;One day you go to therapy, and imagine what it would be like to fight it. 
+Narrator;If only you could just punch the shit out of it.
+Scene;Disease fight scene
+Narrator;When you snap back into reality you aren’t punching or tearing anything to shreds. 
+Narrator;There’s nothing you can do and you know that.
+Prompt;I know that
+Image;Light
+Prompt;I
+Prompt;Know
+Prompt;Love
+Prompt;Loss
+Prompt;Happiness
+Prompt;Imagination
+Prompt;Kawaii Kaiju
+Prompt;Homework
+Prompt;Caroline
+Image;You look to the side and you see Carrie holding your hand, crying.
+Prompt;Carrie
+Prompt;I know life
+Image;White screen
