@@ -12,10 +12,10 @@ var pointValue	#How much the word is worth
 var wordDict = {}	#Key is word, value is points
 var list = []
 var glist = []
-
 var failCount = 0
 
-export(TextFile) var SceneFile
+#export(TextFile) var SceneFile
+export var SceneFile = " "
 
 signal sendDictList
 signal fail
@@ -27,10 +27,11 @@ func _ready():
 		list.append(i);  #Append words to list
 		if wordDict[i] > 0:
 			glist.append(i)
-	emit_signal("sendDictList", wordDict, list, glist) #Used to send signal to TypeEngine.gd
+	emit_signal("sendDictList", wordDict, list, glist)
+	print("here") #Used to send signal to TypeEngine.gd
 	pass # Replace with function body.
 
-func OnSignalFail(): 
+func OnSignalFail(): #Change to Signal Function 
 	failCount -= 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,5 +46,6 @@ func readWords(wordTxtFile): #Control has to activate this if used via signal
 		wordLine = wordFile.get_line()
 		semiColon = wordLine.find(";")
 		word = wordLine.substr(0,semiColon)
-		pointValue = wordLine.substr(semiColon+1,wordLine.length()-3-semiColon)
+		pointValue = int(wordLine.substr(semiColon+1, wordLine.length()))
 		wordDict[word] = pointValue
+	wordFile.close()

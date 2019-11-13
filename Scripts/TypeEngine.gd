@@ -18,6 +18,29 @@ func _ready():
 #func _process(delta):
 #	pass
 
+func _on_LineEdit_text_entered(new_text):
+	self.clear()
+	if goodList.empty():
+		emit_signal("emptyList")
+		return
+	for i in totalList:
+		if new_text == i && wordDict[i] > 0:
+			goodList.erase(new_text) #Deletes the Entry
+			totalList.erase(new_text)
+			if goodList.empty():
+				emit_signal("emptyList") #Done with level
+				return
+			emit_signal("input", wordDict[i]) #If given dict, pass WordDict[i]
+			print("Erased  " +  new_text)
+			return
+		elif new_text == i && wordDict[i] <= 0: #If 'bad' word, no erasure, submits points for deduction
+			emit_signal("input", wordDict[i])
+			print("Bad Word")
+			return
+	emit_signal("input", 5) #Random value for wrong word
+	print("Wrong Spelling")
+
+#IN ORDER TO WORK WITH SCROLL UI, PROBABLY CHANGE TO DIFFERENT SIGNAL WITH GIVEN NECESSARY INPUT "FIRST CHAR OF WORD"
 func _unhandled_input(event): #LineEdit must have mouse_filter set to 'ignore' in order to prevent mouse input
 	if event is InputEventKey:
 		if event.scancode == KEY_Q:
@@ -25,36 +48,12 @@ func _unhandled_input(event): #LineEdit must have mouse_filter set to 'ignore' i
 			self.grab_focus() #Focus onto textbox
 		elif event.scancode == KEY_ESCAPE:
 			self.set_focus_mode(0) #prevents textbox from being focused
-
-
-func _on_LineEdit_text_entered(new_text):
-	self.clear()
-	if goodList.empty():
-		emit_signal("emptyList")
-		return
-	for i in totalList:
-		
-		if new_text == i && wordDict[i] > 0:
-			goodList.erase(new_text) #Deletes the Entry
-			totalList.erase(new_text)
-			if goodList.empty():
-				emit_signal("emptyList") #Done with level
-				return
-				
-			emit_signal("input", wordDict[i]) #If given dict, pass WordDict[i]
-			return
-			
-		elif new_text == i && wordDict[i] <= 0: #If 'bad' word, no erasure, submits points for deduction
-			emit_signal("input", wordDict[i])
-			return
-			
-	emit_signal("input", 5) #Random value for wrong word
 	
 	
 	#Add Victory/Loss Manager
 
 
-func _on_GameLoop_sendDictList(dict, tlist, glist):
+func _on_Node_sendDictList(dict, tlist, glist):
 	totalList = tlist
 	wordDict = dict
 	goodList = glist

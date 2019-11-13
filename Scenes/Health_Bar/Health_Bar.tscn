@@ -65,5 +65,4 @@ script = ExtResource( 5 )
 wait_time = 0.1
 autostart = true
 [connection signal="text_entered" from="LineEdit" to="LineEdit" method="_on_LineEdit_text_entered"]
-[connection signal="wrongInput" from="LineEdit" to="." method="_on_LineEdit_wrongInput"]
 [connection signal="timeout" from="RichTextLabel/Timer" to="RichTextLabel" method="_on_Timer_timeout"]

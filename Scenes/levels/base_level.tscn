@@ -40,5 +40,6 @@ mouse_filter = 2
 align = 1
 script = ExtResource( 5 )
 [connection signal="sendDictList" from="GameLoop" to="TypeEngine" method="_on_GameLoop_sendDictList"]
+[connection signal="text_entered" from="TypeEngine" to="TypeEngine" method="_on_TypeEngine_text_entered"]
 
 [editable path="UI"]
