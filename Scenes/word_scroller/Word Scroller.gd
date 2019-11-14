@@ -163,7 +163,6 @@ func _create_format_label(): # -> returns a centercontainer with label child obj
 # Called when you want to advance the list
 func _next():
 	selected.next()
-	#print(selected.get_value())
 	_animate_and_update(NEXT)
 
 
@@ -193,7 +192,6 @@ func _set_labels():
 			l_mat.set_shader_param('offset', (min_spacing + word_spacing) * i)
 		
 		label_positions[i] = Vector2(0.0, (min_spacing + word_spacing) * i)
-		# print(l_mat.get_shader_param('offset'), " | ", l_mat.get_shader_param('height'), " ", l_mat.get_shader_param('extend'))
 		label_list[i].set_position(label_positions[i])
 		
 		label_list[i].get_node('label').set_text(wlist[index])
@@ -285,7 +283,6 @@ func _input(event):
 
 
 func _on_sendDictList(d, w, g, b):
-	# print('signal received ', d, w, g, b)
 	wdict = d
 	wlist = w
 	
@@ -295,12 +292,14 @@ func _on_sendDictList(d, w, g, b):
 
 
 func _on_end_typing(word):
-	print(wlist)
 	grab_focus()
 	selected.set_max(wlist.size()-1)
 	_update_labels()
 
 
-func _on_emptyGoodList():
-	print("emptyGoodList received")
+func _on_refreshedWordDictionary():
+	_update_labels()
+
+
+func _on_base_level_end_all_words():
 	_update_labels()
