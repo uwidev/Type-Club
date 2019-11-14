@@ -91,8 +91,8 @@ func _on_no_life():
 
 
 func _on_emptyGoodList():
-	print('emptyListReceived')
-	paused(true)
+
+	pass
 
 
 func _on_fail():
