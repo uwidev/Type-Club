@@ -64,13 +64,10 @@ transparency = false
 
 [node name="Type Engine" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 5 )]
 margin_left = 229.0
-margin_top = 175.0
+margin_top = 200.0
 margin_right = 729.0
-margin_bottom = 425.0
-grow_horizontal = 2
-grow_vertical = 2
-rect_min_size = Vector2( 500, 250 )
-placeholder_text = ""
+margin_bottom = 400.0
+rect_min_size = Vector2( 500, 200 )
 
 [node name="Seperator" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 margin_left = 958.0
@@ -99,14 +96,13 @@ margin_top = 842.0
 margin_right = 1920.0
 margin_bottom = 886.0
 Autostart = true
-[connection signal="emptyGoodList" from="." to="VBoxContainer/Life and Timer" method="_on_emptyGoodList"]
-[connection signal="emptyGoodList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_emptyGoodList"]
+[connection signal="end_all_words" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_base_level_end_all_words"]
 [connection signal="fail" from="." to="VBoxContainer/Life and Timer" method="_on_fail"]
 [connection signal="life_mod" from="." to="VBoxContainer/Life and Timer" method="_on_life_mod"]
+[connection signal="refreshedWordDictionary" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_refreshedWordDictionary"]
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_sendDictList"]
-[connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_sendDictList"]
 [connection signal="word_selected" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_word_selected"]
+[connection signal="text_entered" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_text_entered"]
 [connection signal="text_entered" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="." method="_on_text_engine_feedback"]
 [connection signal="text_entered" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_end_typing"]
-[connection signal="text_entered" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_text_entered"]
 [connection signal="no_life" from="VBoxContainer/Life and Timer" to="." method="_on_no_life"]

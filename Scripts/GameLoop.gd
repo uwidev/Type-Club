@@ -16,15 +16,14 @@ var glist = []
 var blist = []
 var failCount = 0
 
-#export(TextFile) var SceneFile
-export var path_words = 'res://'
-export(NodePath) var next_scene
+export(PackedScene) var next_scene
 
 signal sendDictList
-signal emptyGoodList
+signal refreshedWordDictionary
 signal fail
 signal life_mod
-signal end_scene
+signal end_level
+signal end_all_words
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,7 +36,6 @@ func _ready():
 		else:
 			blist.append(key)
 	emit_signal("sendDictList", wdict, wlist, glist, blist)
-	print("here") #Used to send signal to TypeEngine.gd
 	pass # Replace with function body.
 
 
@@ -60,40 +58,51 @@ func readWords(wordTxtFile): #Control has to activate this if used via signal
 			wdict[word] = pointValue
 	wdicts.append(wdict)
 	wordFile.close()
-	
-	
-func _on_text_engine_feedback(word):
-	print(wlist, ' | ', word)
+
+
+func _update_lists(word_dict):
+	for w in word_dict:
+		wlist.append(w)
+		if word_dict[w] > 0:
+			glist.append(w)
+		else:
+			blist.append(w)
+
+
+func _remove_from_lists(word):
+	wlist.erase(word)
 	if wdict[word] > 0:
 		glist.erase(word)
 	else:
 		blist.erase(word)
-	wlist.erase(word)
-	
-#	for i in wlist:
-#		if i == word && wdict[i] > 0:
-#			glist.erase(word)
-#			wlist.erase(word)
-#
-#			print("Erased  " +  word)
-#			return
-#
-#		elif word == i && wdict[i] <= 0: #If 'bad' word, no erasure, submits points for deduction
-#			print("Bad Word")
-#			return
 
-	if glist.empty():
-		if wdicts.empty():
-			emit_signal("end_level", next_scene)
-			return
-		
-		emit_signal("emptyGoodList")
-		wdict = wdicts.pop_front()
+
+func _on_text_engine_feedback(word):
+	var tmp_dict
+	
+	_remove_from_lists(word)
 
 	emit_signal('life_mod', wdict[word])
 	wdict.erase(word)
+	
+	print('gameloop: ', wdict, ' | ', word)
+	if glist.empty():			# Denotes the end of a stage
+		if wdicts.empty():		# Denotes the end of a level
+			emit_signal('end_all_words')
+			emit_signal("end_level", next_scene)
+			return
+		
+		# If not empty, queue the next stage...
+		# Optionally queue small cutscene (when implimented)
+		tmp_dict =  wdicts.pop_front()
+		for key in tmp_dict.keys():
+			wdict[key] = tmp_dict[key]
+		_update_lists(wdict)
+		
+		emit_signal("refreshedWordDictionary")
+		return
 
-
+	
 func _on_no_life():
 	failCount += 1
 	if failCount >= 2:

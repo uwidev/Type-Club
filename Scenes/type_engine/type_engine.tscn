@@ -6,9 +6,6 @@
 margin_right = 470.0
 margin_bottom = 163.0
 mouse_filter = 2
-align = 1
-placeholder_text = "Type Something Here"
 caret_blink = true
 caret_blink_speed = 1.0
 script = ExtResource( 1 )
-[connection signal="text_entered" from="." to="." method="_on_LineEdit_text_entered"]

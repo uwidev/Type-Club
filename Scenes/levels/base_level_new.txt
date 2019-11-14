@@ -1,11 +1,5 @@
-math;20
-science;10
-biology;15
+one;20
 ;;
-math;20
-science;10
-biology;15
+two;20
 ;;
-math;20
-science;10
-biology;15
+three;20
