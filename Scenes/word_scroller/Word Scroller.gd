@@ -137,7 +137,6 @@ func _ready():
 
 
 func on_end_typing(word):
-	print('grabbing focus word scroller...')
 	grab_focus()
 	selected.set_max(wlist.size()-1)
 
@@ -299,4 +298,9 @@ func _on_end_typing(word):
 	print(wlist)
 	grab_focus()
 	selected.set_max(wlist.size()-1)
+	_update_labels()
+
+
+func _on_emptyGoodList():
+	print("emptyGoodList received")
 	_update_labels()
