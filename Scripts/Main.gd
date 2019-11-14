@@ -14,8 +14,13 @@ func _ready():
 
 func _load_scene(scene_path, node_name, delete=true):
 	print(open_scenes, node_name)
+	# if the current open scenes should be deleted:
 	if delete:
 		for scene in open_scenes:
+			#TODO: It hasn't come up yet, but the list traversal is bad. Need to reverse
+			#to suit the "latest appended" model of finding children to free.
+			#If no need for a list, just use a single var.
+			# free most recent child, which should be the latest appended to open_scenes
 			print("freeing...", scene, self.get_child(self.get_child_count()-1))
 			self.get_child(self.get_child_count()-1).free()
 			open_scenes.remove(scene)
