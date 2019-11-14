@@ -38,3 +38,6 @@ value = 100.0
 texture_progress = ExtResource( 2 )
 tint_progress = Color( 0.772549, 0.247059, 0.247059, 1 )
 nine_patch_stretch = true
+[connection signal="timeout" from="Timer/Timer" to="." method="_on_no_life"]
+
+[editable path="Timer"]

@@ -6,7 +6,7 @@ var wordLine	#The current line
 var semiColon	#Position of semicolon
 var word	#Word
 var pointValue	#How much the word is worth
-var wordDict = {}	#Key is word, value is points
+var wdict = {}	#Key is word, value is points
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,6 +24,6 @@ func readWords(wordTxtFile):
 		semiColon = wordLine.find(";")
 		word = wordLine.substr(0,semiColon)
 		pointValue = wordLine.substr(semiColon+1,wordLine.length()-3-semiColon)
-		wordDict[word] = pointValue
+		wdict[word] = pointValue
 		
 		

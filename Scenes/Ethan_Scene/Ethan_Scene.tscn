@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/TypeEngine.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/type_engine/TypeEngine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/GameLoop.gd" type="Script" id=2]
+
+
 
 [node name="Ethan_Scene" type="Node2D"]
 

@@ -1,22 +1,31 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Assets/fonts/McLaren-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Scenes/word_manager/Word Scroller.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/ui/divider.png" type="Texture" id=3]
-[ext_resource path="res://Assets/testCircle.png" type="Texture" id=4]
-[ext_resource path="res://Scenes/Health_Bar/health_bar_official.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/GameLoop.gd" type="Script" id=1]
+[ext_resource path="res://Themes/main_UI_theme.tres" type="Theme" id=2]
+[ext_resource path="res://Assets/fonts/McLaren-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scenes/word_scroller/Word Scroller.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/type_engine/type_engine.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/ui/divider.png" type="Texture" id=6]
+[ext_resource path="res://Assets/testCircle.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Health_Bar/health_bar_official.tscn" type="PackedScene" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 24
-font_data = ExtResource( 1 )
+font_data = ExtResource( 3 )
 
 [node name="base_level" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -2.0
+margin_bottom = -2.0
 custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -35,6 +44,7 @@ alignment = 1
 margin_right = 958.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 958, 0 )
+theme = ExtResource( 2 )
 
 [node name="<PH> Scrolling Text" type="Label" parent="VBoxContainer/HBoxContainer/Main Interface"]
 visible = false
@@ -45,22 +55,29 @@ margin_bottom = 317.0
 custom_fonts/font = SubResource( 2 )
 text = "Typing Engine Here and Selectable Word List"
 
-[node name="Word Scroller" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 2 )]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Word Scroller" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 4 )]
 margin_left = 479.0
 margin_top = 300.0
 margin_right = 479.0
 margin_bottom = 300.0
+transparency = false
+
+[node name="Type Engine" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 5 )]
+margin_left = 229.0
+margin_top = 175.0
+margin_right = 729.0
+margin_bottom = 425.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 500, 250 )
+placeholder_text = ""
 
 [node name="Seperator" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 margin_left = 958.0
 margin_right = 962.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 4, 600 )
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
 expand = true
 
 [node name="Enemy Container" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
@@ -74,13 +91,21 @@ margin_left = 367.0
 margin_top = 187.0
 margin_right = 591.0
 margin_bottom = 412.0
-texture = ExtResource( 4 )
+texture = ExtResource( 7 )
 stretch_mode = 4
 
-[node name="Life and Timer" parent="VBoxContainer" instance=ExtResource( 5 )]
+[node name="Life and Timer" parent="VBoxContainer" instance=ExtResource( 8 )]
 margin_top = 842.0
 margin_right = 1920.0
 margin_bottom = 886.0
 Autostart = true
-
-[editable path="VBoxContainer/HBoxContainer/Main Interface/Word Scroller"]
+[connection signal="emptyGoodList" from="." to="VBoxContainer/Life and Timer" method="_on_emptyGoodList"]
+[connection signal="fail" from="." to="VBoxContainer/Life and Timer" method="_on_fail"]
+[connection signal="life_mod" from="." to="VBoxContainer/Life and Timer" method="_on_life_mod"]
+[connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_sendDictList"]
+[connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_sendDictList"]
+[connection signal="word_selected" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_word_selected"]
+[connection signal="text_entered" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_end_typing"]
+[connection signal="text_entered" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="." method="_on_text_engine_feedback"]
+[connection signal="text_entered" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_text_entered"]
+[connection signal="no_life" from="VBoxContainer/Life and Timer" to="." method="_on_no_life"]
