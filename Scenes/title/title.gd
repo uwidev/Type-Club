@@ -21,7 +21,7 @@ func _ready():
 #	pass
 
 func _on_new_game_press():
-	emit_signal("end_level", "res://Scenes/Annie_Scene.tscn")
+	emit_signal("end_level", "res://Scenes/levels/base_level_new.tscn")
 
 func _on_load_game_press():	
 	print("Loading game...")

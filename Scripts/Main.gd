@@ -13,8 +13,6 @@ func _ready():
 #	pass
 
 func _load_scene(scene_path, delete=true):
-	var node_name = scene_path
-	print(open_scenes, node_name)
 	# if the current open scenes should be deleted:
 	if delete:
 		for scene in open_scenes:
@@ -28,12 +26,18 @@ func _load_scene(scene_path, delete=true):
 			# Lower line is preserved as a comment
 			# just in case we ever make a child that we can't access via the last index
 			# self.find_node(scene, true, false).free()
+	var node_name = scene_path
+	if scene_path is PackedScene:
+		node_name = str(scene_path)
+	else:
+		scene_path = load(scene_path)
+	var scene_instance = scene_path.instance()
+	print(open_scenes, node_name)
 	open_scenes.append(node_name)
-	var scene_instance = load(scene_path).instance()
 	scene_instance.set_name(node_name)
 	add_child(scene_instance)
 	print("added loaded scene!", node_name)
 
-func _on_transition(scene_path, node_name):
+func _on_transition(scene_path):
 	# Can't directly call because we can't free until the signal stops emitting and calling
-	call_deferred("_load_scene", scene_path, node_name)
+	call_deferred("_load_scene", scene_path)
