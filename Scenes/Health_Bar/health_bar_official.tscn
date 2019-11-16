@@ -8,6 +8,8 @@
 margin_right = 1736.0
 margin_bottom = 32.0
 script = ExtResource( 1 )
+MaxTimeLife = 2
+Autostart = true
 
 [node name="Left" type="TextureProgress" parent="."]
 margin_right = 814.0

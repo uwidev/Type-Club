@@ -35,13 +35,12 @@ func _process(delta):
 	miliseconds = int((total_time-int(total_time))*100)
 	
 	# Label Assignment
-	if not timer.is_stopped():
-		if not minutes:
-			label_left.set_text(str("%02d" % seconds))
-			label_right.set_text(str("%02d" % miliseconds))
-		else:
-			label_left.set_text(str("%02d" % minutes))
-			label_right.set_text(str("%02d" % seconds))
+	if not minutes:
+		label_left.set_text(str("%02d" % seconds))
+		label_right.set_text(str("%02d" % miliseconds))
+	elif minutes:
+		label_left.set_text(str("%02d" % minutes))
+		label_right.set_text(str("%02d" % seconds))
 		
 	# Modify Life Bar
 	life_bar.set_value(timer.get_time_left()/MaxTimeLife*life_bar.get_max())
