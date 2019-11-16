@@ -70,10 +70,11 @@ func _update_lists(word_dict):
 
 func _remove_from_lists(word):
 	wlist.erase(word)
-	if wdict.has(word) and wdict[word] > 0:
-		glist.erase(word)
-	elif wdict.has(word):
-		blist.erase(word)
+	if wdict.has(word):
+		if wdict[word] > 0:
+			glist.erase(word)
+		elif wdict.has(word):
+			blist.erase(word)
 
 
 func _generateList(numGood, numBad):
@@ -107,7 +108,7 @@ func _on_text_engine_feedback(word):
 	
 	_remove_from_lists(word)
 
-	emit_signal('life_mod', wdict.get(word, 0))
+	emit_signal('life_mod', wdict.get(word, -5))
 	wdict.erase(word)
 	
 	print('gameloop: ', wdict, ' | ', word)

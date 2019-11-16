@@ -35,13 +35,12 @@ func _process(delta):
 	miliseconds = int((total_time-int(total_time))*100)
 	
 	# Label Assignment
-	if not timer.is_stopped():
-		if not minutes:
-			label_left.set_text(str("%02d" % seconds))
-			label_right.set_text(str("%02d" % miliseconds))
-		else:
-			label_left.set_text(str("%02d" % minutes))
-			label_right.set_text(str("%02d" % seconds))
+	if not minutes:
+		label_left.set_text(str("%02d" % seconds))
+		label_right.set_text(str("%02d" % miliseconds))
+	else:
+		label_left.set_text(str("%02d" % minutes))
+		label_right.set_text(str("%02d" % seconds))
 		
 	# Modify Life Bar
 	life_bar.set_value(timer.get_time_left()/MaxTimeLife*life_bar.get_max())
@@ -61,7 +60,10 @@ func _process(delta):
 func offset_life(time):
 	if not locked:
 		if time is int or time is float:
-			timer.set_wait_time(min(MaxTimeLife, timer.get_time_left()+time))
+			print(timer.get_time_left(), " ", time, " ", timer.get_time_left() + time)
+			#timer.set_wait_time(min(MaxTimeLife, timer.get_time_left()+time))
+			timer.set_wait_time(max(min(MaxTimeLife, timer.get_time_left()+time), 0)) #0.001)
+			print(timer.get_wait_time())
 			timer.start()
 			life_bar.set_value(timer.get_time_left()/MaxTimeLife*life_bar.get_max())
 

@@ -1,7 +1,6 @@
 extends Control
 
 # Declare member variables here. Examples:
-var open_scenes = []
 # var b = "text"
 
 # Called when the node enters the scene tree for the first time.
@@ -12,31 +11,23 @@ func _ready():
 #func _process(delta):
 #	pass
 
+#TODO: var for what kind of node to look for (pause, script, level)
+
 func _load_scene(scene_path, delete=true):
 	# if the current open scenes should be deleted:
 	if delete:
-		for scene in open_scenes:
-			#TODO: It hasn't come up yet, but the list traversal is bad. Need to reverse
-			#to suit the "latest appended" model of finding children to free.
-			#If no need for a list, just use a single var.
+		for scene in self.get_children():
 			# free most recent child, which should be the latest appended to open_scenes
-			print("freeing...", scene, self.get_child(self.get_child_count()-1))
-			self.get_child(self.get_child_count()-1).free()
-			open_scenes.remove(scene)
-			# Lower line is preserved as a comment
-			# just in case we ever make a child that we can't access via the last index
-			# self.find_node(scene, true, false).free()
-	var node_name = scene_path
-	if scene_path is PackedScene:
-		node_name = str(scene_path)
-	else:
+			# print("freeing...", scene, self.get_child(self.get_child_count()-1))
+			#self.get_child(self.get_child_count()-1).free()
+			#open_scenes.remove(scene)
+			print("freeing...", scene)
+			scene.free()
+	if not( scene_path is PackedScene):
 		scene_path = load(scene_path)
 	var scene_instance = scene_path.instance()
-	print(open_scenes, node_name)
-	open_scenes.append(node_name)
-	scene_instance.set_name(node_name)
 	add_child(scene_instance)
-	print("added loaded scene!", node_name)
+	print("added loaded scene!", scene_path)
 
 func _on_transition(scene_path):
 	# Can't directly call because we can't free until the signal stops emitting and calling
