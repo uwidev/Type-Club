@@ -6,13 +6,14 @@ var open_scenes = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_load_scene("res://Scenes/title/title.tscn", "title")
+	_load_scene("res://Scenes/title/title.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
-func _load_scene(scene_path, node_name, delete=true):
+func _load_scene(scene_path, delete=true):
+	var node_name = scene_path
 	print(open_scenes, node_name)
 	# if the current open scenes should be deleted:
 	if delete:
