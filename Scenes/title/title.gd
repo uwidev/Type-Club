@@ -15,14 +15,13 @@ func _ready():
 	var root = self.get_tree().get_root()
 	for button in button_list:
 		root.find_node(button, true, false).connect("button_down", self, button_list[button])
-	self.connect("transition", root.find_node("Main", true, false), "_on_transition")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
 func _on_new_game_press():
-	emit_signal("transition", "res://Scenes/Annie_Scene.tscn", "annie")
+	emit_signal("end_level", "res://Scenes/levels/base_level_new.tscn")
 
 func _on_load_game_press():	
 	print("Loading game...")

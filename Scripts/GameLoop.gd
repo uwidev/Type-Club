@@ -1,4 +1,4 @@
-extends Node
+extends "res://Scenes/LoadableScene.gd"
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -22,7 +22,6 @@ signal sendDictList
 signal refreshedWordDictionary
 signal fail
 signal life_mod
-signal end_level
 signal end_all_words
 
 # Called when the node enters the scene tree for the first time.
@@ -71,9 +70,9 @@ func _update_lists(word_dict):
 
 func _remove_from_lists(word):
 	wlist.erase(word)
-	if wdict[word] > 0:
+	if wdict.has(word) and wdict[word] > 0:
 		glist.erase(word)
-	else:
+	elif wdict.has(word):
 		blist.erase(word)
 
 
@@ -108,12 +107,13 @@ func _on_text_engine_feedback(word):
 	
 	_remove_from_lists(word)
 
-	emit_signal('life_mod', wdict[word])
+	emit_signal('life_mod', wdict.get(word, 0))
 	wdict.erase(word)
 	
 	print('gameloop: ', wdict, ' | ', word)
 	if glist.empty():			# Denotes the end of a stage
 		if wdicts.empty():		# Denotes the end of a level
+			print("wdicts empt")
 			emit_signal('end_all_words')
 			emit_signal("end_level", next_scene)
 			return
