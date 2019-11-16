@@ -48,10 +48,8 @@ func readNextLine():
 			pass
 		elif readLine.begins_with("Scene"):
 			# GlobalVariables.switchScene(afterSC)
-			print(afterSC)
 			emit_signal("transition", afterSC, "annieNext")
 		else:
-			print(GlobalVariables.scriptLine)
 			charName = readLine.substr(0,semiColon)
 			if charName != "Narrator":
 				textEngine.buff_text(charName+"\n",0)

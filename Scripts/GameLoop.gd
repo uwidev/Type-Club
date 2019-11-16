@@ -77,6 +77,32 @@ func _remove_from_lists(word):
 		blist.erase(word)
 
 
+func _generateList(numGood, numBad):
+	var mixedList = []
+	var randIndex = 0
+	var glistSize = glist.size()
+	var blistSize = blist.size()
+	randomize()		#Randomizes a new seed for random number generator
+	while numGood != 0:
+		randIndex = randi()%glistSize	#Returns random int between 0 and glistSize-1
+		if mixedList.has(glist[randIndex]) == false:
+			mixedList.append(glist[randIndex])
+			numGood -= 1
+	while numBad != 0:
+		randIndex = randi()%blistSize
+		if mixedList.has(blist[randIndex]) == false:
+			mixedList.append(blist[randIndex])
+			numBad -= 1
+	mixedList.shuffle()	#Shuffles list for a random order
+	return mixedList
+
+
+func _generateListPercentage(numWords, percentGood):
+	var good = ceil(numWords*percentGood)	#Ensures there's always one good word so long as percentage != 0
+	var bad = numWords-good
+	return _generateList(good,bad)
+
+
 func _on_text_engine_feedback(word):
 	var tmp_dict
 	
