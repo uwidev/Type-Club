@@ -19,6 +19,7 @@ onready var enemy = find_node('Enemy')
 
 export(PackedScene) var next_scene
 #export(int, 'Gen by int', 'Gen by percentage') var gen_mode
+export(Array, int) var player_life
 export(int) var additional_good_words
 export(int) var additional_bad_words
 export(bool) var unique_good
@@ -32,7 +33,7 @@ signal sendDictList
 signal refreshedWordDictionary
 signal fail
 signal life_mod
-signal wlist_ready
+signal stage_ready
 
 
 # Called when the node enters the scene tree for the first time.
@@ -42,9 +43,9 @@ func _ready():
 	_update_gblists(wdict)
 	
 	wlist = _generateList(enemy.currentLife + additional_good_words, additional_bad_words)
-	print(wlist)
 	
 	emit_signal("sendDictList", wdict, wlist, glist, blist)
+	emit_signal('stage_ready', player_life.pop_front())
 	pass # Replace with function body.
 
 
@@ -121,8 +122,10 @@ func _on_text_engine_feedback(word):
 	
 func _on_no_life():
 	failCount += 1
+	print('fail')
 	if failCount >= 2:
 		emit_signal('fail')
+		print('game over')
 
 
 func _on_enemy_dead():
@@ -135,4 +138,4 @@ func _on_stage_clear():
 	wlist.clear()
 	for word in _generateList(enemy.currentLife + additional_good_words, additional_bad_words):
 		wlist.append(word)
-	emit_signal('wlist_ready')
+	emit_signal('stage_ready', player_life.pop_front())
