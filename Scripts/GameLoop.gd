@@ -17,6 +17,7 @@ var blist = []
 var failCount = 0
 
 export(PackedScene) var next_scene
+export(int) var wrongWordPenalty = -5
 
 signal sendDictList
 signal refreshedWordDictionary
@@ -108,7 +109,7 @@ func _on_text_engine_feedback(word):
 	
 	_remove_from_lists(word)
 
-	emit_signal('life_mod', wdict.get(word, -5))
+	emit_signal('life_mod', wdict.get(word, wrongWordPenalty))
 	wdict.erase(word)
 	
 	print('gameloop: ', wdict, ' | ', word)
