@@ -1,9 +1,9 @@
-pog;20
-peyter;10
-counch;10
+pog;2
+peyter;1
+counch;1
 arizona;1
 tissue;-5
 ;;
-two;20
+two;2
 ;;
-three;20
+three;2

@@ -24,7 +24,7 @@ func _ready():
 
 func _process(delta):
 	# Autostart
-	if Autostart and timer.is_stopped():
+	if Autostart and timer.is_stopped() and not locked:
 		timer.start()
 		Autostart = false
 	
@@ -87,5 +87,11 @@ func toggle_locked():
 
 
 func _on_end_level(next):
-	print('toggle pause')
 	paused(true)
+
+
+func _on_stage_ready(max_life):
+	locked = false
+	MaxTimeLife = max_life
+	timer.set_wait_time(max_life)
+	timer.start()

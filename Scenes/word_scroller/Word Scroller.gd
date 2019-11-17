@@ -297,9 +297,5 @@ func _on_end_typing(word):
 	_update_labels()
 
 
-func _on_wlist_ready():
-	_update_labels()
-
-
-func _on_base_level_end_all_words():
+func _on_stage_ready(max_player_life):
 	_update_labels()
