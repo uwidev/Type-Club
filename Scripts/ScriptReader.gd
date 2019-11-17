@@ -47,8 +47,8 @@ func readNextLine():
 			textEngine.buff_break()				#Temp
 			pass
 		elif readLine.begins_with("Scene"):
-			# GlobalVariables.switchScene(afterSC)
-			emit_signal("transition", afterSC, "annieNext")
+			#GlobalVariables.switchScene(afterSC)
+			emit_signal("end_level", "res://Scenes/levels/base_level_new.tscn")
 		else:
 			charName = readLine.substr(0,semiColon)
 			if charName != "Narrator":
@@ -56,7 +56,8 @@ func readNextLine():
 			textEngine.buff_text(afterSC,0.04)
 			textEngine.buff_break()
 			textEngine.buff_text("\n",0)
-	
+	else:
+		emit_signal("end_level", afterSC)
 
 func _on_Text_Engine_resume_break():
 	readNextLine()
