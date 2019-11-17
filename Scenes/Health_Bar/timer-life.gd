@@ -50,10 +50,7 @@ func _process(delta):
 func offset_life(time):
 	if not locked:
 		if time is int or time is float:
-			print(timer.get_time_left(), " ", time, " ", timer.get_time_left() + time)
-			#timer.set_wait_time(min(MaxTimeLife, timer.get_time_left()+time))
-			timer.set_wait_time(max(min(MaxTimeLife, timer.get_time_left()+time), 0)) #0.001)
-			print(timer.get_wait_time())
+			timer.set_wait_time(max(min(MaxTimeLife, timer.get_time_left()+time), 0.001))
 			timer.start()
 			life_bar.set_value(timer.get_time_left()/MaxTimeLife*life_bar.get_max())
 

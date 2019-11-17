@@ -157,7 +157,7 @@ func set_break_key_by_scancode(i): # Set a new key to resume breaks (uses scanco
 	_break_key = i
 
 func set_buff_speed(v): # Changes the velocity of the text being printed
-	if (_buffer[0]["buff_type"] == BUFF_TEXT):
+	if _buffer and (_buffer[0]["buff_type"] == BUFF_TEXT):
 		_buffer[0]["buff_vel"] = v
 
 # ==============================================

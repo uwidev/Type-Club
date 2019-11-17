@@ -18,6 +18,7 @@ var failCount = 0
 onready var enemy = find_node('Enemy')
 
 export(PackedScene) var next_scene
+<<<<<<< HEAD
 #export(int, 'Gen by int', 'Gen by percentage') var gen_mode
 export(int) var additional_good_words
 export(int) var additional_bad_words
@@ -26,6 +27,9 @@ export(bool) var unique_bad
 
 enum {GENINT, GENPERCENTAGE}
 
+=======
+export(int) var wrongWordPenalty = -5
+>>>>>>> 44d1cb23609ecf455726dc153254f03867a145f8
 
 signal sendDictList
 signal refreshedWordDictionary
