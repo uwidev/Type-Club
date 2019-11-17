@@ -8,11 +8,13 @@ var semiColon	#Index of semicolon
 var charName	#Name of character speaking
 var afterSC		#Text after the semicolon
 #var image		#Image to load
+export(String) var scriptPath = "res://Assets/scriptTester.txt"
+export(String) var nextScene = "res://Scenes/levels/base_level_new.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	textEngine = get_node("Panel/Text_Engine")
-	readScript("res://Assets/scriptTester.txt")
+	textEngine = find_node("Text_Engine")
+	readScript(scriptPath)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -25,17 +27,14 @@ func readScript(scriptFile):
 	textEngine.set_state(textEngine.STATE_OUTPUT)
 	textEngine.set_color(Color(100,100,100))		#Doesn't seem to affect color
 # warning-ignore:unused_variable
-	for i in range(GlobalVariables.scriptLine):		#Skip to the right line
-		script.get_line()
+#	for i in range(GlobalVariables.scriptLine):		#Skip to the right line
+#		script.get_line()
 	
 	readNextLine()
 		
 func readNextLine():
-	GlobalVariables.scriptLine += 1
+#	GlobalVariables.scriptLine += 1
 	if(script.eof_reached() != true):
-#		if(textEngine._label.get_line_count()+3-textEngine._label.get_lines_skipped() > textEngine._max_lines):
-##			textEngine.buff_text("\n\n\n",0)
-#			textEngine.buff_clear()
 		readLine = script.get_line()
 		semiColon = readLine.find(";")
 		afterSC = readLine.substr(semiColon+1,readLine.length()-semiColon)
@@ -44,11 +43,7 @@ func readNextLine():
 			textEngine.buff_text("\n",0)
 			textEngine.buff_break()
 		elif readLine.begins_with("Image"):
-			textEngine.buff_break()				#Temp
-			pass
-		elif readLine.begins_with("Scene"):
-			#GlobalVariables.switchScene(afterSC)
-			emit_signal("end_level", "res://Scenes/levels/base_level_new.tscn")
+			textEngine.buff_break()	
 		else:
 			charName = readLine.substr(0,semiColon)
 			if charName != "Narrator":
@@ -57,7 +52,7 @@ func readNextLine():
 			textEngine.buff_break()
 			textEngine.buff_text("\n",0)
 	else:
-		emit_signal("end_level", afterSC)
+		emit_signal("end_level", nextScene)
 
 func _on_Text_Engine_resume_break():
 	readNextLine()
