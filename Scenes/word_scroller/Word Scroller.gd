@@ -297,7 +297,7 @@ func _on_end_typing(word):
 	_update_labels()
 
 
-func _on_refreshedWordDictionary():
+func _on_wlist_ready():
 	_update_labels()
 
 

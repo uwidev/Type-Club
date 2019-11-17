@@ -15,25 +15,34 @@ var wlist = []		# Relate to this current stage
 var glist = []
 var blist = []
 var failCount = 0
+onready var enemy = find_node('Enemy')
 
 export(PackedScene) var next_scene
+#export(int, 'Gen by int', 'Gen by percentage') var gen_mode
+export(int) var additional_good_words
+export(int) var additional_bad_words
+export(bool) var unique_good
+export(bool) var unique_bad
+
+enum {GENINT, GENPERCENTAGE}
+
 
 signal sendDictList
 signal refreshedWordDictionary
 signal fail
 signal life_mod
-signal end_all_words
+signal wlist_ready
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	readWords(get_filename().trim_suffix('.tscn') + '.txt')		# Will read words from a text file of the same name as this scene
 	wdict = wdicts.pop_front()
-	for key in wdict.keys():
-		wlist.append(key);  #Append words to list
-		if wdict[key] > 0:
-			glist.append(key)
-		else:
-			blist.append(key)
+	_update_gblists(wdict)
+	
+	wlist = _generateList(enemy.currentLife + additional_good_words, additional_bad_words)
+	print(wlist)
+	
 	emit_signal("sendDictList", wdict, wlist, glist, blist)
 	pass # Replace with function body.
 
@@ -59,21 +68,14 @@ func readWords(wordTxtFile): #Control has to activate this if used via signal
 	wordFile.close()
 
 
-func _update_lists(word_dict):
+func _update_gblists(word_dict):
+	glist.clear()
+	blist.clear()
 	for w in word_dict:
-		wlist.append(w)
 		if word_dict[w] > 0:
 			glist.append(w)
 		else:
 			blist.append(w)
-
-
-func _remove_from_lists(word):
-	wlist.erase(word)
-	if wdict.has(word) and wdict[word] > 0:
-		glist.erase(word)
-	elif wdict.has(word):
-		blist.erase(word)
 
 
 func _generateList(numGood, numBad):
@@ -84,14 +86,23 @@ func _generateList(numGood, numBad):
 	randomize()		#Randomizes a new seed for random number generator
 	while numGood != 0:
 		randIndex = randi()%glistSize	#Returns random int between 0 and glistSize-1
-		if mixedList.has(glist[randIndex]) == false:
+		if unique_good:
+			if not mixedList.has(glist[randIndex]):
+				mixedList.append(glist[randIndex])
+				numGood -= 1
+		else:
 			mixedList.append(glist[randIndex])
 			numGood -= 1
-	while numBad != 0:
-		randIndex = randi()%blistSize
-		if mixedList.has(blist[randIndex]) == false:
-			mixedList.append(blist[randIndex])
-			numBad -= 1
+	if blistSize != 0:
+		while numBad != 0:
+			randIndex = randi()%blistSize
+			if unique_bad:
+				if not mixedList.has(blist[randIndex]):
+					mixedList.append(blist[randIndex])
+					numBad -= 1
+			else:
+				mixedList.append(blist[randIndex])
+				numBad -= 1
 	mixedList.shuffle()	#Shuffles list for a random order
 	return mixedList
 
@@ -103,33 +114,24 @@ func _generateListPercentage(numWords, percentGood):
 
 
 func _on_text_engine_feedback(word):
-	var tmp_dict
-	
-	_remove_from_lists(word)
-
 	emit_signal('life_mod', wdict.get(word, 0))
-	wdict.erase(word)
+	wlist.erase(word)
 	
-	print('gameloop: ', wdict, ' | ', word)
-	if glist.empty():			# Denotes the end of a stage
-		if wdicts.empty():		# Denotes the end of a level
-			print("wdicts empt")
-			emit_signal('end_all_words')
-			emit_signal("end_level", next_scene)
-			return
-		
-		# If not empty, queue the next stage...
-		# Optionally queue small cutscene (when implimented)
-		tmp_dict =  wdicts.pop_front()
-		for key in tmp_dict.keys():
-			wdict[key] = tmp_dict[key]
-		_update_lists(wdict)
-		
-		emit_signal("refreshedWordDictionary")
-		return
-
 	
 func _on_no_life():
 	failCount += 1
 	if failCount >= 2:
 		emit_signal('fail')
+
+
+func _on_enemy_dead():
+	emit_signal('end_level', next_scene)
+
+
+func _on_stage_clear():
+	wdict = wdicts.pop_front()
+	_update_gblists(wdict)
+	wlist.clear()
+	for word in _generateList(enemy.currentLife + additional_good_words, additional_bad_words):
+		wlist.append(word)
+	emit_signal('wlist_ready')
