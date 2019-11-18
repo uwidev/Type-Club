@@ -42,7 +42,9 @@ func _on_Node_sendDictList(d, w, g):
 	glist = g
 
 
-func _on_word_selected(word):
+func _on_word_selected(word, pos):
+	print(pos)
+	set_global_position(pos)
 	current_word = word
 	append_at_cursor(current_word[0])
 	cursor = 1

@@ -20,6 +20,7 @@ var assigner_center = CenterRoundIndex.new()
 var scroll_width
 var half_width 							# Half of the total scroll width
 var l_mat
+var typing_label = RichTextLabel.new()
 
 # Debug
 export(bool) var debug_list_of_words
@@ -121,10 +122,10 @@ class CenterRoundIndex:
 
 
 func _ready():
-	# For debugging purposes
-	if debug_list_of_words:
-		wlist = debug_list
-		
+	typing_label.set_name('typing_label')
+	add_child(typing_label)
+	typing_label.set_visible(false)
+	
 	if focus_on_ready:
 		grab_focus() 
 	
@@ -134,6 +135,12 @@ func _ready():
 	for i in range(-1, scroll_width):
 		label_list.append(_create_format_label())
 		label_positions.append(0)
+		
+	# For debugging purposes
+	if debug_list_of_words:
+		wlist = debug_list
+		selected.set_max(wlist.size()-1)
+		_set_labels()
 
 
 func on_end_typing(word):
@@ -276,7 +283,14 @@ func _input(event):
 			elif event.get_scancode() == KEY_UP:	# Key down
 				_previous()
 			elif char(event.get_unicode()) == wlist[selected.get_value()].left(1):
-				emit_signal('word_selected', wlist[selected.get_value()])
+				label_list[0].set_visible(false)
+				typing_label.set_text(wlist[selected.get_value()])
+				typing_label.set_custom_minimum_size(Vector2(500, 200))
+				typing_label.set_position(label_list[0].get_node('label').get_position())
+				#print(typing_label.get_global_position(), typing_label.get_custom_minimum_size())
+				print('on input: ', typing_label.get_position())
+				typing_label.set_visible(true)
+				emit_signal('word_selected', wlist[selected.get_value()], typing_label.get_global_position())
 			accept_event()
 		elif wlist.empty():
 			accept_event()
@@ -292,6 +306,8 @@ func _on_sendDictList(d, w, g, b):
 
 
 func _on_end_typing(word):
+	typing_label.set_visible(false)
+	label_list[0].set_visible(true)
 	grab_focus()
 	selected.set_max(wlist.size()-1)
 	_update_labels()

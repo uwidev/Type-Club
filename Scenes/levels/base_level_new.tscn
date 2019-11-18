@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Scripts/GameLoop.gd" type="Script" id=1]
-[ext_resource path="res://Cutscenes/cutscene_base.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Themes/main_UI_theme.tres" type="Theme" id=3]
+[ext_resource path="res://Themes/base_level_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/GameLoop.gd" type="Script" id=2]
+[ext_resource path="res://Cutscenes/cutscene_base.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/word_scroller/Word Scroller.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/type_engine/type_engine.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/ui/divider.png" type="Texture" id=6]
@@ -19,12 +19,14 @@ anchor_bottom = 1.0
 margin_top = -2.0
 margin_bottom = -2.0
 rect_min_size = Vector2( 1920, 1080 )
+theme = ExtResource( 1 )
 custom_styles/panel = SubResource( 1 )
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
-"_edit_vertical_guides_": [  ]
+"_edit_horizontal_guides_": [ 492.66, 192.0 ],
+"_edit_vertical_guides_": [ 479.931, 229.208 ]
 }
-next_scene = ExtResource( 2 )
+next_scene = ExtResource( 3 )
 player_life = [ 5, 5, 5 ]
 additional_bad_words = 1
 
@@ -46,21 +48,29 @@ alignment = 1
 margin_right = 958.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 958, 0 )
-theme = ExtResource( 3 )
+theme = ExtResource( 1 )
 
 [node name="Word Scroller" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 4 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 479.0
 margin_top = 300.0
 margin_right = 479.0
 margin_bottom = 300.0
-transparency = false
+debug_list_of_words = false
 
 [node name="Type Engine" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 5 )]
 margin_left = 229.0
-margin_top = 200.0
+margin_top = 256.0
 margin_right = 729.0
-margin_bottom = 400.0
-rect_min_size = Vector2( 500, 200 )
+margin_bottom = 343.0
+rect_min_size = Vector2( 500, 0 )
+expand_to_text_length = true
+context_menu_enabled = false
+placeholder_alpha = 1.0
+caret_blink_speed = 0.5
 
 [node name="Seperator" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 margin_left = 958.0
@@ -93,16 +103,16 @@ margin_bottom = 886.0
 MaxTimeLife = 20
 [connection signal="end_level" from="." to="VBoxContainer/Life and Timer" method="_on_end_level"]
 [connection signal="fail" from="." to="VBoxContainer/Life and Timer" method="toggle_paused"]
-[connection signal="life_mod" from="." to="VBoxContainer/Life and Timer" method="_on_life_mod"]
 [connection signal="life_mod" from="." to="VBoxContainer/HBoxContainer/Enemy Container/Enemy" method="offsetLife"]
+[connection signal="life_mod" from="." to="VBoxContainer/Life and Timer" method="_on_life_mod"]
 [connection signal="refreshedWordDictionary" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_refreshedWordDictionary"]
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_sendDictList"]
-[connection signal="stage_ready" from="." to="VBoxContainer/Life and Timer" method="_on_stage_ready"]
 [connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_ready"]
+[connection signal="stage_ready" from="." to="VBoxContainer/Life and Timer" method="_on_stage_ready"]
 [connection signal="word_selected" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_word_selected"]
-[connection signal="text_entered" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_text_entered"]
 [connection signal="text_entered" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_end_typing"]
 [connection signal="text_entered" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="." method="_on_text_engine_feedback"]
+[connection signal="text_entered" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_text_entered"]
 [connection signal="enemy_dead" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="." method="_on_enemy_dead"]
 [connection signal="stage_clear" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="." method="_on_stage_clear"]
 [connection signal="no_life" from="VBoxContainer/Life and Timer" to="." method="_on_no_life"]

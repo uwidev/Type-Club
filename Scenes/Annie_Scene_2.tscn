@@ -50,6 +50,7 @@ emission_box_extents = Vector3( 250, 70, 1 )
 flag_disable_z = true
 spread = 120.0
 gravity = Vector3( 70, 0, 0 )
+angular_velocity = 0.000234815
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 angle = 45.0
@@ -71,6 +72,7 @@ texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Shaker" type="Camera2D" parent="Particles2D2"]
+visible = false
 position = Vector2( -449.87, -524.848 )
 anchor_mode = 0
 current = true

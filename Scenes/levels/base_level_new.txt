@@ -1,7 +1,4 @@
 pog;2
-peyter;1
-counch;1
-arizona;1
 tissue;-5
 ;;
 two;2
