@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/testCircle.png" type="Texture" id=1]
+[ext_resource path="res://components/enemy/enemy.gd" type="Script" id=2]
+
+
+[node name="Enemy" type="TextureRect"]
+margin_left = 367.0
+margin_top = 187.0
+margin_right = 591.0
+margin_bottom = 412.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+script = ExtResource( 2 )
+lifeList = [ 1, 1, 1 ]

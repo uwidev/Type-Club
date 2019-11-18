@@ -8,6 +8,7 @@ var locked = false
 
 export(int) var MaxTimeLife = 20
 export(bool) var Autostart
+export(Array, int) var lifeList #List of ints representing health for each state, 0 reps stage 1
 
 onready var label_left = get_node("Timer/left")
 onready var label_right = get_node("Timer/right")
@@ -48,6 +49,7 @@ func _process(delta):
 
 # Given an number, offset life by that much
 func offset_life(time):
+	print('life offset')
 	if not locked:
 		if time is int or time is float:
 			timer.set_wait_time(max(min(MaxTimeLife, timer.get_time_left()+time), 0.001))
@@ -88,10 +90,16 @@ func toggle_locked():
 
 func _on_end_level(next):
 	paused(true)
+	
+
+func _on_cycle_done():
+	if lifeList.size() >= 0:
+		paused(false)
 
 
-func _on_stage_ready(max_life):
-	locked = false
-	MaxTimeLife = max_life
-	timer.set_wait_time(max_life)
-	timer.start()
+func _on_stage_ready():
+	if lifeList.size() >= 0:
+		locked = false
+		MaxTimeLife = lifeList.pop_front()
+		timer.set_wait_time(MaxTimeLife)
+		timer.start()

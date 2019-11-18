@@ -48,8 +48,9 @@ gradient = SubResource( 5 )
 emission_shape = 2
 emission_box_extents = Vector3( 250, 70, 1 )
 flag_disable_z = true
-spread = 120.0
-gravity = Vector3( 70, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 500.0
 angular_velocity = 0.000234815
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
@@ -113,7 +114,6 @@ custom_fonts/normal_font = SubResource( 4 )
 script = ExtResource( 8 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-visible = false
 position = Vector2( 408.04, 219.783 )
 amount = 30
 lifetime = 3.0

@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/Health_Bar/timer-life.gd" type="Script" id=1]
+[ext_resource path="res://components/Health_Bar/timer-life.gd" type="Script" id=1]
 [ext_resource path="res://Assets/ui/life.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Health_Bar/timer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://components/Health_Bar/timer.tscn" type="PackedScene" id=3]
+
 
 [node name="Life and Timer" type="HBoxContainer"]
 margin_right = 1736.0

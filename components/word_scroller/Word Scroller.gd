@@ -287,10 +287,12 @@ func _input(event):
 				typing_label.set_text(wlist[selected.get_value()])
 				typing_label.set_custom_minimum_size(Vector2(500, 200))
 				typing_label.set_position(label_list[0].get_node('label').get_position())
-				#print(typing_label.get_global_position(), typing_label.get_custom_minimum_size())
-				print('on input: ', typing_label.get_position())
 				typing_label.set_visible(true)
-				emit_signal('word_selected', wlist[selected.get_value()], typing_label.get_global_position())
+				
+				get_node('ViewportContainer/Viewport/current_word').set_text(wlist[selected.get_value()])
+				
+				emit_signal('word_selected', wlist[selected.get_value()], 
+					typing_label.get_global_position())
 			accept_event()
 		elif wlist.empty():
 			accept_event()
@@ -305,13 +307,16 @@ func _on_sendDictList(d, w, g, b):
 	selected.set_max(wlist.size()-1)
 
 
-func _on_end_typing(word):
+func _on_end_cycle():
+	print('on_end_cycle')
 	typing_label.set_visible(false)
 	label_list[0].set_visible(true)
 	grab_focus()
 	selected.set_max(wlist.size()-1)
+	print(wlist)
 	_update_labels()
 
 
-func _on_stage_ready(max_player_life):
+func _on_stage_ready():
+	#print(wdict, ' stage ready!')
 	_update_labels()

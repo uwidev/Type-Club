@@ -15,7 +15,9 @@ var wlist = []		# Relate to this current stage
 var glist = []
 var blist = []
 var failCount = 0
-onready var enemy = find_node('Enemy')
+var stage_clear_flag = false
+var gamestate = PLAYING
+
 
 export(PackedScene) var next_scene
 #export(int, 'Gen by int', 'Gen by percentage') var gen_mode
@@ -24,8 +26,11 @@ export(int) var additional_good_words
 export(int) var additional_bad_words
 export(bool) var unique_good
 export(bool) var unique_bad
+export(bool) var erase_on_good = true
+export(bool) var erase_on_bad = false
 
 enum {GENINT, GENPERCENTAGE}
+enum {PLAYING, END, WAIT}
 
 export(int) var wrongWordPenalty = -5
 
@@ -34,7 +39,9 @@ signal refreshedWordDictionary
 signal fail
 signal life_mod
 signal stage_ready
+signal cycle_done
 
+onready var enemy = find_node('Enemy')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,11 +49,10 @@ func _ready():
 	wdict = wdicts.pop_front()
 	_update_gblists(wdict)
 	
-	wlist = _generateList(enemy.currentLife + additional_good_words, additional_bad_words)
+	wlist = _generateList(enemy.lifeList.front() + additional_good_words, additional_bad_words)
 	
 	emit_signal("sendDictList", wdict, wlist, glist, blist)
-	emit_signal('stage_ready', player_life.pop_front())
-	pass # Replace with function body.
+	emit_signal('stage_ready')
 
 
 func OnSignalFail(): #Change to Signal Function 
@@ -115,11 +121,6 @@ func _generateListPercentage(numWords, percentGood):
 	return _generateList(good,bad)
 
 
-func _on_text_engine_feedback(word):
-	emit_signal('life_mod', wdict.get(word, 0))
-	wlist.erase(word)
-	
-	
 func _on_no_life():
 	failCount += 1
 	print('fail')
@@ -129,13 +130,59 @@ func _on_no_life():
 
 
 func _on_enemy_dead():
+	$"VBoxContainer/Life and Timer".toggle_locked()
+	$"VBoxContainer/Life and Timer".paused(true)
+	gamestate = END
+	print("END LEVEL")
 	emit_signal('end_level', next_scene)
 
 
+func _on_good_word(word):
+	# Attack Animation
+	$"Attack Animation".start_emitting()
+	
+	# Self heal
+	$VBoxContainer/"Life and Timer".paused(true)
+	$VBoxContainer/"Life and Timer".offset_life(wdict[word])
+	
+	# Erase word to shoot at enemy
+	if erase_on_good:
+		wlist.erase(word)
+	
+	# Wait for attack animation to finish
+	yield($"Attack Animation", "animation_done")
+	
+	enemy.take_damage(1)
+	yield($"VBoxContainer/HBoxContainer/Enemy Container/Enemy", "end_shake")
+	if gamestate == PLAYING:
+		emit_signal('cycle_done')
+
+
+func _load_next_stage():
+	if gamestate == PLAYING:
+		var tmp = wdicts.pop_front()
+		
+		wdict.clear()
+		for key in tmp:
+			wdict[key] = tmp[key]
+		
+		_update_gblists(wdict)
+		
+		wlist.clear()
+		for word in _generateList(enemy.lifeList.front() + additional_good_words, additional_bad_words):
+			wlist.append(word)
+			
+		emit_signal('stage_ready')
+
+
+func _on_bad_word(word):
+	# some hit animation here
+	$VBoxContainer/"Life and Timer".offset_life(wdict[word])
+	
+	if erase_on_bad:
+		wlist.erase(word)
+	emit_signal('cycle_done')
+
+
 func _on_stage_clear():
-	wdict = wdicts.pop_front()
-	_update_gblists(wdict)
-	wlist.clear()
-	for word in _generateList(enemy.currentLife + additional_good_words, additional_bad_words):
-		wlist.append(word)
-	emit_signal('stage_ready', player_life.pop_front())
+	_load_next_stage()

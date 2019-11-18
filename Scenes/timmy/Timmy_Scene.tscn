@@ -1,52 +1,107 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Assets/fonts/McLaren-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Scenes/timmy/Timmy_Scene.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/timmy/Timmy_Scene.gd" type="Script" id=1]
+[ext_resource path="res://components/word_scroller/Viewport.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/CrossParticle.png" type="Texture" id=3]
+[ext_resource path="res://Assets/testCircle.png" type="Texture" id=4]
+[ext_resource path="res://components/enemy/shake.gd" type="Script" id=5]
+[ext_resource path="res://Addons/RigidBodyParticles2D/RigidBodyParticles2D.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/timmy/particle.tscn" type="PackedScene" id=7]
 
-[sub_resource type="DynamicFont" id=1]
-size = 60
-font_data = ExtResource( 1 )
 
-[sub_resource type="Theme" id=2]
-default_font = SubResource( 1 )
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 100, 150, 1 )
+flag_disable_z = true
+gravity = Vector3( 500, 0, 0 )
+angular_velocity = -1.71524e-019
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 25.0
+radial_accel_random = 0.33
+angle = 20.0
+angle_random = 1.0
 
-[sub_resource type="StyleBoxEmpty" id=3]
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("ViewportContainer/Viewport")
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+angular_velocity = 81.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 103.447
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 2 )
-script = ExtResource( 2 )
+margin_left = 1.22778
+margin_right = 1.22778
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Label" type="Label" parent="."]
+[node name="ViewportContainer" parent="." instance=ExtResource( 2 )]
 visible = false
-margin_left = 295.0
-margin_top = 496.0
-margin_right = 1624.0
-margin_bottom = 583.0
-text = "the quick brown fox jumps over the lazy dog"
-valign = 1
+margin_bottom = 434.308
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 295.0
-margin_top = 496.0
-margin_right = 1624.0
-margin_bottom = 583.0
-rect_min_size = Vector2( 1329, 87 )
-rect_clip_content = false
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_colors/default_color = Color( 1, 1, 1, 1 )
-bbcode_text = "the quick brown fox jumps over the lazy dog"
-text = "the quick brown fox jumps over the lazy dog"
-scroll_active = false
+[node name="Viewport" parent="ViewportContainer" index="0"]
+render_target_update_mode = 0
 
-[node name="LineEdit" type="LineEdit" parent="."]
-margin_left = 295.0
-margin_top = 496.0
-margin_right = 1624.0
-margin_bottom = 583.0
-custom_styles/normal = SubResource( 3 )
-custom_colors/font_color = Color( 1, 0, 0, 1 )
-text = "the quick brown fox jumps over the lazy dog"
-[connection signal="draw" from="Label" to="." method="_on_Label_draw"]
+[node name="Camera2D" parent="ViewportContainer/Viewport" index="0"]
+visible = false
+
+[node name="Label" parent="ViewportContainer/Viewport" index="1"]
+visible = false
+
+[node name="Particles2D2" type="Particles2D" parent="."]
+visible = false
+position = Vector2( 537.961, 536.628 )
+amount = 25
+lifetime = 2.0
+speed_scale = 1.5
+randomness = 0.21
+process_material = SubResource( 1 )
+texture = SubResource( 2 )
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -275.0
+margin_top = -154.5
+margin_right = 275.0
+margin_bottom = 154.5
+rect_rotation = -0.0223528
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 1420.24, 159.778 )
+amount = 20
+lifetime = 5.49
+process_material = SubResource( 3 )
+texture = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1419.89, 483.367 )
+texture = ExtResource( 4 )
+script = ExtResource( 5 )
+decay_rate = 2.0
+max_offset = 20.0
+
+[node name="Area2D" type="Area2D" parent="Sprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D"]
+position = Vector2( -2.45544, -1.22775 )
+shape = SubResource( 4 )
+
+[node name="RigidBodyParticles2D2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1135.41, 307.139 )
+amount = 100
+particle_scene = ExtResource( 7 )
+
+[editable path="ViewportContainer"]

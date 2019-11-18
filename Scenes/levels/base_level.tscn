@@ -4,7 +4,8 @@
 [ext_resource path="res://Scripts/GameLoop.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/testCircle.png" type="Texture" id=4]
-[ext_resource path="res://Scenes/type_engine/TypeEngine.gd" type="Script" id=5]
+[ext_resource path="res://components/type_engine/TypeEngine.gd" type="Script" id=5]
+
 
 [node name="Base Level" type="Control"]
 anchor_right = 1.0

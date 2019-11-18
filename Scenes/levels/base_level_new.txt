@@ -1,6 +1,11 @@
-pog;2
-tissue;-5
+good1;1
+good2;2
+bad1;-1
 ;;
-two;2
+2good1;1
+2good2;2
+2bad1;-1
 ;;
-three;2
+3good1;1
+3good2;2
+3bad1;-1

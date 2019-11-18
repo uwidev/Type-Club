@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scenes/type_engine/TypeEngine.gd" type="Script" id=1]
+[ext_resource path="res://components/type_engine/TypeEngine.gd" type="Script" id=1]
+
 
 [node name="Type Engine" type="LineEdit"]
 margin_right = 470.0

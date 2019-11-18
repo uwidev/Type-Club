@@ -14,7 +14,7 @@ func _process(delta):
 	if count == 200:
 		set_emitting(true)
 	if count == 290:
-		$Shaker.shake(1.2,15,8)	#Shake screen
+		#$Shaker.shake(1.2,15,8)	#Shake screen
 		count = 0
 	count += 1
 

@@ -9,8 +9,9 @@ var wdict = {}	#Key is word, value is points
 var wlist = []
 var glist = []
 var blist = []
-signal input
 signal emptyList 	# Win Condition
+signal entered_good
+signal entered_bad
 var current_word	# Current typing word
 var cursor			# Incoming char index of current_word needed to type
 
@@ -36,14 +37,13 @@ func _input(event): #LineEdit must have mouse_filter set to 'ignore' in order to
 	#Add Victory/Loss Manager
 	
 
-func _on_Node_sendDictList(d, w, g):
-	wlist = w
+func _on_sendDictList(d, w, g, b):
+	#print('type engine dicts recieved')
 	wdict = d
-	glist = g
+	wlist = w
 
 
 func _on_word_selected(word, pos):
-	print(pos)
 	set_global_position(pos)
 	current_word = word
 	append_at_cursor(current_word[0])
@@ -51,6 +51,11 @@ func _on_word_selected(word, pos):
 	grab_focus()
 
 
-func _on_text_entered(new_text):
+func _on_text_entered(word):
+	#print(wdict)
 	self.clear()
 	current_word = ''
+	if wdict[word] > 0:
+		emit_signal('entered_good', word)
+	else:
+		emit_signal('entered_bad', word)
