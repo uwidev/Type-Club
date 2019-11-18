@@ -53,6 +53,7 @@ func _on_word_selected(word, pos):
 
 func _on_text_entered(word):
 	#print(wdict)
+	release_focus()
 	self.clear()
 	current_word = ''
 	if wdict[word] > 0:

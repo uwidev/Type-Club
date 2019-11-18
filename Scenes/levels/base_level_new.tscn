@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Themes/base_level_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/GameLoop.gd" type="Script" id=2]
@@ -6,10 +6,9 @@
 [ext_resource path="res://components/word_scroller/Word Scroller.tscn" type="PackedScene" id=4]
 [ext_resource path="res://components/type_engine/type_engine.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/ui/divider.png" type="Texture" id=6]
-[ext_resource path="res://Assets/testCircle.png" type="Texture" id=7]
-[ext_resource path="res://components/enemy/enemy.gd" type="Script" id=8]
-[ext_resource path="res://components/Health_Bar/health_bar_official.tscn" type="PackedScene" id=9]
-[ext_resource path="res://components/attack_animation/Particles_Animation.tscn" type="PackedScene" id=10]
+[ext_resource path="res://components/enemy/enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://components/Health_Bar/health_bar_official.tscn" type="PackedScene" id=8]
+[ext_resource path="res://components/attack_animation/Particles_Animation.tscn" type="PackedScene" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -82,25 +81,20 @@ margin_right = 1920.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 958, 0 )
 
-[node name="Enemy" type="TextureRect" parent="VBoxContainer/HBoxContainer/Enemy Container"]
+[node name="Enemy" parent="VBoxContainer/HBoxContainer/Enemy Container" instance=ExtResource( 7 )]
 margin_left = 367.0
 margin_top = 187.0
 margin_right = 591.0
 margin_bottom = 412.0
-texture = ExtResource( 7 )
-stretch_mode = 4
-script = ExtResource( 8 )
-lifeList = [ 2, 2, 3 ]
-max_offset = 8.0
 
-[node name="Life and Timer" parent="VBoxContainer" instance=ExtResource( 9 )]
+[node name="Life and Timer" parent="VBoxContainer" instance=ExtResource( 8 )]
 margin_top = 842.0
 margin_right = 1920.0
 margin_bottom = 886.0
 MaxTimeLife = 20
 lifeList = [ 6, 6, 5 ]
 
-[node name="Attack Animation" parent="." instance=ExtResource( 10 )]
+[node name="Attack Animation" parent="." instance=ExtResource( 9 )]
 position = Vector2( 479, 493 )
 emitting = false
 lifetime = 0.88

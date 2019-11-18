@@ -25,19 +25,19 @@ func take_damage(value):
 	futureLife = currentLife - 1
 	add_trauma(20)
 	yield(self, "end_shake")
-	print(lifeList)
 	currentLife -= value
+	print(currentLife)
 	if currentLife <= 0:
 		if lifeList.empty():
 			print('level clear!')
 			emit_signal("enemy_dead")
 			return
+		print("stage_clear!")
 		emit_signal("stage_clear")
 	emit_signal('damage_taken')
 
 
 func _on_stage_ready():
-	print('ENEMNY ON STAGE READY')
 	currentLife = lifeList.pop_front()
 	futureLife = currentLife
 	
