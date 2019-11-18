@@ -39,6 +39,7 @@ func take_damage(value):
 func _on_stage_ready():
 	print('ENEMNY ON STAGE READY')
 	currentLife = lifeList.pop_front()
+	futureLife = currentLife
 	
 
 func get_hp():
