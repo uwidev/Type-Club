@@ -15,6 +15,7 @@ func _process(delta):
 
 
 func start_emitting():		
+	print('emitting')
 	timer.set_wait_time(duration)
 	timer.start()
 	emit_signal('animation_start')

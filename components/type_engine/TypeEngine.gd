@@ -12,6 +12,7 @@ var blist = []
 signal emptyList 	# Win Condition
 signal entered_good
 signal entered_bad
+signal request_scroller
 var current_word	# Current typing word
 var cursor			# Incoming char index of current_word needed to type
 
@@ -27,12 +28,18 @@ func _ready():
 func _input(event): #LineEdit must have mouse_filter set to 'ignore' in order to prevent mouse input
 	if has_focus():
 		if event is InputEventKey:
-			if cursor < current_word.length() and char(event.get_unicode()) == current_word[cursor]:
-					cursor += 1
-			elif event.get_scancode() == KEY_ENTER:
-				pass
-			else:
-				accept_event()
+			if event.pressed:
+				if cursor < current_word.length() and char(event.get_unicode()) == current_word[cursor]:
+						cursor += 1
+				elif cursor >= current_word.length() and event.get_scancode() == KEY_ENTER:
+					pass
+				elif event.get_scancode() == KEY_BACKSPACE and cursor >= 0:
+					if cursor == 0:
+						emit_signal('request_scroller')
+					else:					
+						cursor -= 1
+				else:
+					accept_event()
 	
 	#Add Victory/Loss Manager
 	

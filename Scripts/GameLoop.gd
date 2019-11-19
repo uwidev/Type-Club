@@ -138,22 +138,21 @@ func _on_enemy_dead():
 
 
 func _on_good_word(word):
-	# Attack Animation
-	$"Attack Animation".start_emitting()
-	
 	# Self heal
 	$VBoxContainer/"Life and Timer".paused(true)
 	$VBoxContainer/"Life and Timer".offset_life(wdict[word])
+	
+	# Attack Animation
+	$AnimationPlayer.play('attack_animation')
 	
 	# Erase word to shoot at enemy
 	if erase_on_good:
 		wlist.erase(word)
 	
 	# Wait for attack animation to finish
-	yield($"Attack Animation", "animation_done")
+	yield($AnimationPlayer, "animation_finished")
 	
-	enemy.take_damage(1)
-	yield($"VBoxContainer/HBoxContainer/Enemy Container/Enemy", "end_shake")
+	#enemy.take_damage(1)
 	if gamestate == PLAYING:
 		emit_signal('cycle_done')
 

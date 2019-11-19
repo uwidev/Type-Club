@@ -141,6 +141,7 @@ func _ready():
 		wlist = debug_list
 		selected.set_max(wlist.size()-1)
 		_set_labels()
+		get_node('ViewportContainer/Viewport/current_word').set_text(wlist[selected.get_value()])	
 
 
 func on_end_typing(word):
@@ -226,6 +227,8 @@ func _update_labels():
 	
 		assigner_round.next()
 		index = assigner_round.get_value()
+	
+	get_node('ViewportContainer/Viewport/current_word').set_text(wlist[selected.get_value()])
 
 
 func _animate_and_update(mode):	
@@ -273,6 +276,8 @@ func _animate_and_update(mode):
 	elif mode == PREVIOUS:
 		label_list.push_front(label_list.pop_back())
 		label_list[-half_width].get_node('label').set_text(wlist[selected.calc_offset(-half_width)])
+	
+	get_node('ViewportContainer/Viewport/current_word').set_text(wlist[selected.get_value()])
 
 
 func _input(event):
@@ -305,6 +310,13 @@ func _on_sendDictList(d, w, g, b):
 	_set_labels()
 	# Initializes max index for selected
 	selected.set_max(wlist.size()-1)
+	get_node('ViewportContainer/Viewport/current_word').set_text(wlist[selected.get_value()])
+
+
+func _on_request_scroller():
+	typing_label.set_visible(false)
+	label_list[0].set_visible(true)
+	grab_focus()
 
 
 func _on_end_cycle():
