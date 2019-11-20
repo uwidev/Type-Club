@@ -21,7 +21,7 @@ var gamestate = PLAYING
 
 export(PackedScene) var next_scene
 #export(int, 'Gen by int', 'Gen by percentage') var gen_mode
-export(Array, int) var player_life
+#export(Array, int) var player_life
 export(int) var additional_good_words
 export(int) var additional_bad_words
 export(bool) var unique_good
@@ -45,7 +45,7 @@ onready var enemy = find_node('Enemy')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	readWords(get_filename().trim_suffix('.tscn') + '.txt')		# Will read words from a text file of the same name as this scene
+	readWords(get_owner().get_filename().trim_suffix('.tscn') + '.txt')		# Will read words from a text file of the same name as this scene
 	wdict = wdicts.pop_front()
 	_update_gblists(wdict)
 	

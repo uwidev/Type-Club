@@ -1,10 +1,34 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/levels/base_level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/levels/base_level_new.tscn" type="PackedScene" id=1]
 
-[node name="level" type="Control"]
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("base_level/VBoxContainer/HBoxContainer/Main Interface/Word Scroller/ViewportContainer/Viewport")
+
+[node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="1" parent="." instance=ExtResource( 1 )]
-WordList = "level_1"
+[node name="base_level" parent="." instance=ExtResource( 1 )]
+additional_good_words = 2
+additional_bad_words = 2
+
+[node name="Word Scroller" parent="base_level/VBoxContainer/HBoxContainer/Main Interface" index="0"]
+editor/display_folded = false
+word_spacing = -10
+extend = 3
+scroll_speed = 1.0
+scroll_type = 10
+
+[node name="Enemy" parent="base_level/VBoxContainer/HBoxContainer/Enemy Container" index="0"]
+lifeList = [ 4, 6 ]
+
+[node name="Life and Timer" parent="base_level/VBoxContainer" index="1"]
+lifeList = [ 20, 15 ]
+
+[node name="Attack Animation" parent="base_level" index="1"]
+texture = SubResource( 1 )
+
+[editable path="base_level"]
+
+[editable path="base_level/VBoxContainer/HBoxContainer/Main Interface/Word Scroller"]

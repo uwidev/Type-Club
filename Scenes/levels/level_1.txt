@@ -1,0 +1,10 @@
+math;3
+science;2
+fun;-1
+gaming;-2
+eating;-1
+;;
+english;3
+gaming;-2
+eating;-1
+psychology;5
