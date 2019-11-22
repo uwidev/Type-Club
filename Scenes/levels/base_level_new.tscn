@@ -62,7 +62,6 @@ __meta__ = {
 "_edit_vertical_guides_": [ 479.931, 229.208 ]
 }
 next_scene = ExtResource( 3 )
-player_life = [ 5, 5, 5 ]
 additional_bad_words = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -145,8 +144,8 @@ anims/attack_animation = SubResource( 3 )
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_sendDictList"]
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_sendDictList"]
 [connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_ready"]
-[connection signal="stage_ready" from="." to="VBoxContainer/Life and Timer" method="_on_stage_ready"]
 [connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Enemy Container/Enemy" method="_on_stage_ready"]
+[connection signal="stage_ready" from="." to="VBoxContainer/Life and Timer" method="_on_stage_ready"]
 [connection signal="word_selected" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_word_selected"]
 [connection signal="entered_bad" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="." method="_on_bad_word"]
 [connection signal="entered_good" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="." method="_on_good_word"]

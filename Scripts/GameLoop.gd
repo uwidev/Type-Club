@@ -45,7 +45,10 @@ onready var enemy = find_node('Enemy')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	readWords(get_owner().get_filename().trim_suffix('.tscn') + '.txt')		# Will read words from a text file of the same name as this scene
+	if get_owner() == null:
+		readWords(get_filename().trim_suffix('.tscn') + '.txt')		# Will read words from a text file of the same name as this scene
+	else:
+		readWords(get_owner().get_filename().trim_suffix('.tscn') + '.txt')		# Will read words from a text file of the same name as this scene
 	wdict = wdicts.pop_front()
 	_update_gblists(wdict)
 	
