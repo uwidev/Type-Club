@@ -6,7 +6,8 @@ var botTE			#Bottom text engine
 var whereList = []	#Determines whether to display text in top or bot panel
 var textList = []	#Text to display
 
-var introDialogue
+var introDialogue = false
+var outroDialogue = false
 
 signal loadNextStage
 signal startFirstStage
@@ -52,25 +53,25 @@ func _displayText():
 		if introDialogue == true:
 			introDialogue = false
 			emit_signal("startFirstStage")
+		elif outroDialogue == true:
+			outroDialogue = false
+			
 		else:
 			emit_signal("loadNextStage")
 		
 func _on_Enemy_stage_clear():
 	_displayText()
 
-#func _on_Top_Text_Engine_resume_break():
-#	print("top resume break")
-#	_displayText()
-#
-#func _on_Bot_Text_Engine_resume_break():
-#	print("bot resume break")
-#	_displayText()
+func _on_Top_Text_Engine_resume_break():
+	_displayText()
+
+func _on_Bot_Text_Engine_resume_break():
+	_displayText()
 
 func _input(event):
 	if has_focus():
 		if event is InputEventKey:
-			if event.scancode == KEY_ENTER and event.is_pressed():
-				print("ENTER PRESSED")
-				_displayText()
+			if not event.scancode == KEY_ENTER:
+				accept_event()	#Prevent downward keypress propagation
 				
 

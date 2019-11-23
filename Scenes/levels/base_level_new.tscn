@@ -141,8 +141,8 @@ texture = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack_animation = SubResource( 3 )
-[connection signal="cycle_done" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_end_cycle"]
 [connection signal="cycle_done" from="." to="VBoxContainer/Life and Timer" method="_on_cycle_done"]
+[connection signal="cycle_done" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_end_cycle"]
 [connection signal="end_level" from="." to="VBoxContainer/Life and Timer" method="_on_end_level"]
 [connection signal="fail" from="." to="VBoxContainer/Life and Timer" method="toggle_paused"]
 [connection signal="introDialogue" from="." to="Text Panels" method="_on_base_level_introDialogue"]
@@ -150,9 +150,9 @@ anims/attack_animation = SubResource( 3 )
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_sendDictList"]
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_sendDictList"]
 [connection signal="sendTextLists" from="." to="Text Panels" method="_on_base_level_sendTextLists"]
+[connection signal="stage_ready" from="." to="VBoxContainer/Life and Timer" method="_on_stage_ready"]
 [connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_ready"]
 [connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_base_level_stage_ready"]
-[connection signal="stage_ready" from="." to="VBoxContainer/Life and Timer" method="_on_stage_ready"]
 [connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Enemy Container/Enemy" method="_on_stage_ready"]
 [connection signal="word_selected" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_word_selected"]
 [connection signal="entered_bad" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="." method="_on_bad_word"]
