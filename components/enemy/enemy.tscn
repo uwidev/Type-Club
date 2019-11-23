@@ -5,10 +5,10 @@
 [ext_resource path="res://Assets/ui/life.png" type="Texture" id=3]
 
 [node name="Enemy" type="TextureRect"]
-margin_left = 670.0
-margin_top = 458.0
-margin_right = 894.0
-margin_bottom = 683.0
+margin_left = 819.828
+margin_top = 421.943
+margin_right = 1043.83
+margin_bottom = 646.943
 texture = ExtResource( 1 )
 stretch_mode = 4
 script = ExtResource( 2 )
@@ -16,10 +16,13 @@ lifeList = [ 2, 2, 3 ]
 max_offset = 8.0
 
 [node name="TextureProgress" type="TextureProgress" parent="."]
-margin_left = -344.336
-margin_top = -96.6013
-margin_right = 555.664
-margin_bottom = -46.6013
-texture_over = ExtResource( 3 )
+margin_left = -112.5
+margin_top = -65.141
+margin_right = 337.5
+margin_bottom = -15.141
+value = 100.0
+texture_progress = ExtResource( 3 )
+tint_progress = Color( 1, 0.0980392, 0.0980392, 1 )
+nine_patch_stretch = true
 
 [node name="Tween" type="Tween" parent="TextureProgress"]
