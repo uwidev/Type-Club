@@ -98,8 +98,13 @@ func _on_cycle_done():
 
 
 func _on_stage_ready():
+	paused(false)
 	if lifeList.size() >= 0:
 		locked = false
 		MaxTimeLife = lifeList.pop_front()
 		timer.set_wait_time(MaxTimeLife)
 		timer.start()
+
+
+func _on_stage_clear():
+	paused(true)

@@ -186,9 +186,9 @@ func _load_next_stage():
 		
 		wdict.clear()
 		
-#		gamestate = DIALOGUE
-#		yield()		#Yield for showing dialogue text
-#		gamestate = PLAYING
+		gamestate = DIALOGUE
+		yield()		#Yield for showing dialogue text
+		gamestate = PLAYING
 		
 		for key in tmp:
 			wdict[key] = tmp[key]
@@ -224,8 +224,7 @@ func _displayText():
 			botTE.buff_text(textList.pop_front(),0.04)
 			botTE.buff_break()
 	else:
-		pass
-		#_load_next_stage().resume()
+		_load_next_stage().resume()
 
 func _on_stage_clear():
 	_load_next_stage()

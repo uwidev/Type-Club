@@ -195,6 +195,7 @@ anims/attack_animation = SubResource( 5 )
 [connection signal="text_entered" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_text_entered"]
 [connection signal="enemy_dead" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="." method="_on_enemy_dead"]
 [connection signal="stage_clear" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="." method="_on_stage_clear"]
+[connection signal="stage_clear" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="VBoxContainer/Life and Timer" method="_on_stage_clear"]
 [connection signal="no_life" from="VBoxContainer/Life and Timer" to="." method="_on_no_life"]
 [connection signal="resume_break" from="VBoxContainer/Bot Panel/Bot_Text_Engine" to="." method="_on_Bot_Text_Engine_resume_break"]
 
