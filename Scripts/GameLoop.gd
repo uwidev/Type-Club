@@ -15,12 +15,8 @@ var blist = []
 var failCount = 0
 var stage_clear_flag = false
 var gamestate = PLAYING
-
-var topTE			#Top text engine
-var botTE			#Bottom text engine
 var whereList = []	#Determines whether to display text in top or bot panel
 var textList = []	#Text to display
-
 
 export(PackedScene) var next_scene
 #export(int, 'Gen by int', 'Gen by percentage') var gen_mode
@@ -44,6 +40,8 @@ signal fail
 signal life_mod
 signal stage_ready
 signal cycle_done
+signal sendTextLists
+signal introDialogue
 
 onready var enemy = find_node('Enemy')
 
@@ -58,13 +56,9 @@ func _ready():
 	
 	wlist = _generateList(enemy.lifeList.front() + additional_good_words, additional_bad_words)
 	
-	topTE = find_node("Top_Text_Engine")
-	topTE.reset()
-	botTE = find_node("Bot_Text_Engine")
-	botTE.reset()
-	
 	emit_signal("sendDictList", wdict, wlist, glist, blist)
-	emit_signal('stage_ready')
+	emit_signal("sendTextLists", whereList, textList)
+	emit_signal("introDialogue")	#Send signal to text panels to handle intro dialogue before starting first stage
 
 
 func OnSignalFail(): #Change to Signal Function 
@@ -186,9 +180,9 @@ func _load_next_stage():
 		
 		wdict.clear()
 		
-		gamestate = DIALOGUE
-		yield()		#Yield for showing dialogue text
-		gamestate = PLAYING
+#		gamestate = DIALOGUE
+#		yield()		#Yield for showing dialogue text
+#		gamestate = PLAYING
 		
 		for key in tmp:
 			wdict[key] = tmp[key]
@@ -210,34 +204,11 @@ func _on_bad_word(word):
 		wlist.erase(word)
 	emit_signal('cycle_done')
 
-func _displayText():
-	topTE.set_state(topTE.STATE_OUTPUT)
-	botTE.set_state(botTE.STATE_OUTPUT)
-	var where = whereList.pop_front()
-	if where != "done":
-		if where == "top":
-			topTE.clear_text()
-			topTE.buff_text(textList.pop_front(),0.04)
-			topTE.buff_break()
-		else:
-			botTE.clear_text()
-			botTE.buff_text(textList.pop_front(),0.04)
-			botTE.buff_break()
-	else:
-		_load_next_stage().resume()
 
-func _on_stage_clear():
+func _on_Text_Panels_loadNextStage():
 	_load_next_stage()
-	_displayText()
-#	topTE.clear_text()
-#	botTE.clear_text()
-#	topTE.set_state(topTE.STATE_WAITING)
-#	botTE.set_state(botTE.STATE_WAITING)
-#	_load_next_stage()
-
-func _on_Top_Text_Engine_resume_break():
-	_displayText()
 
 
-func _on_Bot_Text_Engine_resume_break():
-	_displayText()
+func _on_Text_Panels_startFirstStage():
+	#Signal to start first stage received from text panels
+	emit_signal('stage_ready')
