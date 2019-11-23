@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/GodotTIE/text_interface_engine.gd" type="Script" id=1]
+[ext_resource path="res://addons/GodotTIE/GodotTIE_icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Cave-Story.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 70
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 70
+font_data = ExtResource( 3 )
+
+[node name="Text Panels" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_top = 50
+custom_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_top = 50.0
+margin_right = 1920.0
+margin_bottom = 1030.0
+
+[node name="Top" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 100.0
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Top"]
+margin_left = 100.0
+margin_right = 1820.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 1720, 100 )
+
+[node name="Top_Text_Engine" type="ReferenceRect" parent="VBoxContainer/Top"]
+margin_left = 100.0
+margin_right = 1820.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 1720, 100 )
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+FONT = SubResource( 1 )
+
+[node name="Spacing" type="Control" parent="VBoxContainer"]
+margin_top = 104.0
+margin_right = 1920.0
+margin_bottom = 876.0
+rect_min_size = Vector2( 0, 772 )
+
+[node name="Bottom" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 880.0
+margin_right = 1920.0
+margin_bottom = 980.0
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Bottom"]
+margin_left = 100.0
+margin_right = 1820.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 1720, 100 )
+
+[node name="Bot_Text_Engine" type="ReferenceRect" parent="VBoxContainer/Bottom"]
+margin_left = 100.0
+margin_right = 1820.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 1720, 100 )
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+FONT = SubResource( 2 )
