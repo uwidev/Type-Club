@@ -3,8 +3,8 @@ extends MarginContainer
 # Declare member variables here. Examples:
 var topTE			#Top text engine
 var botTE			#Bottom text engine
-var whereList = ["top","bot","done","top","done"]	#Determines whether to display text in top or bot panel
-var textList = ["intro1","intro2","stagetext"]	#Text to display
+var whereList = []	#Determines whether to display text in top or bot panel
+var textList = []	#Text to display
 
 var introDialogue
 
@@ -17,10 +17,6 @@ func _ready():
 	topTE.reset()
 	botTE = find_node("Bot_Text_Engine")
 	botTE.reset()
-	topTE.set_state(topTE.STATE_OUTPUT)
-	botTE.set_state(botTE.STATE_OUTPUT)
-	grab_focus()
-	_on_base_level_introDialogue()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -35,8 +31,12 @@ func _on_base_level_introDialogue():
 	_displayText()
 
 func _displayText():
+	grab_focus()
 	var where = whereList.pop_front()
+	print(where)
 	if where != "done":
+		topTE.set_state(topTE.STATE_OUTPUT)
+		botTE.set_state(botTE.STATE_OUTPUT)
 		if where == "top":
 			topTE.clear_text()
 			topTE.buff_text(textList.pop_front(),0.04)
@@ -48,6 +48,7 @@ func _displayText():
 	else:
 		topTE.clear_text()
 		botTE.clear_text()
+		release_focus()
 		if introDialogue == true:
 			introDialogue = false
 			emit_signal("startFirstStage")
@@ -57,17 +58,18 @@ func _displayText():
 func _on_Enemy_stage_clear():
 	_displayText()
 
-func _on_Top_Text_Engine_resume_break():
-	_displayText()
+#func _on_Top_Text_Engine_resume_break():
+#	print("top resume break")
+#	_displayText()
+#
+#func _on_Bot_Text_Engine_resume_break():
+#	print("bot resume break")
+#	_displayText()
 
-func _on_Bot_Text_Engine_resume_break():
-	_displayText()
-	
 func _input(event):
 	if has_focus():
-		print("ENTER PRESSED")
 		if event is InputEventKey:
-			if event.scancode == KEY_ENTER:
+			if event.scancode == KEY_ENTER and event.is_pressed():
 				print("ENTER PRESSED")
 				_displayText()
 				

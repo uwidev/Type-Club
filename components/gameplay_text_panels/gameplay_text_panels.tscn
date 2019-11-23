@@ -16,6 +16,7 @@ font_data = ExtResource( 4 )
 [node name="Text Panels" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+focus_mode = 2
 custom_constants/margin_top = 50
 custom_constants/margin_bottom = 50
 script = ExtResource( 1 )
