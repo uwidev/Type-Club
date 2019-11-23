@@ -12,6 +12,8 @@ bad1;-1
 ;;
 ;;;
 top;Some intro text
+bot;Some intro bot text
+top;More top intro text
 ;;;
 top;Some top text
 bot;Some bot text
