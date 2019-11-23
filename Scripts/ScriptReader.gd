@@ -25,11 +25,9 @@ func readScript(scriptFile):
 	script.open(scriptFile,File.READ)
 	textEngine.reset()
 	textEngine.set_state(textEngine.STATE_OUTPUT)
-	textEngine.set_color(Color(100,100,100))		#Doesn't seem to affect color
 # warning-ignore:unused_variable
 #	for i in range(GlobalVariables.scriptLine):		#Skip to the right line
 #		script.get_line()
-	
 	readNextLine()
 		
 func readNextLine():

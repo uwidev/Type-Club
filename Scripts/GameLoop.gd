@@ -1,8 +1,6 @@
 extends "res://Scenes/LoadableScene.gd"
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+# Declare member variables here
 
 var wordFile		# The opened text file
 var wordLine		# The current line
@@ -18,6 +16,11 @@ var failCount = 0
 var stage_clear_flag = false
 var gamestate = PLAYING
 
+var topTE			#Top text engine
+var botTE			#Bottom text engine
+var whereList = []	#Determines whether to display text in top or bot panel
+var textList = []	#Text to display
+
 
 export(PackedScene) var next_scene
 #export(int, 'Gen by int', 'Gen by percentage') var gen_mode
@@ -29,8 +32,9 @@ export(bool) var unique_bad
 export(bool) var erase_on_good = true
 export(bool) var erase_on_bad = false
 
+
 enum {GENINT, GENPERCENTAGE}
-enum {PLAYING, END, WAIT}
+enum {PLAYING, END, WAIT, DIALOGUE}
 
 export(int) var wrongWordPenalty = -5
 
@@ -54,6 +58,11 @@ func _ready():
 	
 	wlist = _generateList(enemy.lifeList.front() + additional_good_words, additional_bad_words)
 	
+	topTE = find_node("Top_Text_Engine")
+	topTE.reset()
+	botTE = find_node("Bot_Text_Engine")
+	botTE.reset()
+	
 	emit_signal("sendDictList", wdict, wlist, glist, blist)
 	emit_signal('stage_ready')
 
@@ -65,18 +74,29 @@ func OnSignalFail(): #Change to Signal Function
 func readWords(wordTxtFile): #Control has to activate this if used via signal
 	wordFile = File.new()
 	wordFile.open(wordTxtFile,File.READ)
+	var doneWithWords = false	#True when all stage words are read
 	while(wordFile.eof_reached() == false):
 		wordLine = wordFile.get_line()
-		if wordLine == ';;':
-			wdicts.append(wdict)
-			wdict = {}
+		if doneWithWords == false:
+			if wordLine == ';;':
+				wdicts.append(wdict)
+				wdict = {}
+			elif wordLine == ';;;':
+				doneWithWords = true
+			else:
+				semiColon = wordLine.find(";")
+				word = wordLine.substr(0,semiColon)
+				pointValue = int(wordLine.substr(semiColon+1, wordLine.length()))
+				wdict[word] = pointValue
 		else:
-			semiColon = wordLine.find(";")
-			word = wordLine.substr(0,semiColon)
-			pointValue = int(wordLine.substr(semiColon+1, wordLine.length()))
-			wdict[word] = pointValue
-	wdicts.append(wdict)
-	wordFile.close()
+			#Now read text for top and bot display
+			if wordLine == ';;;':
+				whereList.append("done")
+			else:	
+				semiColon = wordLine.find(";")
+				word = wordLine.substr(0,semiColon)
+				whereList.append(word)	#Word should be "top" or "bot"
+				textList.append(wordLine.substr(semiColon+1, wordLine.length()))
 
 
 func _update_gblists(word_dict):
@@ -165,6 +185,11 @@ func _load_next_stage():
 		var tmp = wdicts.pop_front()
 		
 		wdict.clear()
+		
+#		gamestate = DIALOGUE
+#		yield()		#Yield for showing dialogue text
+#		gamestate = PLAYING
+		
 		for key in tmp:
 			wdict[key] = tmp[key]
 		
@@ -185,6 +210,35 @@ func _on_bad_word(word):
 		wlist.erase(word)
 	emit_signal('cycle_done')
 
+func _displayText():
+	topTE.set_state(topTE.STATE_OUTPUT)
+	botTE.set_state(botTE.STATE_OUTPUT)
+	var where = whereList.pop_front()
+	if where != "done":
+		if where == "top":
+			topTE.clear_text()
+			topTE.buff_text(textList.pop_front(),0.04)
+			topTE.buff_break()
+		else:
+			botTE.clear_text()
+			botTE.buff_text(textList.pop_front(),0.04)
+			botTE.buff_break()
+	else:
+		pass
+		#_load_next_stage().resume()
 
 func _on_stage_clear():
 	_load_next_stage()
+	_displayText()
+#	topTE.clear_text()
+#	botTE.clear_text()
+#	topTE.set_state(topTE.STATE_WAITING)
+#	botTE.set_state(botTE.STATE_WAITING)
+#	_load_next_stage()
+
+func _on_Top_Text_Engine_resume_break():
+	_displayText()
+
+
+func _on_Bot_Text_Engine_resume_break():
+	_displayText()

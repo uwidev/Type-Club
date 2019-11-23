@@ -9,3 +9,17 @@ bad1;-1
 3good1;1
 3good2;2
 3bad1;-1
+;;
+;;;
+top;Some intro text
+;;;
+top;Some top text
+bot;Some bot text
+top;More top text
+;;;
+top;Text for stage 2
+top;More stage 2 text
+bot;More text for stage 2
+;;;
+bot;Closing text
+;;;

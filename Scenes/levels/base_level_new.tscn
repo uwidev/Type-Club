@@ -1,23 +1,33 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Themes/base_level_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/GameLoop.gd" type="Script" id=2]
 [ext_resource path="res://Cutscenes/cutscene_base.tscn" type="PackedScene" id=3]
-[ext_resource path="res://components/word_scroller/Word Scroller.tscn" type="PackedScene" id=4]
-[ext_resource path="res://components/type_engine/type_engine.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/ui/divider.png" type="Texture" id=6]
-[ext_resource path="res://components/enemy/enemy.tscn" type="PackedScene" id=7]
-[ext_resource path="res://components/Health_Bar/health_bar_official.tscn" type="PackedScene" id=8]
-[ext_resource path="res://components/attack_animation/Particles_Animation.tscn" type="PackedScene" id=9]
+[ext_resource path="res://addons/GodotTIE/text_interface_engine.gd" type="Script" id=4]
+[ext_resource path="res://addons/GodotTIE/GodotTIE_icon.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Cave-Story.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://components/word_scroller/Word Scroller.tscn" type="PackedScene" id=7]
+[ext_resource path="res://components/type_engine/type_engine.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/ui/divider.png" type="Texture" id=9]
+[ext_resource path="res://components/enemy/enemy.tscn" type="PackedScene" id=10]
+[ext_resource path="res://components/Health_Bar/health_bar_official.tscn" type="PackedScene" id=11]
+[ext_resource path="res://components/attack_animation/Particles_Animation.tscn" type="PackedScene" id=12]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="ViewportTexture" id=2]
+[sub_resource type="DynamicFont" id=2]
+size = 70
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 70
+font_data = ExtResource( 6 )
+
+[sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("VBoxContainer/HBoxContainer/Main Interface/Word Scroller/ViewportContainer/Viewport")
 
-[sub_resource type="Animation" id=3]
-resource_name = "attack_animation"
+[sub_resource type="Animation" id=5]
 length = 3.0
 tracks/0/type = "method"
 tracks/0/path = NodePath("VBoxContainer/HBoxContainer/Enemy Container/Enemy")
@@ -71,6 +81,22 @@ rect_min_size = Vector2( 1920, 1080 )
 custom_constants/separation = 48
 alignment = 1
 
+[node name="Top Panel" type="Panel" parent="VBoxContainer"]
+margin_top = 146.0
+margin_right = 1920.0
+margin_bottom = 146.0
+
+[node name="Top_Text_Engine" type="ReferenceRect" parent="VBoxContainer/Top Panel"]
+margin_left = 100.0
+margin_top = -100.483
+margin_right = 1820.0
+margin_bottom = -0.483002
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+FONT = SubResource( 2 )
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 194.0
 margin_right = 1920.0
@@ -84,13 +110,13 @@ margin_bottom = 600.0
 rect_min_size = Vector2( 958, 0 )
 theme = ExtResource( 1 )
 
-[node name="Word Scroller" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 4 )]
+[node name="Word Scroller" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 7 )]
 editor/display_folded = true
 transparency = true
 scroll_type = 6
 ease_type = 1
 
-[node name="Type Engine" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 5 )]
+[node name="Type Engine" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 8 )]
 margin_left = 229.0
 margin_top = 256.0
 margin_right = 729.0
@@ -106,7 +132,7 @@ margin_left = 958.0
 margin_right = 962.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 4, 600 )
-texture = ExtResource( 6 )
+texture = ExtResource( 9 )
 expand = true
 
 [node name="Enemy Container" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
@@ -115,37 +141,53 @@ margin_right = 1920.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 958, 0 )
 
-[node name="Enemy" parent="VBoxContainer/HBoxContainer/Enemy Container" instance=ExtResource( 7 )]
+[node name="Enemy" parent="VBoxContainer/HBoxContainer/Enemy Container" instance=ExtResource( 10 )]
 margin_left = 367.0
 margin_top = 187.0
 margin_right = 591.0
 margin_bottom = 412.0
 
-[node name="Life and Timer" parent="VBoxContainer" instance=ExtResource( 8 )]
+[node name="Life and Timer" parent="VBoxContainer" instance=ExtResource( 11 )]
 margin_top = 842.0
 margin_right = 1920.0
 margin_bottom = 886.0
 MaxTimeLife = 20
 lifeList = [ 6, 6, 5 ]
 
-[node name="Attack Animation" parent="." instance=ExtResource( 9 )]
+[node name="Bot Panel" type="Panel" parent="VBoxContainer"]
+margin_top = 934.0
+margin_right = 1920.0
+margin_bottom = 934.0
+
+[node name="Bot_Text_Engine" type="ReferenceRect" parent="VBoxContainer/Bot Panel"]
+margin_left = 100.0
+margin_right = 1820.0
+margin_bottom = 100.0
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+FONT = SubResource( 3 )
+
+[node name="Attack Animation" parent="." instance=ExtResource( 12 )]
 position = Vector2( 479, 493 )
 emitting = false
 lifetime = 0.88
-texture = SubResource( 2 )
+texture = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/attack_animation = SubResource( 3 )
-[connection signal="cycle_done" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_end_cycle"]
+anims/attack_animation = SubResource( 5 )
 [connection signal="cycle_done" from="." to="VBoxContainer/Life and Timer" method="_on_cycle_done"]
+[connection signal="cycle_done" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_end_cycle"]
 [connection signal="end_level" from="." to="VBoxContainer/Life and Timer" method="_on_end_level"]
 [connection signal="fail" from="." to="VBoxContainer/Life and Timer" method="toggle_paused"]
 [connection signal="life_mod" from="." to="VBoxContainer/Life and Timer" method="_on_life_mod"]
-[connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_sendDictList"]
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_sendDictList"]
-[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_ready"]
-[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Enemy Container/Enemy" method="_on_stage_ready"]
+[connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_sendDictList"]
 [connection signal="stage_ready" from="." to="VBoxContainer/Life and Timer" method="_on_stage_ready"]
+[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Enemy Container/Enemy" method="_on_stage_ready"]
+[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_ready"]
+[connection signal="resume_break" from="VBoxContainer/Top Panel/Top_Text_Engine" to="." method="_on_Top_Text_Engine_resume_break"]
 [connection signal="word_selected" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_word_selected"]
 [connection signal="entered_bad" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="." method="_on_bad_word"]
 [connection signal="entered_good" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="." method="_on_good_word"]
@@ -154,5 +196,6 @@ anims/attack_animation = SubResource( 3 )
 [connection signal="enemy_dead" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="." method="_on_enemy_dead"]
 [connection signal="stage_clear" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="." method="_on_stage_clear"]
 [connection signal="no_life" from="VBoxContainer/Life and Timer" to="." method="_on_no_life"]
+[connection signal="resume_break" from="VBoxContainer/Bot Panel/Bot_Text_Engine" to="." method="_on_Bot_Text_Engine_resume_break"]
 
 [editable path="VBoxContainer/HBoxContainer/Main Interface/Word Scroller"]
