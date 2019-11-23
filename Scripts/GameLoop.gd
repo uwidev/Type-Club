@@ -146,14 +146,6 @@ func _on_no_life():
 		print('game over')
 
 
-func _on_enemy_dead():
-	$"VBoxContainer/Life and Timer".toggle_locked()
-	$"VBoxContainer/Life and Timer".paused(true)
-	gamestate = END
-	print("END LEVEL")
-	emit_signal('end_level', next_scene)
-
-
 func _on_good_word(word):
 	# Self heal
 	$VBoxContainer/"Life and Timer".paused(true)
@@ -179,10 +171,6 @@ func _load_next_stage():
 		var tmp = wdicts.pop_front()
 		
 		wdict.clear()
-		
-#		gamestate = DIALOGUE
-#		yield()		#Yield for showing dialogue text
-#		gamestate = PLAYING
 		
 		for key in tmp:
 			wdict[key] = tmp[key]
@@ -212,3 +200,12 @@ func _on_Text_Panels_loadNextStage():
 func _on_Text_Panels_startFirstStage():
 	#Signal to start first stage received from text panels
 	emit_signal('stage_ready')
+
+
+func _on_Text_Panels_endLevel():
+	#Signal that the enemy has died
+	$"VBoxContainer/Life and Timer".toggle_locked()
+	$"VBoxContainer/Life and Timer".paused(true)
+	gamestate = END
+	print("END LEVEL")
+	emit_signal('end_level', next_scene)

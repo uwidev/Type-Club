@@ -11,6 +11,7 @@ var outroDialogue = false
 
 signal loadNextStage
 signal startFirstStage
+signal endLevel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,7 +35,6 @@ func _on_base_level_introDialogue():
 func _displayText():
 	grab_focus()
 	var where = whereList.pop_front()
-	print(where)
 	if where != "done":
 		topTE.set_state(topTE.STATE_OUTPUT)
 		botTE.set_state(botTE.STATE_OUTPUT)
@@ -55,7 +55,7 @@ func _displayText():
 			emit_signal("startFirstStage")
 		elif outroDialogue == true:
 			outroDialogue = false
-			
+			emit_signal("endLevel")
 		else:
 			emit_signal("loadNextStage")
 		
@@ -71,7 +71,12 @@ func _on_Bot_Text_Engine_resume_break():
 func _input(event):
 	if has_focus():
 		if event is InputEventKey:
-			if not event.scancode == KEY_ENTER:
+			if event.scancode == KEY_SPACE:
+				topTE.set_buff_speed(0)
+				botTE.set_buff_speed(0)
+			elif not event.scancode == KEY_ENTER:
 				accept_event()	#Prevent downward keypress propagation
-				
 
+func _on_Enemy_enemy_dead():
+	outroDialogue = true
+	_displayText()
