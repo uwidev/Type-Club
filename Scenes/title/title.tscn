@@ -64,9 +64,9 @@ texture = ExtResource( 2 )
 
 [node name="Menu Margins" type="MarginContainer" parent="Background/Margins/HBoxContainer"]
 margin_left = 877.0
-margin_top = 106.0
+margin_top = 116.0
 margin_right = 1705.0
-margin_bottom = 774.0
+margin_bottom = 764.0
 size_flags_horizontal = 6
 size_flags_vertical = 4
 custom_constants/margin_right = 20
@@ -78,7 +78,7 @@ custom_constants/margin_bottom = 20
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 808.0
-margin_bottom = 648.0
+margin_bottom = 628.0
 size_flags_horizontal = 6
 custom_constants/separation = 100
 
@@ -96,21 +96,11 @@ margin_bottom = 316.0
 texture = SubResource( 4 )
 
 [node name="Menu Buttons" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2" instance=ExtResource( 4 )]
-anchor_right = 0.0
+margin_left = 0.0
 margin_top = 316.0
 margin_right = 788.0
-margin_bottom = 628.0
-
-[node name="new_game" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" index="0"]
-margin_right = 788.0
-
-[node name="load_game" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" index="1"]
-margin_right = 788.0
-
-[node name="options" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" index="2"]
-margin_right = 788.0
-
-[node name="exit" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" index="3"]
-margin_right = 788.0
-
-[editable path="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons"]
+margin_bottom = 608.0
+[connection signal="exit" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" to="." method="_on_exit_press"]
+[connection signal="load_game" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" to="." method="_on_load_game_press"]
+[connection signal="new_game" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" to="." method="_on_new_game_press"]
+[connection signal="options" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" to="." method="_on_options_press"]

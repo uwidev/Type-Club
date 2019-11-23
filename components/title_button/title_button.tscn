@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://components/title_button/title_button.gd" type="Script" id=1]
+[ext_resource path="res://SE/button_select.wav" type="AudioStream" id=2]
+[ext_resource path="res://SE/button_hover.wav" type="AudioStream" id=3]
+
+[node name="Button" type="Button"]
+margin_right = 232.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 0, 70 )
+focus_mode = 0
+shortcut_in_tooltip = false
+enabled_focus_mode = 0
+text = "Button"
+flat = true
+align = 0
+script = ExtResource( 1 )
+button_pressed = ExtResource( 2 )
+button_hover = ExtResource( 3 )
+
+[node name="ButtonHover" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+
+[node name="ButtonSelect" type="AudioStreamPlayer" parent="."]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
