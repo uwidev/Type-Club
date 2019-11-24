@@ -33,9 +33,10 @@ func _input(event): #LineEdit must have mouse_filter set to 'ignore' in order to
 						cursor += 1
 				elif cursor >= current_word.length() and event.get_scancode() == KEY_ENTER:
 					pass
-				elif event.get_scancode() == KEY_BACKSPACE and cursor >= 0:
-					if cursor == 0:
+				elif event.get_scancode() == KEY_BACKSPACE and cursor >= 1:
+					if cursor == 1:
 						emit_signal('request_scroller')
+						set_text('')
 					else:					
 						cursor -= 1
 				else:
