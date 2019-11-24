@@ -7,13 +7,15 @@ var readLine	#Individual line read
 var semiColon	#Index of semicolon
 var charName	#Name of character speaking
 var afterSC		#Text after the semicolon
-#var image		#Image to load
+var image		#The TextureRect node to display images on
+
 export(String) var scriptPath = "res://Assets/scriptTester.txt"
 export(String) var nextScene = "res://Scenes/levels/base_level_new.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	textEngine = find_node("Text_Engine")
+	image = find_node("imageToShow")
 	readScript(scriptPath)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,9 +41,10 @@ func readNextLine():
 		if readLine.begins_with("Prompt"):
 			textEngine.buff_input()
 			textEngine.buff_text("\n",0)
-			textEngine.buff_break()
+			readNextLine()
 		elif readLine.begins_with("Image"):
-			textEngine.buff_break()	
+			image.set_texture(load(afterSC))
+			readNextLine()
 		else:
 			charName = readLine.substr(0,semiColon)
 			if charName != "Narrator":
