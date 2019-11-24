@@ -7,6 +7,9 @@ var curtains:AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.xtransitionPanel = self.find_node("TransitionPanel")
+	self.curtains = self.find_node("CurtainsAnimationPlayer")
+	self.curtains.connect("animation_finished", self, "_on_animation_complete")
 	self.nextScene = "res://Scenes/title/title.tscn"
 	_load_scene(self.nextScene)
 	#_load_scene()
@@ -18,9 +21,6 @@ func _ready():
 #TODO: var for what kind of node to look for (pause, script, level)
 
 func _transition_animation(enter_transition:bool):
-	self.xtransitionPanel = self.find_node("TransitionPanel")
-	self.curtains = self.find_node("CurtainsAnimationPlayer")
-	self.curtains.connect("animation_finished", self, "_on_animation_complete")
 	if enter_transition:
 		self.xtransitionPanel.set_layer(2)
 		self.curtains.play("Open")
