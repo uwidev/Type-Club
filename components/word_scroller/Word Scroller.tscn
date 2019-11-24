@@ -1,11 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://components/word_scroller/Word Scroller.gd" type="Script" id=1]
 [ext_resource path="res://Assets/materials/word_scroller.tres" type="Material" id=2]
 [ext_resource path="res://components/word_scroller/label_tween.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/timmy/406m4.png" type="Texture" id=4]
-[ext_resource path="res://Themes/base_level_theme.tres" type="Theme" id=5]
-
 
 [node name="Word Scroller" type="Control"]
 margin_left = 479.0
@@ -27,36 +25,10 @@ extend = 1
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -960.0
-margin_top = -543.623
-margin_right = 960.0
-margin_bottom = 536.377
+margin_left = -476.049
+margin_top = -295.967
+margin_right = 1443.95
+margin_bottom = 784.033
 texture = ExtResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
-
-[node name="ViewportContainer" type="ViewportContainer" parent="."]
-modulate = Color( 0.752941, 0.0705882, 0.0705882, 1 )
-anchor_bottom = 1.0
-margin_left = -433.0
-margin_top = 678.0
-margin_right = 167.0
-margin_bottom = 978.0
-
-[node name="Viewport" type="Viewport" parent="ViewportContainer"]
-size = Vector2( 600, 300 )
-transparent_bg = true
-handle_input_locally = false
-disable_3d = true
-usage = 0
-render_target_v_flip = true
-render_target_update_mode = 3
-
-[node name="Camera2D" type="Camera2D" parent="ViewportContainer/Viewport"]
-current = true
-
-[node name="current_word" type="Label" parent="ViewportContainer/Viewport"]
-margin_right = 442.0
-margin_bottom = 87.0
-theme = ExtResource( 5 )
-text = "THIS IS A TEST"

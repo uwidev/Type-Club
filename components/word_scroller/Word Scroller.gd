@@ -21,6 +21,7 @@ var scroll_width
 var half_width 							# Half of the total scroll width
 var l_mat
 var typing_label = RichTextLabel.new()
+var particle_word_reference
 
 # Debug
 export(bool) var debug_list_of_words
@@ -122,6 +123,11 @@ class CenterRoundIndex:
 
 
 func _ready():
+	#get_tree().get_root().print_tree_pretty()
+	#particle_word_reference = get_tree().get_root().get_node("base_level").get_node('particle_viewport')
+	particle_word_reference = get_tree().get_root().find_node('particle_viewport', true, false)
+	#print('restult: ', particle_word_reference)
+	#assert(particle_word_reference != null)
 	typing_label.set_name('typing_label')
 	add_child(typing_label)
 	typing_label.set_visible(false)
@@ -141,7 +147,7 @@ func _ready():
 		wlist = debug_list
 		selected.set_max(wlist.size()-1)
 		_set_labels()
-		get_node('ViewportContainer/Viewport/current_word').set_text(wlist[selected.get_value()])	
+		particle_word_reference._set_text(wlist[selected.get_value()])	
 
 
 func on_end_typing(word):
@@ -209,6 +215,8 @@ func _set_labels():
 
 
 func _update_labels():
+	print('current wlist: ', wlist)
+	selected.set_max(wlist.size()-1)
 	if wlist.empty():
 		for i in range(-half_width, half_width+1):
 			label_list[i].get_node('label').set_text('')
@@ -228,7 +236,7 @@ func _update_labels():
 		assigner_round.next()
 		index = assigner_round.get_value()
 	
-	get_node('ViewportContainer/Viewport/current_word').set_text(wlist[selected.get_value()])
+	particle_word_reference._set_text(wlist[selected.get_value()])
 
 
 func _animate_and_update(mode):	
@@ -277,15 +285,15 @@ func _animate_and_update(mode):
 		label_list.push_front(label_list.pop_back())
 		label_list[-half_width].get_node('label').set_text(wlist[selected.calc_offset(-half_width)])
 	
-	get_node('ViewportContainer/Viewport/current_word').set_text(wlist[selected.get_value()])
+	particle_word_reference._set_text(wlist[selected.get_value()])
 
 
 func _input(event):
 	if has_focus() and event is InputEventKey:
 		if event.is_pressed() and not event.is_echo() and not wlist.empty():
-			if event.get_scancode() == KEY_DOWN:	# Key up
+			if event.get_scancode() == KEY_UP:	# Key up
 				_next()
-			elif event.get_scancode() == KEY_UP:	# Key down
+			elif event.get_scancode() == KEY_DOWN:	# Key down
 				_previous()
 			elif char(event.get_unicode()) == wlist[selected.get_value()].left(1):
 				label_list[0].set_visible(false)
@@ -294,7 +302,7 @@ func _input(event):
 				typing_label.set_position(label_list[0].get_node('label').get_position())
 				typing_label.set_visible(true)
 				
-				get_node('ViewportContainer/Viewport/current_word').set_text(wlist[selected.get_value()])
+				particle_word_reference._set_text(wlist[selected.get_value()])
 				
 				emit_signal('word_selected', wlist[selected.get_value()], 
 					typing_label.get_global_position())
@@ -309,8 +317,8 @@ func _on_sendDictList(d, w, g, b):
 	
 	_set_labels()
 	# Initializes max index for selected
-	selected.set_max(wlist.size()-1)
-	get_node('ViewportContainer/Viewport/current_word').set_text(wlist[selected.get_value()])
+	#selected.set_max(wlist.size()-1)
+	particle_word_reference._set_text(wlist[selected.get_value()])
 
 
 func _on_request_scroller():
@@ -325,7 +333,8 @@ func _on_end_cycle():
 	label_list[0].set_visible(true)
 	grab_focus()
 	selected.set_max(wlist.size()-1)
-	print(wlist)
+	
+	wlist.shuffle()
 	_update_labels()
 
 
