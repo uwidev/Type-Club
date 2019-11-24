@@ -1,13 +1,12 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/timmy/Timmy_Scene.gd" type="Script" id=1]
-[ext_resource path="res://components/word_scroller/Viewport.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/CrossParticle.png" type="Texture" id=3]
-[ext_resource path="res://Assets/testCircle.png" type="Texture" id=4]
-[ext_resource path="res://components/enemy/shake.gd" type="Script" id=5]
-[ext_resource path="res://Addons/RigidBodyParticles2D/RigidBodyParticles2D.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/timmy/particle.tscn" type="PackedScene" id=7]
-
+[ext_resource path="res://Assets/CrossParticle.png" type="Texture" id=2]
+[ext_resource path="res://Assets/testCircle.png" type="Texture" id=3]
+[ext_resource path="res://components/enemy/shake.gd" type="Script" id=4]
+[ext_resource path="res://Addons/RigidBodyParticles2D/RigidBodyParticles2D.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/timmy/particle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://components/word_scroller/Viewport.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 2
@@ -22,8 +21,8 @@ radial_accel_random = 0.33
 angle = 20.0
 angle_random = 1.0
 
-[sub_resource type="ViewportTexture" id=2]
-viewport_path = NodePath("ViewportContainer/Viewport")
+[sub_resource type="ViewportTexture" id=5]
+viewport_path = NodePath("Viewport")
 
 [sub_resource type="ParticlesMaterial" id=3]
 flag_disable_z = true
@@ -45,30 +44,25 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ViewportContainer" parent="." instance=ExtResource( 2 )]
-visible = false
-margin_bottom = 434.308
-
-[node name="Viewport" parent="ViewportContainer" index="0"]
-render_target_update_mode = 0
-
-[node name="Camera2D" parent="ViewportContainer/Viewport" index="0"]
-visible = false
-
-[node name="Label" parent="ViewportContainer/Viewport" index="1"]
-visible = false
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+modulate = Color( 0.752941, 0.0705882, 0.0705882, 1 )
+anchor_bottom = 1.0
+margin_left = -495.0
+margin_top = 280.0
+margin_right = -195.0
+margin_bottom = -500.0
 
 [node name="Particles2D2" type="Particles2D" parent="."]
-visible = false
 position = Vector2( 537.961, 536.628 )
 amount = 25
 lifetime = 2.0
 speed_scale = 1.5
 randomness = 0.21
 process_material = SubResource( 1 )
-texture = SubResource( 2 )
+texture = SubResource( 5 )
 
 [node name="Button" type="Button" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -80,16 +74,17 @@ margin_bottom = 154.5
 rect_rotation = -0.0223528
 
 [node name="Particles2D" type="Particles2D" parent="."]
+visible = false
 position = Vector2( 1420.24, 159.778 )
 amount = 20
 lifetime = 5.49
 process_material = SubResource( 3 )
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1419.89, 483.367 )
-texture = ExtResource( 4 )
-script = ExtResource( 5 )
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
 decay_rate = 2.0
 max_offset = 20.0
 
@@ -99,9 +94,15 @@ max_offset = 20.0
 position = Vector2( -2.45544, -1.22775 )
 shape = SubResource( 4 )
 
-[node name="RigidBodyParticles2D2" parent="." instance=ExtResource( 6 )]
+[node name="RigidBodyParticles2D2" parent="." instance=ExtResource( 5 )]
+visible = false
 position = Vector2( 1135.41, 307.139 )
 amount = 100
-particle_scene = ExtResource( 7 )
+particle_scene = ExtResource( 6 )
 
-[editable path="ViewportContainer"]
+[node name="Viewport" parent="." instance=ExtResource( 7 )]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
