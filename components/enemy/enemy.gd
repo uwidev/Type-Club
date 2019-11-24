@@ -9,6 +9,7 @@ var futureLife = 0
 export(Array, int) var lifeList #List of ints representing health for each state, 0 reps stage 1
 export var decay_rate = 0.4
 export var max_offset = 0.4
+export(Array, Texture) var textureList	#List of image textures
 
 signal end_shake
 signal start_shake
@@ -45,6 +46,7 @@ func take_damage(value):
 
 
 func _on_stage_ready():
+	set_texture(textureList.pop_front())
 	currentLife = lifeList.pop_front()*100
 	futureLife = currentLife
 	$TextureProgress.max_value = currentLife
