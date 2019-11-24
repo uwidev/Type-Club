@@ -330,8 +330,6 @@ func _on_end_cycle():
 
 
 func _on_stage_ready():
+	grab_focus()
 	#print(wdict, ' stage ready!')
 	_update_labels()
-
-func _on_base_level_stage_ready():
-	grab_focus()

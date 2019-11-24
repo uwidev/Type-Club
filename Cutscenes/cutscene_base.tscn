@@ -7,6 +7,8 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 70
+outline_size = 5
+outline_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
 font_data = ExtResource( 4 )
 
 [node name="Control" type="Control"]
@@ -18,6 +20,10 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 1920, 1080 )
+
+[node name="imageToShow" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0

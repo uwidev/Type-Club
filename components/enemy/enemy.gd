@@ -23,16 +23,16 @@ func _ready():
 
 func take_damage(value):
 	var currFutureLife = futureLife
-	futureLife = currentLife - 1
+	futureLife = currentLife - 1*100
 	
 	#Animate damage
-	$TextureProgress/Tween.interpolate_property($TextureProgress, "value", currFutureLife, futureLife, 0.4, Tween.TRANS_ELASTIC, Tween.EASE_OUT) 
+	$TextureProgress/Tween.interpolate_property($TextureProgress, "value", currFutureLife, futureLife, 1, Tween.TRANS_LINEAR, Tween.EASE_OUT) 
 	$TextureProgress/Tween.start()
 	
-	$TextureProgress.value = futureLife
+	#$TextureProgress.value = futureLife
 	add_trauma(20)
 	yield(self, "end_shake")
-	currentLife -= value
+	currentLife -= value*100
 	print(currentLife)
 	if currentLife <= 0:
 		if lifeList.empty():
@@ -45,7 +45,7 @@ func take_damage(value):
 
 
 func _on_stage_ready():
-	currentLife = lifeList.pop_front()
+	currentLife = lifeList.pop_front()*100
 	futureLife = currentLife
 	$TextureProgress.max_value = currentLife
 	$TextureProgress.value = futureLife

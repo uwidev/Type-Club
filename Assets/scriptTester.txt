@@ -1,4 +1,5 @@
 Annie;First line
+Image;res://Assets/testCircle.png
 Annie;Second line
 Annie;More lines
 Annie;kasjhdsakjdhajkdhakjdhajkdhkajdhaksjdhaskdjhsakjhdsakjdhsadksa alshdsalkhdsakjdhsakjdhsa sakjdhsakdhsakjd hakj
