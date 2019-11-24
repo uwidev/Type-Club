@@ -2,15 +2,14 @@ extends Control
 var nextScene
 var xtransitionPanel:CanvasLayer
 var curtains:AnimationPlayer
-# Declare member variables here. Examples:
-# var b = "text"
 
-# Called when the node enters the scene tree for the first time.
+export(PackedScene) var scene_start
+
 func _ready():
 	self.xtransitionPanel = self.find_node("TransitionPanel")
 	self.curtains = self.find_node("CurtainsAnimationPlayer")
 	self.curtains.connect("animation_finished", self, "_on_animation_complete")
-	self.nextScene = "res://Scenes/title/title.tscn"
+	self.nextScene = scene_start
 	_load_scene(self.nextScene)
 	#_load_scene()
 

@@ -1,10 +1,7 @@
 extends "res://Scenes/LoadableScene.gd"
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export(PackedScene) var next_scene
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	var button_list = {
 		"new_game": "_on_new_game_press",
@@ -21,7 +18,7 @@ func _ready():
 #	pass
 
 func _on_new_game_press():
-	emit_signal("end_level", "res://Scenes/levels/base_level_new.tscn")
+	emit_signal("end_level", next_scene)
 
 func _on_load_game_press():	
 	print("Loading game...")

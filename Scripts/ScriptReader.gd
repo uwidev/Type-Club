@@ -9,14 +9,17 @@ var charName	#Name of character speaking
 var afterSC		#Text after the semicolon
 var image		#The TextureRect node to display images on
 
-export(String) var scriptPath = "res://Assets/scriptTester.txt"
-export(String) var nextScene = "res://Scenes/levels/base_level_new.tscn"
+export(PackedScene) var nextScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	textEngine = find_node("Text_Engine")
 	image = find_node("imageToShow")
-	readScript(scriptPath)
+	if get_owner() == null:
+		readScript(get_filename().trim_suffix('.tscn') + '.txt')		# Will read words from a text file of the same name as this scene
+	else:
+		readScript(get_owner().get_filename().trim_suffix('.tscn') + '.txt')		# Will read words from a text file of the same name as this scene
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
