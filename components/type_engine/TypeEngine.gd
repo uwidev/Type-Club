@@ -16,6 +16,8 @@ signal request_scroller
 var current_word	# Current typing word
 var cursor			# Incoming char index of current_word needed to type
 
+onready var typing_label 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -68,3 +70,11 @@ func _on_text_entered(word):
 		emit_signal('entered_good', word)
 	else:
 		emit_signal('entered_bad', word)
+
+
+func _on_scroller_redraw():
+	typing_label.get_global_position()
+
+
+func _on_scroller_redrew(pos):
+	set_global_position(pos)

@@ -39,11 +39,13 @@ export(int) var extend = 2		# Amount of words extending from center, one directi
 export(float) var scroll_speed = 0.3
 export(int, 'Linear', 'Sine', 'Quint', 'Quart', 'Quad', 'Expo', 'Elastic', 'Cubic', 'Circ', 'Bounce', 'Back') var scroll_type
 export(int, 'Ease In', 'Ease Out', 'Ease In Out', 'Ease Out In (No Ease)') var ease_type
-
+export(int) var hidden_fade_speed = 2
 
 onready var tween = get_node("Tween")
 
 signal word_selected
+signal words_fully_visible
+signal redrew
 
 # A class meant to have a value that loops once it hits the end of a normal array
 class RoundIndex:
@@ -218,7 +220,10 @@ func _set_labels():
 
 # NOT WORKING, GET WORKING
 func _hidden(hiding:bool):
-	print('going to hide: ', hiding)
+	if tween.is_active():
+		tween.stop_all()
+	
+	#print('going to hide: ', hiding)
 	var label
 	var l_mat
 	var min_spacing = label_list.front().get_node('label').get_size().y
@@ -226,15 +231,20 @@ func _hidden(hiding:bool):
 	for i in range(-half_width, half_width+1):
 		label = label_list[i].get_node('label')
 		l_mat = label.material
+		#print(label_positions[i])
 		if hiding:
 			tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_hidden_label', label_positions[i], (min_spacing + word_spacing) * -half_width, scroll_speed,  scroll_type, ease_type)
 		else:
-			tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_label', (min_spacing + word_spacing) * -half_width, label_positions[i], scroll_speed,  scroll_type, ease_type)
-		tween.start()
+			if i < 0:
+				tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_hidden_label', (min_spacing + word_spacing) * -half_width, label_positions[i][1], hidden_fade_speed,  Tween.TRANS_LINEAR, Tween.EASE_IN)
+			elif i >= 0:
+				tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_hidden_label', (min_spacing + word_spacing) * half_width, label_positions[i][1], hidden_fade_speed,  Tween.TRANS_LINEAR, Tween.EASE_IN)
+				
+	tween.start()
 
 
 func _update_labels():
-	print('current wlist: ', wlist)
+	#print('current wlist: ', wlist)
 	selected.set_max(wlist.size()-1)
 	if wlist.empty():
 		for i in range(-half_width, half_width+1):
@@ -357,8 +367,19 @@ func _on_end_cycle():
 	_update_labels()
 
 
-func _on_stage_ready():
-	grab_focus()
-	print('stage ready!')
+func _on_prepare_stage():
+	print('preparing stage')
+	typing_label.set_visible(false)
+	label_list[0].set_visible(true)
 	_update_labels()
 	_hidden(false)
+	yield(tween, "tween_all_completed")
+	emit_signal('words_fully_visible')
+	
+
+func _on_stage_ready():
+	print('stage ready!')
+	grab_focus()
+
+func _on_scroller_redraw():
+	emit_signal('redrew', typing_label.get_global_position())

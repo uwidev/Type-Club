@@ -42,8 +42,12 @@ signal stage_ready
 signal cycle_done
 signal sendTextLists
 signal introDialogue
+signal prepare_stage
 
 onready var enemy = find_node('Enemy')
+onready var scroller = find_node('Word Scroller')
+onready var typer = find_node('Type Engine')
+onready var timerlife = find_node('Life and Timer')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -161,7 +165,7 @@ func _on_good_word(word):
 	# Wait for attack animation to finish
 	yield($AnimationPlayer, "animation_finished")
 	
-	#enemy.take_damage(1)
+	#print('gamestate: ', gamestate)
 	if gamestate == PLAYING:
 		emit_signal('cycle_done')
 
@@ -180,7 +184,12 @@ func _load_next_stage():
 		wlist.clear()
 		for word in _generateList(enemy.lifeList.front() + additional_good_words, additional_bad_words):
 			wlist.append(word)
-			
+		
+		emit_signal('prepare_stage')
+		
+		yield(scroller, 'words_fully_visible')
+		
+		gamestate = PLAYING
 		emit_signal('stage_ready')
 
 
@@ -194,11 +203,17 @@ func _on_bad_word(word):
 
 
 func _on_Text_Panels_loadNextStage():
+	gamestate = PLAYING
 	_load_next_stage()
+	
 
 
 func _on_Text_Panels_startFirstStage():
 	#Signal to start first stage received from text panels
+	emit_signal('prepare_stage')
+		
+	yield(scroller, 'words_fully_visible')
+	
 	emit_signal('stage_ready')
 
 
@@ -209,3 +224,7 @@ func _on_Text_Panels_endLevel():
 	gamestate = END
 	print("END LEVEL")
 	emit_signal('end_level', next_scene)
+
+
+func _on_enemy_life_depleted():
+	gamestate = DIALOGUE

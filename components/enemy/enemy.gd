@@ -16,6 +16,7 @@ signal start_shake
 signal stage_clear
 signal enemy_dead
 signal damage_taken
+signal life_depleted
 
 func _ready():
 	_start_position = get_position()
@@ -30,18 +31,21 @@ func take_damage(value):
 	$TextureProgress/Tween.interpolate_property($TextureProgress, "value", currFutureLife, futureLife, 1, Tween.TRANS_LINEAR, Tween.EASE_OUT) 
 	$TextureProgress/Tween.start()
 	
-	#$TextureProgress.value = futureLife
 	add_trauma(20)
-	yield(self, "end_shake")
-	currentLife -= value*100
-	print(currentLife)
-	if currentLife <= 0:
+	
+	
+	if futureLife <= 0:
 		if lifeList.empty():
 			print('level clear!')
 			emit_signal("enemy_dead")
 			return
-		print("stage_clear!")
+		emit_signal('life_depleted')
+		yield(self, "end_shake")
 		emit_signal("stage_clear")
+	else:
+		yield(self, "end_shake")
+	
+	currentLife -= value*100
 	emit_signal('damage_taken')
 
 
@@ -58,7 +62,7 @@ func get_hp():
 		
 		
 func add_trauma(amount):
-	print("START SHAKING")
+	#print("START SHAKING")
 	emit_signal('start_shake')
 	shaking = true
 	_trauma = min(_trauma + amount, 1)
@@ -70,7 +74,7 @@ func _process(delta):
 		_apply_shake()
 	if _trauma == 0 and shaking:
 		shaking = false
-		print('END SHAKING')
+		#print('END SHAKING')
 		emit_signal('end_shake')
 		
 		
