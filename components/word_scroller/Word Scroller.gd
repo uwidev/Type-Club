@@ -215,6 +215,8 @@ func _set_labels():
 
 
 func _update_labels():
+	print('current wlist: ', wlist)
+	selected.set_max(wlist.size()-1)
 	if wlist.empty():
 		for i in range(-half_width, half_width+1):
 			label_list[i].get_node('label').set_text('')
@@ -315,7 +317,7 @@ func _on_sendDictList(d, w, g, b):
 	
 	_set_labels()
 	# Initializes max index for selected
-	selected.set_max(wlist.size()-1)
+	#selected.set_max(wlist.size()-1)
 	particle_word_reference._set_text(wlist[selected.get_value()])
 
 
@@ -331,7 +333,8 @@ func _on_end_cycle():
 	label_list[0].set_visible(true)
 	grab_focus()
 	selected.set_max(wlist.size()-1)
-	print(wlist)
+	
+	wlist.shuffle()
 	_update_labels()
 
 
