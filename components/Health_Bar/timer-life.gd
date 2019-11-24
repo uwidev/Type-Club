@@ -108,3 +108,7 @@ func _on_stage_ready():
 
 func _on_stage_clear():
 	paused(true)
+
+
+func _on_Enemy_enemy_dead():
+	paused(true)
