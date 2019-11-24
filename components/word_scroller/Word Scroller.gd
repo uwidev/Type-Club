@@ -147,7 +147,9 @@ func _ready():
 		wlist = debug_list
 		selected.set_max(wlist.size()-1)
 		_set_labels()
-		particle_word_reference._set_text(wlist[selected.get_value()])	
+		particle_word_reference._set_text(wlist[selected.get_value()])
+	
+	_hidden(true)
 
 
 func on_end_typing(word):
@@ -212,6 +214,23 @@ func _set_labels():
 	
 		assigner_round.next()
 		index = assigner_round.get_value()
+
+
+# NOT WORKING, GET WORKING
+func _hidden(hiding:bool):
+	print('going to hide: ', hiding)
+	var label
+	var l_mat
+	var min_spacing = label_list.front().get_node('label').get_size().y
+	
+	for i in range(-half_width, half_width+1):
+		label = label_list[i].get_node('label')
+		l_mat = label.material
+		if hiding:
+			tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_hidden_label', label_positions[i], (min_spacing + word_spacing) * -half_width, scroll_speed,  scroll_type, ease_type)
+		else:
+			tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_label', (min_spacing + word_spacing) * -half_width, label_positions[i], scroll_speed,  scroll_type, ease_type)
+		tween.start()
 
 
 func _update_labels():
@@ -291,9 +310,9 @@ func _animate_and_update(mode):
 func _input(event):
 	if has_focus() and event is InputEventKey:
 		if event.is_pressed() and not event.is_echo() and not wlist.empty():
-			if event.get_scancode() == KEY_UP:	# Key up
+			if event.get_scancode() == KEY_DOWN:	# Key up
 				_next()
-			elif event.get_scancode() == KEY_DOWN:	# Key down
+			elif event.get_scancode() == KEY_UP:	# Key down
 				_previous()
 			elif char(event.get_unicode()) == wlist[selected.get_value()].left(1):
 				label_list[0].set_visible(false)
@@ -340,5 +359,6 @@ func _on_end_cycle():
 
 func _on_stage_ready():
 	grab_focus()
-	#print(wdict, ' stage ready!')
+	print('stage ready!')
 	_update_labels()
+	_hidden(false)
