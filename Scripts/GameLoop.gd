@@ -113,7 +113,7 @@ func _generateList(numGood, numBad):
 	var glistSize = glist.size()
 	var blistSize = blist.size()
 	randomize()		#Randomizes a new seed for random number generator
-	while numGood != 0:
+	while numGood != 0 and glistSize != 0:
 		randIndex = randi()%glistSize	#Returns random int between 0 and glistSize-1
 		if unique_good:
 			if not mixedList.has(glist[randIndex]):
@@ -187,6 +187,7 @@ func _load_next_stage():
 		
 		emit_signal('prepare_stage')
 		
+		print('now yielding until words are fully visible')
 		yield(scroller, 'words_fully_visible')
 		
 		gamestate = PLAYING
@@ -219,8 +220,8 @@ func _on_Text_Panels_startFirstStage():
 
 func _on_Text_Panels_endLevel():
 	#Signal that the enemy has died
-	$"VBoxContainer/Life and Timer".toggle_locked()
-	$"VBoxContainer/Life and Timer".paused(true)
+	#$"VBoxContainer/Life and Timer".toggle_locked()
+	#$"VBoxContainer/Life and Timer".paused(true)
 	gamestate = END
 	print("END LEVEL")
 	emit_signal('end_level', next_scene)

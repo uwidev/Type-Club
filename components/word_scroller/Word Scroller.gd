@@ -39,7 +39,8 @@ export(int) var extend = 2		# Amount of words extending from center, one directi
 export(float) var scroll_speed = 0.3
 export(int, 'Linear', 'Sine', 'Quint', 'Quart', 'Quad', 'Expo', 'Elastic', 'Cubic', 'Circ', 'Bounce', 'Back') var scroll_type
 export(int, 'Ease In', 'Ease Out', 'Ease In Out', 'Ease Out In (No Ease)') var ease_type
-export(int) var hidden_fade_speed = 2
+export(float) var hidden_fade_in_speed = 2
+export(float) var hidden_fade_out_speed = 0.5
 
 onready var tween = get_node("Tween")
 
@@ -150,9 +151,8 @@ func _ready():
 		wlist = debug_list
 		selected.set_max(wlist.size()-1)
 		_set_labels()
+		_hidden_instant(true)
 		particle_word_reference._set_text(wlist[selected.get_value()])
-	
-	_hidden(true)
 
 
 func on_end_typing(word):
@@ -221,8 +221,7 @@ func _set_labels():
 
 # NOT WORKING, GET WORKING
 func _hidden(hiding:bool):
-	if tween.is_active():
-		tween.stop_all()
+	tween.remove_all()
 	
 	#print('going to hide: ', hiding)
 	var label
@@ -234,14 +233,36 @@ func _hidden(hiding:bool):
 		l_mat = label.material
 		#print(label_positions[i])
 		if hiding:
-			tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_hidden_label', label_positions[i], (min_spacing + word_spacing) * -half_width, scroll_speed,  scroll_type, ease_type)
+			#print('>>>> GOING TO HIDE')
+			if i < 0:
+				tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_hidden_label', label_positions[i][1], (min_spacing + word_spacing) * -half_width, hidden_fade_out_speed,  Tween.TRANS_LINEAR, Tween.EASE_IN)
+			elif i >= 0:
+				tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_hidden_label', label_positions[i][1], (min_spacing + word_spacing) * half_width, hidden_fade_out_speed,  Tween.TRANS_LINEAR, Tween.EASE_IN)
 		else:
 			if i < 0:
-				tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_hidden_label', (min_spacing + word_spacing) * -half_width, label_positions[i][1], hidden_fade_speed,  Tween.TRANS_LINEAR, Tween.EASE_IN)
+				tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_hidden_label', (min_spacing + word_spacing) * -half_width, label_positions[i][1], hidden_fade_in_speed,  Tween.TRANS_LINEAR, Tween.EASE_IN)
 			elif i >= 0:
-				tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_hidden_label', (min_spacing + word_spacing) * half_width, label_positions[i][1], hidden_fade_speed,  Tween.TRANS_LINEAR, Tween.EASE_IN)
+				tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_hidden_label', (min_spacing + word_spacing) * half_width, label_positions[i][1], hidden_fade_in_speed,  Tween.TRANS_LINEAR, Tween.EASE_IN)
 				
+	print('started tween')
 	tween.start()
+	
+
+func _hidden_instant(hiding:bool):
+	var label
+	var l_mat
+	var min_spacing = label_list.front().get_node('label').get_size().y
+	
+	for i in range(-half_width, half_width+1):
+		label = label_list[i].get_node('label')
+		l_mat = label.material
+		#print(label_positions[i])
+		if hiding:
+			label_list[i].get_node('label')._curry_tween_hidden_label((min_spacing + word_spacing) * (half_width+1))
+		else:
+			label_list[i].get_node('label')._curry_tween_hidden_label(label_positions[i][1])
+				
+	print('instant hide: ', hiding)
 
 
 func _update_labels():
@@ -273,8 +294,7 @@ func _animate_and_update(mode):
 	# Setup
 	var interval
 	var a_value
-	if tween.is_active():
-		tween.stop_all()
+	tween.remove_all()
 	
 	# Teleport the clipping label to the top/bottom
 	# Only select the labels that need to be moved
@@ -346,6 +366,7 @@ func _on_sendDictList(d, w, g, b):
 	wlist = w
 	
 	_set_labels()
+	_hidden_instant(true)
 	# Initializes max index for selected
 	#selected.set_max(wlist.size()-1)
 	particle_word_reference._set_text(wlist[selected.get_value()])
@@ -374,7 +395,10 @@ func _on_prepare_stage():
 	label_list[0].set_visible(true)
 	_update_labels()
 	_hidden(false)
+	print('waiting until tween complete')
 	yield(tween, "tween_all_completed")
+	print('tween visible complete')
+	
 	emit_signal('words_fully_visible')
 	
 
@@ -384,3 +408,13 @@ func _on_stage_ready():
 
 func _on_scroller_redraw():
 	emit_signal('redrew', typing_label.get_global_position())
+
+
+func _on_stage_clear():
+	label_list[0].set_visible(true)
+	typing_label.set_visible(false)
+	_hidden(true)
+
+
+func _on_Tween_tween_all_completed():
+	print('>>> all tween completed')

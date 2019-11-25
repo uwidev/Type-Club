@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/levels/base_level_new.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Cutscenes/post_level_3.tscn" type="PackedScene" id=2]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("base_level/particle_viewport")
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="base_level" parent="." instance=ExtResource( 1 )]
+next_scene = ExtResource( 2 )
 additional_good_words = 2
 additional_bad_words = 2
 unique_good = true
@@ -20,7 +22,7 @@ extend = 3
 scroll_speed = 1.0
 
 [node name="Enemy" parent="base_level/VBoxContainer/HBoxContainer/Enemy Container" index="0"]
-lifeList = [ 5, 10, 15 ]
+lifeList = [ 1, 1, 1 ]
 
 [node name="Life and Timer" parent="base_level/VBoxContainer" index="1"]
 lifeList = [ 10, 10, 10 ]

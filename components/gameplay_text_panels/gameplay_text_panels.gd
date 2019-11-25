@@ -52,6 +52,7 @@ func _displayText():
 		release_focus()
 		if introDialogue == true:
 			introDialogue = false
+			print('emited startFirstStage signal')
 			emit_signal("startFirstStage")
 		elif outroDialogue == true:
 			outroDialogue = false

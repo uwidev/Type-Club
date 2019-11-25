@@ -114,3 +114,4 @@ top;Tom: I mean, a little bit, I guess. I don't really remeber why I was angry a
 bot;Computer: Well great for you. *zzzt* Too bad I had to die for you to feel better.
 bot;Computer: Your wife probably isn't going to be happy when she see's your hands looking like that you know.
 top;Tom:...
+;;;

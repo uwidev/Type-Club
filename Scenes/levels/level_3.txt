@@ -76,3 +76,11 @@ Tired;-1
 Unhealthy;-2
 Weakness;-2
 Sneeze;-1
+;;
+;;;
+top;NOTICE1: This doesn't have actual dialogue yet.
+;;;
+top;NOTICE2: This doesn't have actual dialogue yet.
+;;;
+top;NOTICE3: This doesn't have actual dialogue yet.
+;;;
