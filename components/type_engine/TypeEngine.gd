@@ -31,6 +31,7 @@ func _input(event): #LineEdit must have mouse_filter set to 'ignore' in order to
 	if has_focus():
 		if event is InputEventKey:
 			if event.pressed:
+				#print('typed: ', char(event.get_unicode()), ' | ', current_word[cursor])
 				if cursor < current_word.length() and char(event.get_unicode()) == current_word[cursor]:
 						cursor += 1
 				elif cursor >= current_word.length() and event.get_scancode() == KEY_ENTER:

@@ -133,6 +133,7 @@ func _ready():
 	typing_label.set_name('typing_label')
 	add_child(typing_label)
 	typing_label.set_visible(false)
+	typing_label.set_scroll_active(false)
 	
 	if focus_on_ready:
 		grab_focus() 
@@ -327,7 +328,7 @@ func _input(event):
 			elif char(event.get_unicode()) == wlist[selected.get_value()].left(1):
 				label_list[0].set_visible(false)
 				typing_label.set_text(wlist[selected.get_value()])
-				typing_label.set_custom_minimum_size(Vector2(500, 200))
+				typing_label.set_custom_minimum_size(label_list[0].get_node('label').get_size())
 				typing_label.set_position(label_list[0].get_node('label').get_position())
 				typing_label.set_visible(true)
 				

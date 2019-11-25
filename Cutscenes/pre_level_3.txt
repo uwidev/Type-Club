@@ -3,21 +3,21 @@ Narrator;Seven years later Kaiju dies too, and you wish you could follow him.
 Narrator;You retire at age 67 and buy a house on the beach.
 Narrator;One day, you see someone that looks just like Caroline walking along the beach. 
 Narrator;You run up to her and tap her on the back.
-Narrator;She turns around. It’s her.
-Prompt;You’re alive!
+Narrator;She turns around. It's her.
+Prompt;You're alive!
 Narrator;She looks at you with a confused face. 
-Woman;Well I’d sure hope I am. Who are you?
-Narrator;You tell her everything and she still doesn’t remember.
-Woman;No my name is Carrie, I don’t know anyone named Caroline.
+Woman;Well I'd sure hope I am. Who are you?
+Narrator;You tell her everything and she still doesn't remember.
+Woman;No my name is Carrie, I don't know anyone named Caroline.
 Narrator;"She has amnesia," you tell yourself.
 Tom;Well how would you like to go with me to the new pizza place that opened up downtown?
 Narrator;She smiles.
 Carrie;Sure.
 Narrator;You go to the pizza place together.
-Narrator;You feel like it has to be her, she’s acting like she always used to, with her stupid jokes and funny stories.
+Narrator;You feel like it has to be her, she's acting like she always used to, with her stupid jokes and funny stories.
 Narrator;You laugh.
-Tom;It’s like I get to meet you and fall in love with you all over again.
-Carrie;What was that? I didn’t hear you.
+Tom;It's like I get to meet you and fall in love with you all over again.
+Carrie;What was that? I didn't hear you.
 Tom;Oh, nothing.
 Prompt;It has to be her.
 Carrie;Uh huh okay buddy. How about we do this again next week?
@@ -25,13 +25,13 @@ Tom;Oh, yea sure thing!
 Narrator;After 2 years, you get married and end up spending most of your time sitting on the beach together.
 Prompt;life is good
 Narrator;After 3 happy years you go to the doctor for a routine check-up. The doctor sighs.
-Doctor;Tom, there's no other way to say this, you’re dying.
+Doctor;Tom, there's no other way to say this, you're dying.
 Prompt;Oh.
 Narrator;You go home.
-Carrie;How was the doctor’s visit, is everything okay?
-Tom;Y-yea, he said I’m as healthy as ever.
-Prompt;I’ll tell her eventually.
-Narrator;You just tell her you’re going to the library whenever you go to therapy.
+Carrie;How was the doctor's visit, is everything okay?
+Tom;Y-yea, he said I'm as healthy as ever.
+Prompt;I'll tell her eventually.
+Narrator;You just tell her you're going to the library whenever you go to therapy.
 Narrator;One day when you go you just imagine what it would be like to fight it. 
 Narrator;If only you could just punch and kick the hell out of it.
 Scene;Disease fight scene

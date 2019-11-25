@@ -7,21 +7,21 @@ Caroline;You tell me the plot of every episode every other day. How could I NOT 
 Tommy;Oh... Do you want me to stop telling you the plot of every episode every other day?
 Caroline;Mmmmmmmmmmmm no. I like hearing about it. If anything, you could start telling me the plot of every episode every day.
 Narrator;You start telling her the plot of every episode every day, and every day you like her more and more until you eventually realize that you have a crush on her.
-Tommy;I can’t tell her, I’m too nervous. Plus I’m only in elementary school.
+Tommy;I can't tell her, I'm too nervous. Plus I'm only in elementary school.
 Narrator;You go through middle school and high school together without mentioning a thing about your love for her. 
 Caroline;So, what college have you decided to go to?
 Tommy;State College University.
 Caroline;Really?
 Tommy;Uh, yea?
-Caroline;Then I’m going there too.
+Caroline;Then I'm going there too.
 Tommy;Why?
-Caroline;Well if I’m not there with you, how are you going to get any work done?
-Tommy;Heh, I suppose that’s true. I would’ve probably flunked out of highschool already if you weren’t here for me. 
-Tommy;... You’re really gonna go to State College University just because I’m going?
+Caroline;Well if I'm not there with you, how are you going to get any work done?
+Tommy;Heh, I suppose that's true. I would've probably flunked out of highschool already if you weren't here for me. 
+Tommy;... You're really gonna go to State College University just because I'm going?
 Caroline;Well, no. They also have a really good computer science program.
 Tommy:Pft, I knew it.
-Narrator;You both major in computer science and end up having a whole bunch of classes together, and thanks to her help you’re able to pass most of them. You love her now more than ever.
-Narrator;Finally, one rainy day in spring, you muster up the courage to finally say…
+Narrator;You both major in computer science and end up having a whole bunch of classes together, and thanks to her help you're able to pass most of them. You love her now more than ever.
+Narrator;Finally, one rainy day in spring, you muster up the courage to finally say...
 Prompt;I love you
 Narrator;She smiles.
 Caroline:I love you too.
@@ -30,7 +30,7 @@ Narrator;You both get a job in Nevada and start living together.
 Tom;Hey, do you wanna go on a date?
 Caroline;Ooooh yea. Can we go to that new spaghetti place that opened up downtown?
 Tom;Sure.
-Narrator;In the middle of eating dessert you get down on one knee and propose to her. You’re shaking with fear, but you manage to ask her.
+Narrator;In the middle of eating dessert you get down on one knee and propose to her. You're shaking with fear, but you manage to ask her.
 Prompt;Will you marry me?
 Narrator;Caroline covers her mouth with tears in her eyes and says.
 Caroline;Yes.
@@ -42,10 +42,10 @@ Tom;Oh hah hah.
 Narrator;You end up getting a golden retriever and name him Kaiju.
 Prompt;Life is good
 Narrator;Several years pass
-Narrator;One night you come home, and Caroline isn’t there. You’re worried, but you’re sure it’s fine. 
+Narrator;One night you come home, and Caroline isn't there. You're worried, but you're sure it's fine. 
 Narrator;You go to sleep and wake up the next day to a phone call. Caroline got in a car accident.
-Narrator;She’s dead.
+Narrator;She's dead.
 Prompt;No
-Narrator;You go to work the next day pretending like nothing is wrong, acting as if it’s all a lie. You end up having to stay late.
-Tom;Ugh, this is so much work, I’m not gonna get home until like 4 A.M.. I can’t do this!
+Narrator;You go to work the next day pretending like nothing is wrong, acting as if it's all a lie. You end up having to stay late.
+Tom;Ugh, this is so much work, I'm not gonna get home until like 4 A.M.. I can't do this!
 Scene;Computer fight scene

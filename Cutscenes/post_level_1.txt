@@ -1,12 +1,10 @@
-#Image;Shows Tommy shredding his homework into pieces
+Image;Shows Tommy shredding his homework into pieces
 Narrator;You tear your homework to pieces.
 Tommy;GRAAAAAAGH!!!
 Mom;What, Tommy what did you do!? How are you gonna finish your homework now?
-#Image;Tommy looks down at the shredded paper and looks back up again and gives a really sad face
+Image;Tommy looks down at the shredded paper and looks back up again and gives a really sad face
 Narrator;You look down at your homework, and then look back up at your mom and cry.
 Narrator;Your mom hugs you
-Mom;It’s okay silly, just don’t do that again.
-Tommy;Okay. I’ll do my best to never attack my homework ever again.
+Mom;It's okay silly, just don't do that again.
+Tommy;Okay. I'll do my best to never attack my homework ever again.
 Narrator;You do a pretty good job and end up only shredding two other assignments.
-
-

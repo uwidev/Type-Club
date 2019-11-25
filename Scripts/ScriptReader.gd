@@ -41,7 +41,11 @@ func readNextLine():
 		readLine = script.get_line()
 		semiColon = readLine.find(";")
 		afterSC = readLine.substr(semiColon+1,readLine.length()-semiColon)
-		if readLine.begins_with("Prompt"):
+		if readLine == '' or readLine.begins_with('#'):
+			readNextLine()
+		elif readLine.begins_with("Prompt"):
+			textEngine.buff_text(afterSC,0.04)
+			textEngine.buff_text('>> ',0.04)
 			textEngine.buff_input()
 			textEngine.buff_text("\n",0)
 			readNextLine()
@@ -56,6 +60,7 @@ func readNextLine():
 			textEngine.buff_break()
 			textEngine.buff_text("\n",0)
 	else:
+		print('EOF Reached, emiting end_level')
 		emit_signal("end_level", nextScene)
 
 func _on_Text_Engine_resume_break():

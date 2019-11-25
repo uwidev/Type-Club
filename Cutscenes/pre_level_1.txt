@@ -1,5 +1,5 @@
 #Image;Super Kawaii Kaiju on T.V.
-Narrator;You’re watching your favorite T.V. show, Super Kawaii Kaiju.
+Narrator;You're watching your favorite T.V. show, Super Kawaii Kaiju.
 Tommy;Super Kawaii Kaiju is on! YESSSSSS!!!
 Mom;Have you finished your homework yet honey?
 Tommy;Mayyyyybe.
@@ -11,4 +11,4 @@ Tommy;I wish I could be huge like Super Kawaii Kaiju and just fight my way throu
 Tommy;...
 Tommy;......
 Tommy;Hmmmmmmm.
-Scene;Homework fight scene
+#Scene;Homework fight scene
