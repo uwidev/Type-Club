@@ -1,14 +1,14 @@
-Annie;First line
-Annie;Second line
-Annie;More lines
-Annie;kasjhdsakjdhajkdhakjdhajkdhkajdhaksjdhaskdjhsakjhdsakjdhsadksa alshdsalkhdsakjdhsakjdhsa sakjdhsakdhsakjd hakj
-Annie;More lines
-Annie;More lines
-Annie;More lines
-Annie;More lines
-Image;res://Assets/SKKTV.png
-Tommy;Super Kawaii Kaiju is on! YESSSSSS!!!
-Mom;Have you finished your homework yet honey?
-Prompt;No
-Tommy;Mayyyyybe.
-Annie;TestingBreak
+#Image;Tom punching his screen and breaking it while his boss walks in.
+Narrator;You punch your computer screen and break it.
+Narrator;Your boss walks in.
+Boss;Hey! Tom! What the hell, why did you do that?!
+Tom;I, I don’t know. I’m sorry.
+Boss;I think you need to take a break, Tom. Take tomorrow off.
+Tom;Okay.
+Narrator;When you get home you do your best to ignore any thoughts about her, but it’s too quiet. 
+Narrator;She’s not here, telling you she loves you. She’s not here, making stupid jokes.
+Narrator;She’s not in bed next to you.
+Prompt;She’s dead
+Narrator;You cry until Kaiju notices and comes to comfort you.
+Tom;At least I’ve still got you huh Kaiju?
+Kaiju;Woof!

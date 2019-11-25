@@ -1,14 +1,14 @@
-Annie;First line
-Annie;Second line
-Annie;More lines
-Annie;kasjhdsakjdhajkdhakjdhajkdhkajdhaksjdhaskdjhsakjhdsakjdhsadksa alshdsalkhdsakjdhsakjdhsa sakjdhsakdhsakjd hakj
-Annie;More lines
-Annie;More lines
-Annie;More lines
-Annie;More lines
-Image;res://Assets/SKKTV.png
+#Image;Super Kawaii Kaiju on T.V.
+Narrator;You’re watching your favorite T.V. show, Super Kawaii Kaiju.
 Tommy;Super Kawaii Kaiju is on! YESSSSSS!!!
 Mom;Have you finished your homework yet honey?
-Prompt;No
 Tommy;Mayyyyybe.
-Annie;TestingBreak
+Mom;You have to do your homework before you can watch T.V. Tommy come on.
+Tommy;Ughhhhh fine.
+Image;Homework
+Tommy;Ugh this is sooooo boring. 
+Tommy;I wish I could be huge like Super Kawaii Kaiju and just fight my way through this dumb homework.
+Tommy;...
+Tommy;......
+Tommy;Hmmmmmmm.
+Scene;Homework fight scene
