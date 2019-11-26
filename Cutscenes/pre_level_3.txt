@@ -34,4 +34,4 @@ Prompt;I'll tell her eventually.
 Narrator;You just tell her you're going to the library whenever you go to therapy.
 Narrator;One day when you go you just imagine what it would be like to fight it. 
 Narrator;If only you could just punch and kick the hell out of it.
-Scene;Disease fight scene
+#Scene;Disease fight scene

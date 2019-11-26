@@ -22,10 +22,10 @@ extend = 3
 scroll_speed = 1.0
 
 [node name="Enemy" parent="base_level/VBoxContainer/HBoxContainer/Enemy Container" index="0"]
-lifeList = [ 1, 1, 1 ]
+lifeList = [ 5, 10, 10 ]
 
 [node name="Life and Timer" parent="base_level/VBoxContainer" index="1"]
-lifeList = [ 10, 10, 10 ]
+lifeList = [ 15, 15, 15 ]
 
 [node name="Attack Animation" parent="base_level" index="2"]
 texture = SubResource( 1 )

@@ -48,4 +48,4 @@ Narrator;She's dead.
 Prompt;No
 Narrator;You go to work the next day pretending like nothing is wrong, acting as if it's all a lie. You end up having to stay late.
 Tom;Ugh, this is so much work, I'm not gonna get home until like 4 A.M.. I can't do this!
-Scene;Computer fight scene
+#Scene;Computer fight scene
