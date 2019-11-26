@@ -23,11 +23,6 @@ func _ready():
 	image2 = find_node("NinePatchRect2")
 	image3 = find_node("NinePatchRect3")
 	imageList = [image1, image2, image3]
-	
-	_on_level_ready(3)
-	apply_pass()
-	apply_pass()
-	apply_fail()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
