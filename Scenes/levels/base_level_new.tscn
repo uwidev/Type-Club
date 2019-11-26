@@ -13,9 +13,6 @@
 [ext_resource path="res://components/attack_animation/Particles_Animation.tscn" type="PackedScene" id=11]
 [ext_resource path="res://components/viewport_label/Viewport.tscn" type="PackedScene" id=12]
 
-
-
-
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
 
@@ -207,11 +204,11 @@ anims/stage_ready = SubResource( 4 )
 [connection signal="entered_good" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="." method="_on_good_word"]
 [connection signal="request_scroller" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_request_scroller"]
 [connection signal="text_entered" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_text_entered"]
-[connection signal="enemy_dead" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="Text Panels" method="_on_Enemy_enemy_dead"]
 [connection signal="enemy_dead" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="VBoxContainer/MarginContainer/Life and Timer" method="_on_Enemy_enemy_dead"]
+[connection signal="enemy_dead" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="Text Panels" method="_on_Enemy_enemy_dead"]
 [connection signal="life_depleted" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="." method="_on_enemy_life_depleted"]
-[connection signal="stage_clear" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="Text Panels" method="_on_Enemy_stage_clear"]
 [connection signal="stage_clear" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="VBoxContainer/MarginContainer/Life and Timer" method="_on_stage_clear"]
+[connection signal="stage_clear" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="Text Panels" method="_on_Enemy_stage_clear"]
 [connection signal="stage_clear" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_clear"]
 [connection signal="no_life" from="VBoxContainer/MarginContainer/Life and Timer" to="." method="_on_no_life"]
 [connection signal="endLevel" from="Text Panels" to="." method="_on_Text_Panels_endLevel"]
