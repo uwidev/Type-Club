@@ -152,8 +152,8 @@ func _on_no_life():
 
 func _on_good_word(word):
 	# Self heal
-	$VBoxContainer/"Life and Timer".paused(true)
-	$VBoxContainer/"Life and Timer".offset_life(wdict[word])
+	timerlife.paused(true)
+	timerlife.offset_life(wdict[word])
 	
 	# Attack Animation
 	$AnimationPlayer.play('attack_animation')
@@ -196,7 +196,7 @@ func _load_next_stage():
 
 func _on_bad_word(word):
 	# some hit animation here
-	$VBoxContainer/"Life and Timer".offset_life(wdict[word])
+	timerlife.offset_life(wdict[word])
 	
 	if erase_on_bad:
 		wlist.erase(word)
