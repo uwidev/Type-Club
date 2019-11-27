@@ -11,20 +11,15 @@ bad1;-1
 3bad1;-1
 ;;
 ;;;
-top;Some intro text
-bot;Some intro bot text
-top;More top intro text
-top;intro3
-top;intro4
-bot;intro5
+top;INTRO
 ;;;
-top;Some top text
-bot;Some bot text
-top;More top text
+top;END STAGE 1
 ;;;
-top;Text for stage 2
-top;More stage 2 text
-bot;More text for stage 2
+top;END STAGE 2
 ;;;
-bot;Closing text
+bot;END STAGE 3
+;;;
+;;;;
+top;game over, shame
+bot;yep, shame
 ;;;

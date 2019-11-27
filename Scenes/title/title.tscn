@@ -66,9 +66,9 @@ texture = ExtResource( 3 )
 
 [node name="Menu Margins" type="MarginContainer" parent="Background/Margins/HBoxContainer"]
 margin_left = 877.0
-margin_top = 116.0
+margin_top = 110.0
 margin_right = 1705.0
-margin_bottom = 764.0
+margin_bottom = 770.0
 size_flags_horizontal = 6
 size_flags_vertical = 4
 custom_constants/margin_right = 20
@@ -80,7 +80,7 @@ custom_constants/margin_bottom = 20
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 808.0
-margin_bottom = 628.0
+margin_bottom = 640.0
 size_flags_horizontal = 6
 custom_constants/separation = 100
 
@@ -101,7 +101,7 @@ texture = SubResource( 4 )
 margin_left = 0.0
 margin_top = 316.0
 margin_right = 788.0
-margin_bottom = 608.0
+margin_bottom = 620.0
 [connection signal="exit" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" to="." method="_on_exit_press"]
 [connection signal="load_game" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" to="." method="_on_load_game_press"]
 [connection signal="new_game" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" to="." method="_on_new_game_press"]

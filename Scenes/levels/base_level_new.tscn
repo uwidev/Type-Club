@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Themes/base_level_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/GameLoop.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://components/gameplay_text_panels/gameplay_text_panels.tscn" type="PackedScene" id=10]
 [ext_resource path="res://components/attack_animation/Particles_Animation.tscn" type="PackedScene" id=11]
 [ext_resource path="res://components/viewport_label/Viewport.tscn" type="PackedScene" id=12]
+[ext_resource path="res://components/game_over/game_over.tscn" type="PackedScene" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -141,7 +142,6 @@ texture = ExtResource( 7 )
 expand = true
 
 [node name="Enemy Container" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
-editor/display_folded = true
 margin_left = 962.0
 margin_right = 1920.0
 margin_bottom = 400.0
@@ -152,6 +152,7 @@ margin_left = 367.0
 margin_top = 87.0
 margin_right = 591.0
 margin_bottom = 312.0
+lifeList = [ 1, 1, 1 ]
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 788.0
@@ -166,7 +167,7 @@ margin_bottom = 72.0
 size_flags_vertical = 4
 MaxTimeLife = 20
 Autostart = false
-lifeList = [ 6, 6, 5 ]
+lifeList = [ 2, 2, 2 ]
 
 [node name="Text Panels" parent="." instance=ExtResource( 10 )]
 editor/display_folded = true
@@ -182,20 +183,27 @@ anims/attack_animation = SubResource( 3 )
 anims/stage_ready = SubResource( 4 )
 
 [node name="particle_viewport" parent="." instance=ExtResource( 12 )]
-[connection signal="cycle_done" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_cycle_done"]
+
+[node name="Game Over" parent="." instance=ExtResource( 13 )]
+visible = false
 [connection signal="cycle_done" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_end_cycle"]
+[connection signal="cycle_done" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_cycle_done"]
 [connection signal="end_level" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_end_level"]
-[connection signal="fail" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="toggle_paused"]
+[connection signal="fail" from="." to="VBoxContainer/Stage Pass Indicator" method="apply_fail"]
 [connection signal="introDialogue" from="." to="Text Panels" method="_on_base_level_introDialogue"]
 [connection signal="life_mod" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_life_mod"]
-[connection signal="prepare_stage" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_prepare_stage"]
 [connection signal="prepare_stage" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_prepare_stage"]
+[connection signal="prepare_stage" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_prepare_stage"]
+[connection signal="sendAllDialogue" from="." to="Text Panels" method="_on_sendAllDialogue"]
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_sendDictList"]
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_sendDictList"]
-[connection signal="sendTextLists" from="." to="Text Panels" method="_on_base_level_sendTextLists"]
-[connection signal="stage_ready" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_stage_ready"]
-[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_ready"]
+[connection signal="sendNumStages" from="." to="VBoxContainer/Stage Pass Indicator" method="_on_level_ready"]
+[connection signal="stage_ready" from="." to="VBoxContainer/Stage Pass Indicator" method="next_stage"]
 [connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Enemy Container/Enemy" method="_on_stage_ready"]
+[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_ready"]
+[connection signal="stage_ready" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_stage_ready"]
+[connection signal="game_over" from="VBoxContainer/Stage Pass Indicator" to="." method="_on_game_over"]
+[connection signal="level_clear" from="VBoxContainer/Stage Pass Indicator" to="." method="_on_level_clear"]
 [connection signal="draw" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_scroller_redraw"]
 [connection signal="redrew" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_scroller_redrew"]
 [connection signal="word_selected" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_word_selected"]
@@ -204,12 +212,8 @@ anims/stage_ready = SubResource( 4 )
 [connection signal="entered_good" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="." method="_on_good_word"]
 [connection signal="request_scroller" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_request_scroller"]
 [connection signal="text_entered" from="VBoxContainer/HBoxContainer/Main Interface/Type Engine" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_text_entered"]
-[connection signal="enemy_dead" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="VBoxContainer/MarginContainer/Life and Timer" method="_on_Enemy_enemy_dead"]
-[connection signal="enemy_dead" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="Text Panels" method="_on_Enemy_enemy_dead"]
 [connection signal="life_depleted" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="." method="_on_enemy_life_depleted"]
-[connection signal="stage_clear" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="VBoxContainer/MarginContainer/Life and Timer" method="_on_stage_clear"]
-[connection signal="stage_clear" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="Text Panels" method="_on_Enemy_stage_clear"]
-[connection signal="stage_clear" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_clear"]
+[connection signal="stage_clear" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="." method="_on_stage_clear"]
 [connection signal="no_life" from="VBoxContainer/MarginContainer/Life and Timer" to="." method="_on_no_life"]
 [connection signal="endLevel" from="Text Panels" to="." method="_on_Text_Panels_endLevel"]
 [connection signal="loadNextStage" from="Text Panels" to="." method="_on_Text_Panels_loadNextStage"]
