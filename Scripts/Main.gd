@@ -11,15 +11,10 @@ func _ready():
 	self.curtains.connect("animation_finished", self, "_on_animation_complete")
 	self.nextScene = scene_start
 	_load_scene(self.nextScene)
-	#_load_scene()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-#TODO: var for what kind of node to look for (pause, script, level)
 
 func _transition_animation(enter_transition:bool):
+	var colorRect:ColorRect = self.xtransitionPanel.find_node("ColorRect", true, true)
+	colorRect.modulate = Color(1, 1, 1)#white
 	if enter_transition:
 		self.xtransitionPanel.set_layer(2)
 		self.curtains.play("Open")
@@ -27,6 +22,12 @@ func _transition_animation(enter_transition:bool):
 		self.xtransitionPanel.set_layer(2)
 		self.curtains.play("Close")
 	#self.xtransitionPanel.set_layer(0)
+
+func show_game_over():
+	var colorRect:ColorRect = self.xtransitionPanel.find_node("ColorRect", true, true)
+	colorRect.modulate = Color(0, 0, 0)#black
+	self.xtransitionPanel.set_layer(2)
+	self.curtains.play("Close")
 
 func _on_animation_complete(anim_name:String):
 	self.xtransitionPanel.set_layer(0)
