@@ -377,7 +377,7 @@ func _on_request_scroller():
 
 
 func _on_end_cycle():
-	print('on_end_cycle')
+	#print('on_end_cycle')
 	typing_label.set_visible(false)
 	label_list[0].set_visible(true)
 	grab_focus()

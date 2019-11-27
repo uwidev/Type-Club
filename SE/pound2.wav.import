@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pound2.wav-c7dc3e144b547aab67699401302bbdeb.sample"
+
+[deps]
+
+source_file="res://SE/pound2.wav"
+dest_files=[ "res://.import/pound2.wav-c7dc3e144b547aab67699401302bbdeb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -100,3 +100,6 @@ bot;Homework: HAH, can you resist these DISTRACTIONS?!
 bot;Homework: *Blech* Damn you Tommy!
 top;Tommy: Haha yes, I am the KING of homework!
 ;;;
+;;;;
+top;GAME OVER SCRIPT STUFF
+;;;

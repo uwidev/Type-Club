@@ -15,11 +15,14 @@ signal entered_bad
 signal request_scroller
 var current_word	# Current typing word
 var cursor			# Incoming char index of current_word needed to type
+var correct_key
 
-onready var typing_label 
+onready var typing_label
+onready var sound_effects = find_node('Key Click')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	grab_focus()
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,21 +32,37 @@ func _ready():
 #IN ORDER TO WORK WITH SCROLL UI, PROBABLY CHANGE TO DIFFERENT SIGNAL WITH GIVEN NECESSARY INPUT "FIRST CHAR OF WORD"
 func _input(event): #LineEdit must have mouse_filter set to 'ignore' in order to prevent mouse input
 	if has_focus():
-		if event is InputEventKey:
-			if event.pressed:
-				#print('typed: ', char(event.get_unicode()), ' | ', current_word[cursor])
+		if event is InputEventKey:			
+			if event.is_pressed() and not event.is_echo():
+				print('down')
 				if cursor < current_word.length() and char(event.get_unicode()) == current_word[cursor]:
-						cursor += 1
+					correct_key = true
+					sound_effects.play_key_down()
+					cursor += 1
 				elif cursor >= current_word.length() and event.get_scancode() == KEY_ENTER:
-					pass
+					correct_key = true
+					sound_effects.play_key_down()
 				elif event.get_scancode() == KEY_BACKSPACE and cursor >= 1:
+					correct_key = false
+					sound_effects.play_backspace()
 					if cursor == 1:
 						emit_signal('request_scroller')
 						set_text('')
 					else:					
 						cursor -= 1
 				else:
+					print('assigned false')
+					correct_key = false
 					accept_event()
+			
+			elif not event.is_pressed():
+				print('up')
+				print(correct_key)
+				if correct_key:
+					sound_effects.play_key_down()
+			
+			elif event.is_echo():
+				accept_event()
 	
 	#Add Victory/Loss Manager
 	
@@ -57,6 +76,7 @@ func link_dict_list(d, l):
 func _on_word_selected(word, pos):
 	set_global_position(pos)
 	current_word = word
+	sound_effects.play_key_down()
 	append_at_cursor(current_word[0])
 	cursor = 1
 	grab_focus()

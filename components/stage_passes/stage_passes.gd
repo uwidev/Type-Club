@@ -14,6 +14,7 @@ var image3
 
 signal game_over
 signal level_clear
+signal applied
 
 export(Array, Texture) var stateTextures
 
@@ -37,8 +38,11 @@ func apply_pass():	#Stage passed
 		passCount += 1
 		imageList[currentStage].set_texture(stateTextures[1])
 	
-	if currentStage == numStages:
+	print(currentStage, ' ', numStages)
+	if currentStage >= numStages:
 		emit_signal("level_clear")
+	
+	emit_signal("applied")
 
 func apply_fail():	#Stage failed
 	if stageStates[currentStage] == -1:
@@ -48,6 +52,8 @@ func apply_fail():	#Stage failed
 	
 	if currentStage == numStages or failCount >= failThreshold:
 		emit_signal("game_over")
+	
+	emit_signal("applied")
 
 func on_stage_ready(number):
 	numStages = number - 1

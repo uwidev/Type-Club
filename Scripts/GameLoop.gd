@@ -68,7 +68,7 @@ func _ready():
 	scroller.link_lists(wdict, wlist)
 	typer.link_dict_list(wdict, wlist)
 	textpanel.link_lists(dialogueWhereList, dialogueTextList, gameoverWhereList, gameoverTextList)
-	stageindicator.on_stage_ready(wdict.size())
+	stageindicator.on_stage_ready(wdicts.size() + 1)
 	
 	textpanel.next_normal_dialogue()
 	yield(textpanel, 'dialogue_finished')
@@ -231,13 +231,14 @@ func _on_enemy_life_depleted():
 # Called from enemy when stage passed
 func _on_stage_clear():
 	# Pause timer and apply pass, scroller hide
+	stageindicator.apply_pass()
 	scroller.stage_clear_hide()
 	timerlife.halt_and_lock()
-	stageindicator.apply_pass()
 	
 	# Check if we're still in WAIT, and if so
 	# queue the next normal dialogue and wait for it 
 	# before loading in next level
+	#print('gamestate: ',gamestate)
 	if gamestate == WAIT:
 		print('STAGE CLEAR')
 		textpanel.next_normal_dialogue()
@@ -260,6 +261,7 @@ func _on_game_over():
 	
 # Called by stageindicator when win conditions are met
 func _on_win_level_over():
+	#print('win level')
 	gamestate = END
 	
 	textpanel.next_normal_dialogue()

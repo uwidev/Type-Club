@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://components/audio/audio_key_click.gd" type="Script" id=1]
+[ext_resource path="res://components/key_click/key_click.gd" type="Script" id=1]
 [ext_resource path="res://SE/key_down_1.wav" type="AudioStream" id=2]
 [ext_resource path="res://SE/key_down_2.wav" type="AudioStream" id=3]
 [ext_resource path="res://SE/key_down_3.wav" type="AudioStream" id=4]
