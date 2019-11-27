@@ -40,30 +40,31 @@ custom_constants/separation = 100
 alignment = 1
 
 [node name="Label" type="Label" parent="."]
-margin_top = 446.0
-margin_right = 1924.0
-margin_bottom = 460.0
+margin_top = 448.0
+margin_right = 1920.0
+margin_bottom = 462.0
 text = "Game over!"
 align = 1
 
 [node name="Game Over" type="HBoxContainer" parent="."]
-margin_top = 560.0
-margin_right = 1924.0
-margin_bottom = 633.0
+margin_top = 562.0
+margin_right = 1920.0
+margin_bottom = 632.0
 theme = ExtResource( 2 )
+custom_constants/separation = 0
 alignment = 1
 
 [node name="Retry" parent="Game Over" instance=ExtResource( 3 )]
 margin_right = 960.0
-margin_bottom = 73.0
+margin_bottom = 70.0
 rect_min_size = Vector2( 960, 70 )
 text = "Retry"
 align = 1
 
 [node name="Main Menu" parent="Game Over" instance=ExtResource( 3 )]
-margin_left = 964.0
-margin_right = 1924.0
-margin_bottom = 73.0
+margin_left = 960.0
+margin_right = 1920.0
+margin_bottom = 70.0
 rect_min_size = Vector2( 960, 70 )
 text = "Main Menu"
 align = 1

@@ -52,6 +52,8 @@ onready var typer = find_node('Type Engine')
 onready var timerlife = find_node('Life and Timer')
 onready var textpanel = find_node('Text Panels')
 onready var stageindicator = find_node('Stage Pass Indicator')
+onready var animation = find_node('AnimationPlayer')
+onready var particles = find_node('Attack Particles')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -171,14 +173,14 @@ func _on_good_word(word):
 	timerlife.offset_life(wdict[word])
 	
 	# Attack Animation
-	$AnimationPlayer.play('attack_animation')
+	animation.play('attack_animation')
 	
 	# Erase word to shoot at enemy
 	if erase_on_good:
 		wlist.erase(word)
 	
 	# Wait for attack animation to finish
-	yield($AnimationPlayer, "animation_finished")
+	yield(animation, "animation_finished")
 	
 	#print('gamestate: ', gamestate)
 	if gamestate == PLAYING:
@@ -194,7 +196,7 @@ func _on_bad_word(word):
 
 # Helper functions
 func _load_next_stage():
-	if gamestate == PLAYING:
+	if gamestate == DIALOGUE or gamestate == WAIT:
 		var tmp = wdicts.pop_front()
 		
 		wdict.clear()
@@ -241,10 +243,10 @@ func _on_stage_clear():
 	#print('gamestate: ',gamestate)
 	if gamestate == WAIT:
 		print('STAGE CLEAR')
+		gamestate == DIALOGUE
 		textpanel.next_normal_dialogue()
 		yield(textpanel, 'dialogue_finished')
-	
-		gamestate = PLAYING
+		
 		_load_next_stage()
 
 

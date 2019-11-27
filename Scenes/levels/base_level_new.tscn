@@ -1,18 +1,17 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Themes/base_level_theme.tres" type="Theme" id=1]
-[ext_resource path="res://Scripts/GameLoop.gd" type="Script" id=2]
-[ext_resource path="res://Cutscenes/cutscene_base.tscn" type="PackedScene" id=3]
-[ext_resource path="res://components/stage_passes/stage_passes.tscn" type="PackedScene" id=4]
-[ext_resource path="res://components/word_scroller/Word Scroller.tscn" type="PackedScene" id=5]
-[ext_resource path="res://components/type_engine/type_engine.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/ui/divider.png" type="Texture" id=7]
-[ext_resource path="res://components/enemy/enemy.tscn" type="PackedScene" id=8]
-[ext_resource path="res://components/Health_Bar/health_bar_official.tscn" type="PackedScene" id=9]
-[ext_resource path="res://components/gameplay_text_panels/gameplay_text_panels.tscn" type="PackedScene" id=10]
-[ext_resource path="res://components/attack_animation/Particles_Animation.tscn" type="PackedScene" id=11]
-[ext_resource path="res://components/viewport_label/Viewport.tscn" type="PackedScene" id=12]
-[ext_resource path="res://components/game_over/game_over.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scripts/GameLoop.gd" type="Script" id=1]
+[ext_resource path="res://Themes/base_level_theme.tres" type="Theme" id=2]
+[ext_resource path="res://components/stage_passes/stage_passes.tscn" type="PackedScene" id=3]
+[ext_resource path="res://components/word_scroller/Word Scroller.tscn" type="PackedScene" id=4]
+[ext_resource path="res://components/type_engine/type_engine.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/ui/divider.png" type="Texture" id=6]
+[ext_resource path="res://components/enemy/enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://components/Health_Bar/health_bar_official.tscn" type="PackedScene" id=8]
+[ext_resource path="res://components/gameplay_text_panels/gameplay_text_panels.tscn" type="PackedScene" id=9]
+[ext_resource path="res://components/attack_animation/Particles_Animation.tscn" type="PackedScene" id=10]
+[ext_resource path="res://components/viewport_label/Viewport.tscn" type="PackedScene" id=11]
+[ext_resource path="res://components/game_over/game_over.tscn" type="PackedScene" id=12]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -21,28 +20,15 @@ bg_color = Color( 0, 0, 0, 1 )
 viewport_path = NodePath("particle_viewport")
 
 [sub_resource type="Animation" id=3]
-length = 3.0
+length = 1.8
+step = 0.05
 tracks/0/type = "method"
-tracks/0/path = NodePath("VBoxContainer/HBoxContainer/Enemy Container/Enemy")
+tracks/0/path = NodePath("Attack Particles")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.6 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ 1 ],
-"method": "take_damage"
-} ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("Attack Animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -50,25 +36,46 @@ tracks/1/keys = {
 "method": "start_emitting"
 } ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath("VBoxContainer/HBoxContainer/Enemy Container/Enemy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.65 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "take_damage"
+} ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "stage_ready"
 
-[node name="base_level" type="Panel"]
+[node name="base_level" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -2.0
-margin_bottom = -2.0
+script = ExtResource( 1 )
+additional_good_words = 1
+additional_bad_words = 1
+
+[node name="Background" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -192.0
+margin_top = -108.0
+margin_right = 192.0
+margin_bottom = 108.0
 rect_min_size = Vector2( 1920, 1080 )
-theme = ExtResource( 1 )
+rect_scale = Vector2( 1.00124, 1 )
+theme = ExtResource( 2 )
 custom_styles/panel = SubResource( 1 )
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 540.976 ],
 "_edit_vertical_guides_": [  ]
 }
-next_scene = ExtResource( 3 )
-additional_bad_words = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -83,7 +90,7 @@ rect_min_size = Vector2( 1920, 1080 )
 custom_constants/separation = 48
 alignment = 1
 
-[node name="Stage Pass Indicator" parent="VBoxContainer" instance=ExtResource( 4 )]
+[node name="Stage Pass Indicator" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_left = 806.0
 margin_top = 192.0
 margin_right = 1114.0
@@ -91,13 +98,6 @@ margin_bottom = 292.0
 rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 4
 alignment = 1
-
-[node name="Offset" type="Control" parent="VBoxContainer"]
-visible = false
-margin_top = 291.0
-margin_right = 1920.0
-margin_bottom = 341.0
-rect_min_size = Vector2( 0, 50 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 340.0
@@ -110,9 +110,9 @@ alignment = 1
 margin_right = 958.0
 margin_bottom = 400.0
 rect_min_size = Vector2( 958, 0 )
-theme = ExtResource( 1 )
+theme = ExtResource( 2 )
 
-[node name="Word Scroller" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 5 )]
+[node name="Word Scroller" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 4 )]
 margin_top = 200.0
 margin_bottom = 200.0
 transparency = true
@@ -122,7 +122,7 @@ extend = 2
 scroll_type = 10
 ease_type = 1
 
-[node name="Type Engine" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 6 )]
+[node name="Type Engine" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 5 )]
 margin_left = 229.0
 margin_top = 156.0
 margin_right = 729.0
@@ -138,7 +138,7 @@ margin_left = 958.0
 margin_right = 962.0
 margin_bottom = 400.0
 rect_min_size = Vector2( 4, 400 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 expand = true
 
 [node name="Enemy Container" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
@@ -147,12 +147,15 @@ margin_right = 1920.0
 margin_bottom = 400.0
 rect_min_size = Vector2( 958, 0 )
 
-[node name="Enemy" parent="VBoxContainer/HBoxContainer/Enemy Container" instance=ExtResource( 8 )]
+[node name="Enemy" parent="VBoxContainer/HBoxContainer/Enemy Container" instance=ExtResource( 7 )]
 margin_left = 367.0
 margin_top = 87.0
 margin_right = 591.0
 margin_bottom = 312.0
-lifeList = [ 1, 1, 1 ]
+lifeList = [ 2, 1, 1 ]
+trauma_amount = 1.0
+decay_rate = 0.8
+max_offset = 20.0
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 788.0
@@ -162,7 +165,7 @@ rect_min_size = Vector2( 0, 100 )
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
-[node name="Life and Timer" parent="VBoxContainer/MarginContainer" instance=ExtResource( 9 )]
+[node name="Life and Timer" parent="VBoxContainer/MarginContainer" instance=ExtResource( 8 )]
 margin_left = 100.0
 margin_top = 28.0
 margin_right = 1820.0
@@ -172,11 +175,13 @@ MaxTimeLife = 20
 Autostart = false
 lifeList = [ 2, 2, 2 ]
 
-[node name="Text Panels" parent="." instance=ExtResource( 10 )]
+[node name="Text Panels" parent="." instance=ExtResource( 9 )]
 editor/display_folded = true
+margin_top = -2.0
+margin_bottom = -2.0
 
-[node name="Attack Animation" parent="." instance=ExtResource( 11 )]
-position = Vector2( 478.821, 540.822 )
+[node name="Attack Particles" parent="." instance=ExtResource( 10 )]
+position = Vector2( 478.821, 538.822 )
 emitting = false
 lifetime = 0.9
 texture = SubResource( 2 )
@@ -185,25 +190,27 @@ texture = SubResource( 2 )
 anims/attack_animation = SubResource( 3 )
 anims/stage_ready = SubResource( 4 )
 
-[node name="particle_viewport" parent="." instance=ExtResource( 12 )]
+[node name="particle_viewport" parent="." instance=ExtResource( 11 )]
 
-[node name="Game Over" parent="." instance=ExtResource( 13 )]
+[node name="Game Over" parent="." instance=ExtResource( 12 )]
 visible = false
-[connection signal="cycle_done" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_cycle_done"]
+margin_top = -2.0
+margin_bottom = -2.0
 [connection signal="cycle_done" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_end_cycle"]
+[connection signal="cycle_done" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_cycle_done"]
 [connection signal="end_level" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_end_level"]
 [connection signal="fail" from="." to="VBoxContainer/Stage Pass Indicator" method="apply_fail"]
 [connection signal="introDialogue" from="." to="Text Panels" method="_on_base_level_introDialogue"]
 [connection signal="life_mod" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_life_mod"]
-[connection signal="prepare_stage" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_prepare_stage"]
 [connection signal="prepare_stage" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_prepare_stage"]
-[connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_sendDictList"]
+[connection signal="prepare_stage" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_prepare_stage"]
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_sendDictList"]
+[connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_sendDictList"]
+[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_ready"]
+[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Enemy Container/Enemy" method="_on_stage_ready"]
+[connection signal="stage_ready" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_stage_ready"]
 [connection signal="stage_ready" from="." to="VBoxContainer/Stage Pass Indicator" method="_on_stage_ready"]
 [connection signal="stage_ready" from="." to="VBoxContainer/Stage Pass Indicator" method="next_stage"]
-[connection signal="stage_ready" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_stage_ready"]
-[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Enemy Container/Enemy" method="_on_stage_ready"]
-[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_ready"]
 [connection signal="game_over" from="VBoxContainer/Stage Pass Indicator" to="." method="_on_game_over"]
 [connection signal="level_clear" from="VBoxContainer/Stage Pass Indicator" to="." method="_on_win_level_over"]
 [connection signal="draw" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_scroller_redraw"]

@@ -93,6 +93,7 @@ func _on_end_level(next):
 	
 
 func _on_cycle_done():
+	print('cycle done')
 	if lifeList.size() >= 0:
 		paused(false)
 

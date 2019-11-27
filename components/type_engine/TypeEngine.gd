@@ -22,7 +22,7 @@ onready var sound_effects = find_node('Key Click')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	grab_focus()
+	#grab_focus()
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,11 +30,11 @@ func _ready():
 #	pass
 
 #IN ORDER TO WORK WITH SCROLL UI, PROBABLY CHANGE TO DIFFERENT SIGNAL WITH GIVEN NECESSARY INPUT "FIRST CHAR OF WORD"
-func _input(event): #LineEdit must have mouse_filter set to 'ignore' in order to prevent mouse input
+func _input(event): #LineEdit must have mouse_filter set to 'ignore' in order to pr	event mouse input
 	if has_focus():
 		if event is InputEventKey:			
 			if event.is_pressed() and not event.is_echo():
-				print('down')
+				#print('down')
 				if cursor < current_word.length() and char(event.get_unicode()) == current_word[cursor]:
 					correct_key = true
 					sound_effects.play_key_down()
@@ -51,13 +51,13 @@ func _input(event): #LineEdit must have mouse_filter set to 'ignore' in order to
 					else:					
 						cursor -= 1
 				else:
-					print('assigned false')
+					#print('assigned false')
 					correct_key = false
 					accept_event()
 			
 			elif not event.is_pressed():
-				print('up')
-				print(correct_key)
+				#print('up')
+				#print(correct_key)
 				if correct_key:
 					sound_effects.play_key_down()
 			
