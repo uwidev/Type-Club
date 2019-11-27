@@ -1,10 +1,5 @@
 Annie;First line
-Annie;Second line
-Annie;More lines
 Annie;kasjhdsakjdhajkdhakjdhajkdhkajdhaksjdhaskdjhsakjhdsakjdhsadksa alshdsalkhdsakjdhsakjdhsa sakjdhsakdhsakjd hakj
-Annie;More lines
-Annie;More lines
-Annie;More lines
 Annie;More lines
 Image;res://Assets/SKKTV.png
 Tommy;Super Kawaii Kaiju is on! YESSSSSS!!!

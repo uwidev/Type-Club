@@ -43,4 +43,5 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 FONT = SubResource( 1 )
+[connection signal="input_enter" from="MarginContainer/Text_Engine" to="." method="_on_Text_Engine_input_enter"]
 [connection signal="resume_break" from="MarginContainer/Text_Engine" to="." method="_on_Text_Engine_resume_break"]

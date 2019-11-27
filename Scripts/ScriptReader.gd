@@ -48,7 +48,6 @@ func readNextLine():
 			textEngine.buff_text('>> ',0.04)
 			textEngine.buff_input()
 			textEngine.buff_text("\n",0)
-			readNextLine()
 		elif readLine.begins_with("Image"):
 			image.set_texture(load(afterSC))
 			readNextLine()
@@ -63,9 +62,18 @@ func readNextLine():
 		print('EOF Reached, emiting end_level')
 		emit_signal("end_level", nextScene)
 
-func _on_Text_Engine_resume_break():
+func _on_Text_Engine_resume_break():	#Enter was pressed, resume text
 	readNextLine()
 
 func _input(ev):
 	if ev is InputEventKey and ev.scancode == KEY_SPACE and not ev.echo:
         textEngine.set_buff_speed(0)
+
+func _on_Text_Engine_input_enter(input):	#Check if player typed correct prompt
+	if input == afterSC:	#afterSC currently holds the prompt
+		readNextLine()
+	else:
+		textEngine.buff_text(afterSC,0.04)
+		textEngine.buff_text('>> ',0.04)
+		textEngine.buff_input()
+		textEngine.buff_text("\n",0)
