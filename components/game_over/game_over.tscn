@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/fonts/McLaren-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Themes/title_screen.tres" type="Theme" id=2]
+[ext_resource path="res://components/title_button/title_button.tscn" type="PackedScene" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 75
+outline_size = 2
+outline_color = Color( 0.478431, 0.478431, 0.478431, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+Button/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = SubResource( 1 )
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = null
+Button/styles/pressed = null
+Label/colors/font_color = Color( 1, 1, 1, 1 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+Label/constants/line_spacing = 3
+Label/constants/shadow_as_outline = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/fonts/font = null
+Label/styles/normal = null
+
+[node name="Game Over" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 2 )
+custom_constants/separation = 100
+alignment = 1
+
+[node name="Label" type="Label" parent="."]
+margin_top = 446.0
+margin_right = 1924.0
+margin_bottom = 460.0
+text = "Game over!"
+align = 1
+
+[node name="Game Over" type="HBoxContainer" parent="."]
+margin_top = 560.0
+margin_right = 1924.0
+margin_bottom = 633.0
+theme = ExtResource( 2 )
+alignment = 1
+
+[node name="Retry" parent="Game Over" instance=ExtResource( 3 )]
+margin_right = 960.0
+margin_bottom = 73.0
+rect_min_size = Vector2( 960, 70 )
+text = "Retry"
+align = 1
+
+[node name="Main Menu" parent="Game Over" instance=ExtResource( 3 )]
+margin_left = 964.0
+margin_right = 1924.0
+margin_bottom = 73.0
+rect_min_size = Vector2( 960, 70 )
+text = "Main Menu"
+align = 1
