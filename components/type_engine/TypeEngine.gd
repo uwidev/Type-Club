@@ -48,10 +48,10 @@ func _input(event): #LineEdit must have mouse_filter set to 'ignore' in order to
 	#Add Victory/Loss Manager
 	
 
-func _on_sendDictList(d, w, g, b):
+func link_dict_list(d, l):
 	#print('type engine dicts recieved')
 	wdict = d
-	wlist = w
+	wlist = l
 
 
 func _on_word_selected(word, pos):
@@ -63,7 +63,6 @@ func _on_word_selected(word, pos):
 
 
 func _on_text_entered(word):
-	#print(wdict)
 	release_focus()
 	self.clear()
 	current_word = ''

@@ -2,11 +2,11 @@ extends HBoxContainer
 
 # Declare member variables here
 var stageStates = []	#-1: undecided, 0: failed, 1: passed
-var currentStage = 0	#Current stage number we are on, starting from 0
+var currentStage = -1	#Current stage number we are on, starts at index 0
 var numStages		#Number of stages
 var passCount = 0	#Number of passes in level
 var failCount = 0	#Number of fails in level
-var failThreshold = float(1)/2	#Percentage of fails to trigger level fail
+var failThreshold = 2	#Fails allowed excluding final stage
 var imageList = []	#Contains the texture nodes
 var image1
 var image2
@@ -28,28 +28,28 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func apply_pass():	#Stage passed
-	stageStates[currentStage] = 1
-	passCount += 1
-	imageList[currentStage].set_texture(stateTextures[1])
+func _on_stage_ready():
 	currentStage += 1
+
+func apply_pass():	#Stage passed
+	if stageStates[currentStage] == -1:
+		stageStates[currentStage] = 1
+		passCount += 1
+		imageList[currentStage].set_texture(stateTextures[1])
+	
 	if currentStage == numStages:
-		print("level cleared")
 		emit_signal("level_clear")
 
 func apply_fail():	#Stage failed
-	stageStates[currentStage] = 0
-	failCount += 1
-	imageList[currentStage].set_texture(stateTextures[0])
-	currentStage += 1
-	if float(failCount)/numStages >= failThreshold:
-		print("game over")
+	if stageStates[currentStage] == -1:
+		stageStates[currentStage] = 0
+		failCount += 1
+		imageList[currentStage].set_texture(stateTextures[0])
+	
+	if currentStage == numStages or failCount >= failThreshold:
 		emit_signal("game_over")
-	elif currentStage == numStages:
-		print("level cleared")
-		emit_signal("level_clear")
 
-func _on_level_ready(number):
-	numStages = number
-	for i in range(numStages):	#Init stageStates to hold -1's
+func on_stage_ready(number):
+	numStages = number - 1
+	for i in range(numStages + 1):	#Init stageStates to hold -1's
 		stageStates.append(-1)

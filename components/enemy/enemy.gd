@@ -37,10 +37,10 @@ func take_damage(value):
 	if futureLife <= 0:
 		emit_signal('life_depleted')
 		yield(self, "end_shake")
-		if lifeList.empty():
-			print('level clear!')
-			emit_signal("enemy_dead")
-			return
+#		if lifeList.empty():
+#			print('level clear!')
+#			emit_signal("enemy_dead")
+#			return
 		emit_signal("stage_clear")
 	else:
 		yield(self, "end_shake")

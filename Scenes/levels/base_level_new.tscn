@@ -14,7 +14,6 @@
 [ext_resource path="res://components/viewport_label/Viewport.tscn" type="PackedScene" id=12]
 [ext_resource path="res://components/game_over/game_over.tscn" type="PackedScene" id=13]
 
-
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
 
@@ -160,10 +159,13 @@ margin_top = 788.0
 margin_right = 1920.0
 margin_bottom = 888.0
 rect_min_size = Vector2( 0, 100 )
+custom_constants/margin_right = 100
+custom_constants/margin_left = 100
 
 [node name="Life and Timer" parent="VBoxContainer/MarginContainer" instance=ExtResource( 9 )]
+margin_left = 100.0
 margin_top = 28.0
-margin_right = 1920.0
+margin_right = 1820.0
 margin_bottom = 72.0
 size_flags_vertical = 4
 MaxTimeLife = 20
@@ -187,24 +189,23 @@ anims/stage_ready = SubResource( 4 )
 
 [node name="Game Over" parent="." instance=ExtResource( 13 )]
 visible = false
-[connection signal="cycle_done" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_end_cycle"]
 [connection signal="cycle_done" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_cycle_done"]
+[connection signal="cycle_done" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_end_cycle"]
 [connection signal="end_level" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_end_level"]
 [connection signal="fail" from="." to="VBoxContainer/Stage Pass Indicator" method="apply_fail"]
 [connection signal="introDialogue" from="." to="Text Panels" method="_on_base_level_introDialogue"]
 [connection signal="life_mod" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_life_mod"]
-[connection signal="prepare_stage" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_prepare_stage"]
 [connection signal="prepare_stage" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_prepare_stage"]
-[connection signal="sendAllDialogue" from="." to="Text Panels" method="_on_sendAllDialogue"]
+[connection signal="prepare_stage" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_prepare_stage"]
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_sendDictList"]
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_sendDictList"]
-[connection signal="sendNumStages" from="." to="VBoxContainer/Stage Pass Indicator" method="_on_level_ready"]
-[connection signal="stage_ready" from="." to="VBoxContainer/Stage Pass Indicator" method="next_stage"]
 [connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Enemy Container/Enemy" method="_on_stage_ready"]
-[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_ready"]
 [connection signal="stage_ready" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_stage_ready"]
+[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_ready"]
+[connection signal="stage_ready" from="." to="VBoxContainer/Stage Pass Indicator" method="_on_stage_ready"]
+[connection signal="stage_ready" from="." to="VBoxContainer/Stage Pass Indicator" method="next_stage"]
 [connection signal="game_over" from="VBoxContainer/Stage Pass Indicator" to="." method="_on_game_over"]
-[connection signal="level_clear" from="VBoxContainer/Stage Pass Indicator" to="." method="_on_level_clear"]
+[connection signal="level_clear" from="VBoxContainer/Stage Pass Indicator" to="." method="_on_win_level_over"]
 [connection signal="draw" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_scroller_redraw"]
 [connection signal="redrew" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_scroller_redrew"]
 [connection signal="word_selected" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_word_selected"]
@@ -216,6 +217,3 @@ visible = false
 [connection signal="life_depleted" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="." method="_on_enemy_life_depleted"]
 [connection signal="stage_clear" from="VBoxContainer/HBoxContainer/Enemy Container/Enemy" to="." method="_on_stage_clear"]
 [connection signal="no_life" from="VBoxContainer/MarginContainer/Life and Timer" to="." method="_on_no_life"]
-[connection signal="endLevel" from="Text Panels" to="." method="_on_Text_Panels_endLevel"]
-[connection signal="loadNextStage" from="Text Panels" to="." method="_on_Text_Panels_loadNextStage"]
-[connection signal="startFirstStage" from="Text Panels" to="." method="_on_Text_Panels_startFirstStage"]

@@ -99,7 +99,6 @@ func _on_cycle_done():
 
 func _on_stage_ready():
 	paused(false)
-	#print('timer start')
 	timer.start()
 
 
@@ -107,7 +106,7 @@ func _start():
 	timer.start()
 
 
-func _on_stage_clear():
+func halt_and_lock():
 	_locked(true)
 	paused(true)
 

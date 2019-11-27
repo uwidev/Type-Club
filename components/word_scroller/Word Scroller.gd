@@ -155,6 +155,15 @@ func _ready():
 		particle_word_reference._set_text(wlist[selected.get_value()])
 
 
+func link_lists(d, w):
+	wdict = d
+	wlist = w
+	
+	_set_labels()
+	_hidden_instant(true)
+	particle_word_reference._set_text(wlist[selected.get_value()])
+
+
 func on_end_typing(word):
 	grab_focus()
 	selected.set_max(wlist.size()-1)
@@ -244,7 +253,7 @@ func _hidden(hiding:bool):
 			elif i >= 0:
 				tween.interpolate_method(label_list[i].get_node('label'), '_curry_tween_hidden_label', (min_spacing + word_spacing) * half_width, label_positions[i][1], hidden_fade_in_speed,  Tween.TRANS_LINEAR, Tween.EASE_IN)
 				
-	print('started tween')
+	#print('started tween')
 	tween.start()
 	
 
@@ -262,7 +271,7 @@ func _hidden_instant(hiding:bool):
 		else:
 			label_list[i].get_node('label')._curry_tween_hidden_label(label_positions[i][1])
 				
-	print('instant hide: ', hiding)
+	#print('instant hide: ', hiding)
 
 
 func _update_labels():
@@ -361,17 +370,6 @@ func _input(event):
 			accept_event()
 
 
-func _on_sendDictList(d, w, g, b):
-	wdict = d
-	wlist = w
-	
-	_set_labels()
-	_hidden_instant(true)
-	# Initializes max index for selected
-	#selected.set_max(wlist.size()-1)
-	particle_word_reference._set_text(wlist[selected.get_value()])
-
-
 func _on_request_scroller():
 	typing_label.set_visible(false)
 	label_list[0].set_visible(true)
@@ -390,31 +388,32 @@ func _on_end_cycle():
 
 
 func _on_prepare_stage():
-	print('preparing stage')
+	#print('preparing stage')
 	typing_label.set_visible(false)
 	label_list[0].set_visible(true)
 	_update_labels()
 	_hidden(false)
-	print('waiting until tween complete')
+	#print('waiting until tween complete')
 	yield(tween, "tween_all_completed")
-	print('tween visible complete')
+	#print('tween visible complete')
 	
 	emit_signal('words_fully_visible')
 	
 
 func _on_stage_ready():
-	print('stage ready!')
+	#print('stage ready!')
 	grab_focus()
 
 func _on_scroller_redraw():
 	emit_signal('redrew', typing_label.get_global_position())
 
 
-func _on_stage_clear():
+func stage_clear_hide():
 	label_list[0].set_visible(true)
 	typing_label.set_visible(false)
 	_hidden(true)
 
 
 func _on_Tween_tween_all_completed():
-	print('>>> all tween completed')
+	#print('>>> all tween completed')
+	pass

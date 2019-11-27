@@ -15,8 +15,10 @@ var blist = []
 var failCount = 0
 var stage_clear_flag = false
 var gamestate = PLAYING
-var whereList = []	#Determines whether to display text in top or bot panel
-var textList = []	#Text to display
+var dialogueWhereList = []	#Determines whether to display text in top or bot panel
+var dialogueTextList = []	#Text to display
+var gameoverWhereList = []
+var gameoverTextList = []
 
 export(PackedScene) var next_scene
 #export(int, 'Gen by int', 'Gen by percentage') var gen_mode
@@ -48,34 +50,45 @@ onready var enemy = find_node('Enemy')
 onready var scroller = find_node('Word Scroller')
 onready var typer = find_node('Type Engine')
 onready var timerlife = find_node('Life and Timer')
+onready var textpanel = find_node('Text Panels')
+onready var stageindicator = find_node('Stage Pass Indicator')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if get_owner() == null:
-		readWords(get_filename().trim_suffix('.tscn') + '.txt')		# Will read words from a text file of the same name as this scene
+		_readWords(get_filename().trim_suffix('.tscn') + '.txt')		# Will read words from a text file of the same name as this scene
 	else:
-		readWords(get_owner().get_filename().trim_suffix('.tscn') + '.txt')		# Will read words from a text file of the same name as this scene
+		_readWords(get_owner().get_filename().trim_suffix('.tscn') + '.txt')		# Will read words from a text file of the same name as this scene
 	wdict = wdicts.pop_front()
 	_update_gblists(wdict)
 	
 	wlist = _generateList(enemy.lifeList.front() + additional_good_words, additional_bad_words)
 	
-	emit_signal("sendDictList", wdict, wlist, glist, blist)
-	emit_signal("sendTextLists", whereList, textList)
-	emit_signal("introDialogue")	#Send signal to text panels to handle intro dialogue before starting first stage
 
-
-func OnSignalFail(): #Change to Signal Function 
-	failCount -= 1
+	scroller.link_lists(wdict, wlist)
+	typer.link_dict_list(wdict, wlist)
+	textpanel.link_lists(dialogueWhereList, dialogueTextList, gameoverWhereList, gameoverTextList)
+	stageindicator.on_stage_ready(wdict.size())
 	
+	textpanel.next_normal_dialogue()
+	yield(textpanel, 'dialogue_finished')
+	
+	emit_signal("prepare_stage")
+	
+	yield(scroller, 'words_fully_visible')
+	
+	emit_signal('stage_ready')
 
-func readWords(wordTxtFile): #Control has to activate this if used via signal
+# Ready Helper Functions
+func _readWords(wordTxtFile): #Control has to activate this if used via signal
 	wordFile = File.new()
 	wordFile.open(wordTxtFile,File.READ)
 	var doneWithWords = false	#True when all stage words are read
+	var doneWithDialogue = false
+	var doneWithGameOver = false
 	while(wordFile.eof_reached() == false):
 		wordLine = wordFile.get_line()
-		if doneWithWords == false:
+		if not doneWithWords:
 			if wordLine == ';;':
 				wdicts.append(wdict)
 				wdict = {}
@@ -86,16 +99,27 @@ func readWords(wordTxtFile): #Control has to activate this if used via signal
 				word = wordLine.substr(0,semiColon)
 				pointValue = int(wordLine.substr(semiColon+1, wordLine.length()))
 				wdict[word] = pointValue
-		else:
+		
+		elif not doneWithDialogue:
 			#Now read text for top and bot display
 			if wordLine == ';;;':
-				whereList.append("done")
+				dialogueWhereList.append("done")
+			elif wordLine == ';;;;':
+				doneWithDialogue = true
 			else:	
 				semiColon = wordLine.find(";")
 				word = wordLine.substr(0,semiColon)
-				whereList.append(word)	#Word should be "top" or "bot"
-				textList.append(wordLine.substr(semiColon+1, wordLine.length()))
-
+				dialogueWhereList.append(word)	#Word should be "top" or "bot"
+				dialogueTextList.append(wordLine.substr(semiColon+1, wordLine.length()))
+		
+		elif not doneWithGameOver:
+			if wordLine == ';;;':
+				gameoverWhereList.append("done")
+			else:	
+				semiColon = wordLine.find(";")
+				word = wordLine.substr(0,semiColon)
+				gameoverWhereList.append(word)	#Word should be "top" or "bot"
+				gameoverTextList.append(wordLine.substr(semiColon+1, wordLine.length()))
 
 func _update_gblists(word_dict):
 	glist.clear()
@@ -105,7 +129,6 @@ func _update_gblists(word_dict):
 			glist.append(w)
 		else:
 			blist.append(w)
-
 
 func _generateList(numGood, numBad):
 	var mixedList = []
@@ -135,21 +158,13 @@ func _generateList(numGood, numBad):
 	mixedList.shuffle()	#Shuffles list for a random order
 	return mixedList
 
-
 func _generateListPercentage(numWords, percentGood):
 	var good = ceil(numWords*percentGood)	#Ensures there's always one good word so long as percentage != 0
 	var bad = numWords-good
 	return _generateList(good,bad)
 
 
-func _on_no_life():
-	failCount += 1
-	print('fail')
-	if failCount >= 2:
-		emit_signal('fail')
-		print('game over')
-
-
+# Signals from Typing Engine
 func _on_good_word(word):
 	# Self heal
 	timerlife.paused(true)
@@ -169,7 +184,15 @@ func _on_good_word(word):
 	if gamestate == PLAYING:
 		emit_signal('cycle_done')
 
+func _on_bad_word(word):
+	# some hit animation here
+	timerlife.offset_life(wdict[word])
+	
+	if erase_on_bad:
+		wlist.erase(word)
+	emit_signal('cycle_done')
 
+# Helper functions
 func _load_next_stage():
 	if gamestate == PLAYING:
 		var tmp = wdicts.pop_front()
@@ -187,45 +210,60 @@ func _load_next_stage():
 		
 		emit_signal('prepare_stage')
 		
-		print('now yielding until words are fully visible')
+		#print('now yielding until words are fully visible')
 		yield(scroller, 'words_fully_visible')
 		
 		gamestate = PLAYING
 		emit_signal('stage_ready')
 
 
-func _on_bad_word(word):
-	# some hit animation here
-	timerlife.offset_life(wdict[word])
-	
-	if erase_on_bad:
-		wlist.erase(word)
-	emit_signal('cycle_done')
+# Called by life/timer
+func _on_no_life():
+	stageindicator.apply_fail()
+	print('FAIL')
 
 
-func _on_Text_Panels_loadNextStage():
-	gamestate = PLAYING
-	_load_next_stage()
-	
-
-
-func _on_Text_Panels_startFirstStage():
-	#Signal to start first stage received from text panels
-	emit_signal('prepare_stage')
-		
-	yield(scroller, 'words_fully_visible')
-	
-	emit_signal('stage_ready')
-
-
-func _on_Text_Panels_endLevel():
-	#Signal that the enemy has died
-	#$"VBoxContainer/Life and Timer".toggle_locked()
-	#$"VBoxContainer/Life and Timer".paused(true)
-	gamestate = END
-	print("END LEVEL")
-	emit_signal('end_level', next_scene)
-
-
+# Called right before stage_clear (enemy is dead)
 func _on_enemy_life_depleted():
-	gamestate = DIALOGUE
+	gamestate = WAIT
+
+
+# Called from enemy when stage passed
+func _on_stage_clear():
+	# Pause timer and apply pass, scroller hide
+	scroller.stage_clear_hide()
+	timerlife.halt_and_lock()
+	stageindicator.apply_pass()
+	
+	# Check if we're still in WAIT, and if so
+	# queue the next normal dialogue and wait for it 
+	# before loading in next level
+	if gamestate == WAIT:
+		print('STAGE CLEAR')
+		textpanel.next_normal_dialogue()
+		yield(textpanel, 'dialogue_finished')
+	
+		gamestate = PLAYING
+		_load_next_stage()
+
+
+# Called by stageindicator when game over
+func _on_game_over():
+	gamestate = END
+	
+	textpanel.gameover_dialogue()
+	yield(textpanel, 'dialogue_finished')
+	
+	print('GAME OVER')
+	# Show game over, ask restart or main menu
+	
+	
+# Called by stageindicator when win conditions are met
+func _on_win_level_over():
+	gamestate = END
+	
+	textpanel.next_normal_dialogue()
+	yield(textpanel, 'dialogue_finished')
+	
+	print('WIN')
+	emit_signal('end_level', next_scene)
