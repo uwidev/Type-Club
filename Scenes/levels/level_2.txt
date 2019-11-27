@@ -115,5 +115,7 @@ bot;Computer: Well great for you. *zzzt* Too bad I had to die for you to feel be
 bot;Computer: Your wife probably isn't going to be happy when she see's your hands looking like that you know.
 top;Tom:...
 ;;;
-top;GAME OVER SCRIPT STUFF
+;;;;
+top;Tom: God dammit! *crys* I can't do this!
+bot;Computer: Well maybe you shouldn't have punched me in the face, Tom. 
 ;;;

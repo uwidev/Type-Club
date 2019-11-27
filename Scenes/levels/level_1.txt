@@ -101,5 +101,6 @@ bot;Homework: *Blech* Damn you Tommy!
 top;Tommy: Haha yes, I am the KING of homework!
 ;;;
 ;;;;
-top;GAME OVER SCRIPT STUFF
+top;Tommy: Ugh! I don't know what 2+2 is!
+bot;Homework: HAHAHAHA!!! You lose!
 ;;;

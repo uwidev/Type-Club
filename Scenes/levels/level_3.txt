@@ -98,5 +98,7 @@ top;Tom: *cough* *cough* Oh god. *cough*
 bot;Death: I told you.
 bot;Death: It's time.
 ;;;
-top;GAME OVER SCRIPT STUFF
+;;;;
+top;Tom: *cough* *cough* Oh god.
+bot;Death: Goodbye Tom.
 ;;;
