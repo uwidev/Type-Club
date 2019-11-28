@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/levels/base_level_new.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Cutscenes/post_level_3.tscn" type="PackedScene" id=2]
 [ext_resource path="res://components/stage_passes/level_3_stage_passes.gd" type="Script" id=3]
+[ext_resource path="res://audio/deathfight.wav" type="AudioStream" id=4]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("base_level/particle_viewport")
@@ -33,6 +34,9 @@ lifeList = [ 15, 15, 15 ]
 
 [node name="Attack Particles" parent="base_level" index="3"]
 texture = SubResource( 1 )
+
+[node name="Music Player" parent="base_level" index="7"]
+music_sound = ExtResource( 4 )
 
 [editable path="base_level"]
 
