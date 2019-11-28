@@ -25,6 +25,7 @@ script = ExtResource( 1 )
 margin_top = 50.0
 margin_right = 1920.0
 margin_bottom = 1030.0
+alignment = 1
 
 [node name="Top" type="CenterContainer" parent="VBoxContainer"]
 margin_right = 1920.0
@@ -36,11 +37,18 @@ margin_right = 1820.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 1720, 100 )
 
-[node name="Top_Text_Engine" type="ReferenceRect" parent="VBoxContainer/Top"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Top"]
 margin_left = 100.0
 margin_right = 1820.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 1720, 100 )
+custom_constants/margin_right = 50
+custom_constants/margin_left = 50
+
+[node name="Top_Text_Engine" type="ReferenceRect" parent="VBoxContainer/Top/MarginContainer"]
+margin_left = 50.0
+margin_right = 1670.0
+margin_bottom = 100.0
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -64,15 +72,22 @@ margin_right = 1820.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 1720, 100 )
 
-[node name="Bot_Text_Engine" type="ReferenceRect" parent="VBoxContainer/Bottom"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Bottom"]
 margin_left = 100.0
 margin_right = 1820.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 1720, 100 )
+custom_constants/margin_right = 50
+custom_constants/margin_left = 50
+
+[node name="Bot_Text_Engine" type="ReferenceRect" parent="VBoxContainer/Bottom/MarginContainer"]
+margin_left = 50.0
+margin_right = 1670.0
+margin_bottom = 100.0
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 FONT = SubResource( 2 )
-[connection signal="resume_break" from="VBoxContainer/Top/Top_Text_Engine" to="." method="_on_Top_Text_Engine_resume_break"]
-[connection signal="resume_break" from="VBoxContainer/Bottom/Bot_Text_Engine" to="." method="_on_Bot_Text_Engine_resume_break"]
+[connection signal="resume_break" from="VBoxContainer/Top/MarginContainer/Top_Text_Engine" to="." method="_on_Top_Text_Engine_resume_break"]
+[connection signal="resume_break" from="VBoxContainer/Bottom/MarginContainer/Bot_Text_Engine" to="." method="_on_Bot_Text_Engine_resume_break"]

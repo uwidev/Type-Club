@@ -78,20 +78,20 @@ cartoons;-1
 movies;-1
 ;;
 ;;;
-top;Tommy: Prepare to die homework!
-bot;Homework: Hey kid I'm just trying to help you learn.
+top;Tommy: Prepare to die, homework!
+bot;Homework: Hey kid, I'm just trying to help you learn.
 top;Tommy: Well you're doing a bad job!
-top;Tommy: you just make me angry and stop me from watching Kawaii Kaiju!
+top;Tommy: You just make me angry and stop me from watching Kawaii Kaiju!
 bot;Homework: I feel like school is a little more important than T.V. kid.
 top;Tommy; It isn't!
 ;;;
-top;Tommy: Haha take THAT! 
-bot;Homework: OW! Kid what the hell are you doing that hurt!
+top;Tommy: Haha, take THAT! 
+bot;Homework: OW! Kid, what the hell are you doing? That hurt!
 top;Tommy: So what you're saying is I'm WINNING?
 bot;Homework: No! This isn't going to teach you anything, stop it!
 top;Tommy: Never!
 ;;;
-top;Tommy: Hah I am so good at school, are you even trying?
+top;Tommy: Hah. I am so good at school, are you even trying?
 bot;Homework: Alright that's enough.
 bot;Homework: GRAAARGH!!!!
 top;Tommy: Uh oh.

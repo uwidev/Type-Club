@@ -94,18 +94,18 @@ Unfocus;-2
 Tired;-1
 ;;
 ;;;
-top;Tom: Ugh I hate this! I want to go home!
-bot;Computer: Hey man I know I know, I feel you. Don't worry I'm here for you.
+top;Tom: Ugh, I hate this! I want to go home!
+bot;Computer: Hey man. I know I know, I feel you. Don't worry I'm here for you.
 top;Tom: SHUT UP!
 ;;;
-bot;Computer: OW! Dude what the hell I'm your computer! What did I do to deserve this!?
+bot;Computer: OW! Dude what the hell, I'm your computer! What did I do to deserve this!?
 top;Tom: You're the reason why I'm still here and not at home!
 bot;Computer: Why do you even wanna go home so bad. Is something wrong?
 top;Tom: No.
 bot;Computer: Maybe you should call your wife or something.
 top;Tom: NO!!!
 ;;;
-bot;Computer: God dammit dude that's it. I've tried talking to you.
+bot;Computer: God dammit dude, that's it. I've tried talking to you.
 bot;Computer: GRARRGH!!
 top;Tom: I don't care how strong you get, I'll always be stronger!
 ;;;

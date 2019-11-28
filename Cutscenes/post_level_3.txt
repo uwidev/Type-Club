@@ -3,7 +3,7 @@ Narrator;There's nothing you can do and you know that.
 Prompt;I know that
 Narrator;You're dying, Tom.
 Prompt;I know that
-Image;Light
+#Image;Light
 Prompt;I
 Prompt;Know
 Prompt;Love
@@ -13,10 +13,10 @@ Prompt;Homework
 Prompt;Imagination
 Prompt;Kawaii Kaiju
 Prompt;Caroline
-Image;Carrie holding your hand, crying.
+#Image;Carrie holding your hand, crying.
 Narrator;You look to your side and you see Carrie holding your hand, crying.
 Prompt;Carrie
 Carrie;I love you.
 Prompt;I know 
 Prompt;Life
-Image;White screen
+#Image;White screen
