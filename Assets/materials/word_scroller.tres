@@ -6,11 +6,12 @@ code = "shader_type canvas_item;
 uniform float offset = 0;		// Offset from center
 uniform float extend = 3;		// How many labels exist from center to up -1
 uniform float height = 100;		// Pixels height per label
+uniform float exponent = 1;		// Power for curve on transparency spacing
 
 void fragment(){
 	vec4 color = texture(TEXTURE, UV);
 	
-	color.a *= max( 0.0, ((height*(extend-.2)) - abs(offset))/((height*(extend))) );
+	color.a *= max( 0.0, pow( ((height*(extend-.2)) - abs(offset))/((height*(extend))), exponent ) );
 	
 	COLOR = color;
 }"
@@ -20,3 +21,4 @@ shader = SubResource( 1 )
 shader_param/offset = 0.0
 shader_param/extend = 3.0
 shader_param/height = 100.0
+shader_param/exponent = 1.0

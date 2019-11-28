@@ -116,8 +116,8 @@ theme = ExtResource( 2 )
 [node name="Word Scroller" parent="VBoxContainer/HBoxContainer/Main Interface" instance=ExtResource( 4 )]
 margin_top = 200.0
 margin_bottom = 200.0
-transparency = true
 focus_on_ready = false
+transparency_exponent = 0.85
 word_spacing = -10
 extend = 2
 scroll_type = 10
@@ -196,21 +196,21 @@ anims/stage_ready = SubResource( 4 )
 visible = false
 margin_top = -2.0
 margin_bottom = -2.0
-[connection signal="cycle_done" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_end_cycle"]
 [connection signal="cycle_done" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_cycle_done"]
+[connection signal="cycle_done" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_end_cycle"]
 [connection signal="end_level" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_end_level"]
 [connection signal="fail" from="." to="VBoxContainer/Stage Pass Indicator" method="apply_fail"]
 [connection signal="introDialogue" from="." to="Text Panels" method="_on_base_level_introDialogue"]
 [connection signal="life_mod" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_life_mod"]
-[connection signal="prepare_stage" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_prepare_stage"]
 [connection signal="prepare_stage" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_prepare_stage"]
+[connection signal="prepare_stage" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_prepare_stage"]
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_sendDictList"]
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_sendDictList"]
 [connection signal="stage_ready" from="." to="VBoxContainer/Stage Pass Indicator" method="_on_stage_ready"]
 [connection signal="stage_ready" from="." to="VBoxContainer/Stage Pass Indicator" method="next_stage"]
-[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_ready"]
 [connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Enemy Container/Enemy" method="_on_stage_ready"]
 [connection signal="stage_ready" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_stage_ready"]
+[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_ready"]
 [connection signal="game_over" from="VBoxContainer/Stage Pass Indicator" to="." method="_on_game_over"]
 [connection signal="level_clear" from="VBoxContainer/Stage Pass Indicator" to="." method="_on_win_level_over"]
 [connection signal="draw" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_scroller_redraw"]

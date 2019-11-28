@@ -33,6 +33,7 @@ export(Material) var label_material
 export(GDScript) var label_tween
 
 # Settings
+export(float) var transparency_exponent = 1
 export(int) var word_spacing = 20
 export(int) var font_size = 20
 export(int) var extend = 2		# Amount of words extending from center, one direction
@@ -126,15 +127,12 @@ class CenterRoundIndex:
 
 
 func _ready():
-	#get_tree().get_root().print_tree_pretty()
-	#particle_word_reference = get_tree().get_root().get_node("base_level").get_node('particle_viewport')
 	particle_word_reference = get_tree().get_root().find_node('particle_viewport', true, false)
-	#print('restult: ', particle_word_reference)
-	#assert(particle_word_reference != null)
 	typing_label.set_name('typing_label')
 	add_child(typing_label)
 	typing_label.set_visible(false)
 	typing_label.set_scroll_active(false)
+	
 	
 	if focus_on_ready:
 		grab_focus() 
@@ -142,7 +140,7 @@ func _ready():
 	# Creates specified number of labels, extend + 2 for queueing and animation
 	scroll_width = extend * 2 + 2
 	half_width = scroll_width/2
-	for i in range(-1, scroll_width):
+	for i in range(0, scroll_width + 1):
 		label_list.append(_create_format_label())
 		label_positions.append(0)
 		
@@ -152,7 +150,7 @@ func _ready():
 		selected.set_max(wlist.size()-1)
 		_set_labels()
 		_hidden_instant(true)
-		particle_word_reference._set_text(wlist[selected.get_value()])
+		#particle_word_reference._set_text(wlist[selected.get_value()])
 
 
 func link_lists(d, w):
@@ -218,6 +216,7 @@ func _set_labels():
 			l_mat.set_shader_param('extend', half_width)
 			l_mat.set_shader_param('height', min_spacing + word_spacing)
 			l_mat.set_shader_param('offset', (min_spacing + word_spacing) * i)
+			l_mat.set_shader_param('exponent', transparency_exponent)
 		
 		label_positions[i] = Vector2(0.0, (min_spacing + word_spacing) * i)
 		label_list[i].set_position(label_positions[i])
@@ -344,7 +343,8 @@ func _animate_and_update(mode):
 		label_list.push_front(label_list.pop_back())
 		label_list[-half_width].get_node('label').set_text(wlist[selected.calc_offset(-half_width)])
 	
-	particle_word_reference._set_text(wlist[selected.get_value()])
+	if not debug_list_of_words:
+		particle_word_reference._set_text(wlist[selected.get_value()])
 
 
 func _input(event):

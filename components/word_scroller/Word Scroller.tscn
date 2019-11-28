@@ -15,7 +15,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ]
 }
-transparency = false
+debug_list_of_words = true
 focus_on_ready = true
 label_material = ExtResource( 2 )
 label_tween = ExtResource( 3 )
