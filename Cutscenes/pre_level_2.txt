@@ -19,12 +19,12 @@ Caroline;Well if I'm not there with you, how are you going to get any work done?
 Tommy;Heh, I suppose that's true. I would've probably flunked out of highschool already if you weren't here for me. 
 Tommy;... You're really gonna go to State College University just because I'm going?
 Caroline;Well, no. They also have a really good computer science program.
-Tommy:Pft, I knew it.
+Tommy;Pft, I knew it.
 Narrator;You both major in computer science and end up having a whole bunch of classes together, and thanks to her help you're able to pass most of them. You love her now more than ever.
 Narrator;Finally, one rainy day in spring, you muster up the courage to finally say...
 Prompt;I love you
 Narrator;She smiles.
-Caroline:I love you too.
+Caroline;I love you too.
 Narrator;You spend four unforgettable years of college together and both graduate with a computer science degree.
 Narrator;You both get a job in Nevada and start living together.
 Tom;Hey, do you wanna go on a date?
@@ -41,7 +41,7 @@ Caroline;Hmmmmmmmm, I dunno, something big and strong like you, like a chihuahua
 Tom;Oh hah hah. 
 Narrator;You end up getting a golden retriever and name him Kaiju.
 Prompt;Life is good
-Narrator;Several years pass
+Narrator;Several years pass.
 Narrator;One night you come home, and Caroline isn't there. You're worried, but you're sure it's fine. 
 Narrator;You go to sleep and wake up the next day to a phone call. Caroline got in a car accident.
 Narrator;She's dead.

@@ -100,20 +100,20 @@ top;Tom: SHUT UP!
 ;;;
 bot;Computer: OW! Dude what the hell I'm your computer! What did I do to deserve this!?
 top;Tom: You're the reason why I'm still here and not at home!
-bot;Computer: Why do you even wanna go home so bad. Is something worng?
+bot;Computer: Why do you even wanna go home so bad. Is something wrong?
 top;Tom: No.
-bot;Computer: Maybe you should call your wife or soemthing.
+bot;Computer: Maybe you should call your wife or something.
 top;Tom: NO!!!
 ;;;
 bot;Computer: God dammit dude that's it. I've tried talking to you.
 bot;Computer: GRARRGH!!
 top;Tom: I don't care how strong you get, I'll always be stronger!
 ;;;
-bot;Computer *zzzt* Okay man, you win. Do you feel better now? 
-top;Tom: I mean, a little bit, I guess. I don't really remeber why I was angry anymore.
+bot;Computer: *zzzt* Okay man, you win. Do you feel better now? 
+top;Tom: I mean, a little bit, I guess. I don't really remember why I was angry anymore.
 bot;Computer: Well great for you. *zzzt* Too bad I had to die for you to feel better.
-bot;Computer: Your wife probably isn't going to be happy when she see's your hands looking like that you know.
-top;Tom:...
+bot;Computer: Your wife probably isn't going to be happy when she sees your hands looking like that you know.
+top;Tom: ...
 ;;;
 ;;;;
 top;Tom: God dammit! *crys* I can't do this!

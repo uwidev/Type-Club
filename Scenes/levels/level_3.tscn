@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/levels/base_level_new.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Cutscenes/post_level_3.tscn" type="PackedScene" id=2]
+[ext_resource path="res://components/stage_passes/level_3_stage_passes.gd" type="Script" id=3]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("base_level/particle_viewport")
@@ -16,6 +17,9 @@ additional_good_words = 2
 additional_bad_words = 2
 unique_good = true
 unique_bad = true
+
+[node name="Stage Pass Indicator" parent="base_level/VBoxContainer" index="0"]
+script = ExtResource( 3 )
 
 [node name="Word Scroller" parent="base_level/VBoxContainer/HBoxContainer/Main Interface" index="0"]
 extend = 3

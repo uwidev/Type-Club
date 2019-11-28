@@ -78,17 +78,17 @@ Weakness;-2
 Sneeze;-1
 ;;
 ;;;
-top;Tom: *cough* Prepare to die Death!
+top;Tom: *cough* Prepare to die, Death!
 bot;Death: But I control death, how would you even kill me? Who would take my soul?
 top;Tom: I, I don't know. This usually does something so I'm gonna try.
-bot;Death: okay I guess.
+bot;Death: Okay I guess.
 ;;;
-top;Tom: *cough* *cough* Hah! See I'm winning aren't I?
+top;Tom: *cough* *cough* Hah! See, I'm winning aren't I?
 bot;Death: I mean, no? I honestly didn't feel anything. It's your time Tom, you know there's nothing you can do.
 top;Tom: There's always something I can do!
 bot;Death: Tom...
 ;;;
-top;Tom: *cough* did you *cough* feel anything that time?
+top;Tom: *cough* Did you *cough* feel anything that time?
 bot;Death: No Tom, I didn't. Just stop, you're just hurting yourself by struggling so much.
 top;Tom: No, Caroline didn't give up so *cough* I can't either!
 bot;Death: Tom, that isn't Caro-
