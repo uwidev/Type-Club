@@ -19,6 +19,7 @@ debug_list_of_words = true
 focus_on_ready = true
 label_material = ExtResource( 2 )
 label_tween = ExtResource( 3 )
+word_spacing = -10
 extend = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
