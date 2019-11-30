@@ -9,6 +9,7 @@ var locked = false
 export(int) var MaxTimeLife = 20
 export(bool) var Autostart
 export(Array, int) var lifeList #List of ints representing health for each state, 0 reps stage 1
+export(float) var badKeyPenalty
 
 onready var label_left = get_node("Timer/left")
 onready var label_right = get_node("Timer/right")
@@ -49,12 +50,14 @@ func _process(delta):
 
 # Given an number, offset life by that much
 func offset_life(time):
+	print(timer.get_time_left())
 	#print('life offset')
 	if not locked:
 		if time is int or time is float:
 			timer.set_wait_time(max(min(MaxTimeLife, timer.get_time_left()+time), 0.001))
 			timer.start()
 			life_bar.set_value(timer.get_time_left()/MaxTimeLife*life_bar.get_max())
+	print(timer.get_time_left())
 
 
 # Given a decimal, offset life by that much
@@ -65,6 +68,8 @@ func offset_life_percent(percent):
 			timer.start()
 			life_bar.set_value(timer.get_time_left()/MaxTimeLife*life_bar.get_max())
 
+func _on_base_level_bad_keypress():
+	offset_life(badKeyPenalty)
 
 # Accepts boolean to pause or unpause
 func paused(boo):
