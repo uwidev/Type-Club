@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://components/stage_passes/stage_passes.gd" type="Script" id=1]
+[ext_resource path="res://components/stage_passes/Red Cross.png" type="Texture" id=2]
+[ext_resource path="res://components/stage_passes/Green Circle.png" type="Texture" id=3]
+[ext_resource path="res://components/stage_passes/White Dash.png" type="Texture" id=4]
+[ext_resource path="res://Assets/testCircle.png" type="Texture" id=5]
+
+[node name="Stage Pass Indicator" type="HBoxContainer"]
+margin_right = 308.0
+margin_bottom = 100.0
+script = ExtResource( 1 )
+stateTextures = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+margin_right = 224.0
+margin_bottom = 225.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+margin_right = 224.0
+margin_bottom = 225.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+visible = false
+margin_left = 456.0
+margin_right = 680.0
+margin_bottom = 225.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
+texture = ExtResource( 4 )
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+margin_left = 104.0
+margin_right = 204.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
+texture = ExtResource( 4 )
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="."]
+margin_left = 208.0
+margin_right = 308.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
+texture = ExtResource( 4 )

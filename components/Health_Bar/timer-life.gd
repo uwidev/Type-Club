@@ -49,7 +49,7 @@ func _process(delta):
 
 # Given an number, offset life by that much
 func offset_life(time):
-	print('life offset')
+	#print('life offset')
 	if not locked:
 		if time is int or time is float:
 			timer.set_wait_time(max(min(MaxTimeLife, timer.get_time_left()+time), 0.001))
@@ -68,7 +68,7 @@ func offset_life_percent(percent):
 
 # Accepts boolean to pause or unpause
 func paused(boo):
-	if boo is bool:
+	if boo is bool and not locked:
 		timer.set_paused(boo)
 
 
@@ -81,11 +81,11 @@ func _on_no_life():
 	emit_signal('no_life')
 
 
-func toggle_locked():
-	if locked:
-		false
-	else:
+func _locked(val):
+	if val:
 		locked = true
+	else:
+		locked = false
 
 
 func _on_end_level(next):
@@ -93,18 +93,31 @@ func _on_end_level(next):
 	
 
 func _on_cycle_done():
+	print('cycle done')
 	if lifeList.size() >= 0:
 		paused(false)
 
 
 func _on_stage_ready():
 	paused(false)
+	timer.start()
+
+
+func _start():
+	timer.start()
+
+
+func halt_and_lock():
+	_locked(true)
+	paused(true)
+
+
+func _on_Enemy_enemy_dead():
+	_locked(true)
+
+
+func _on_prepare_stage():
 	if lifeList.size() >= 0:
-		locked = false
+		_locked(false)
 		MaxTimeLife = lifeList.pop_front()
 		timer.set_wait_time(MaxTimeLife)
-		timer.start()
-
-
-func _on_stage_clear():
-	paused(true)

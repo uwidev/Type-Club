@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/title/title.gd" type="Script" id=1]
-[ext_resource path="res://Assets/testCircle.png" type="Texture" id=2]
-[ext_resource path="res://Assets/fonts/McLaren-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://components/title_buttons/title_buttons.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Cutscenes/pre_level_1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/testCircle.png" type="Texture" id=3]
+[ext_resource path="res://Assets/fonts/McLaren-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://components/title_buttons/title_buttons.tscn" type="PackedScene" id=5]
+[ext_resource path="res://components/music_player/music_player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://audio/title.wav" type="AudioStream" id=7]
 
 [sub_resource type="Theme" id=1]
 
@@ -15,7 +18,7 @@ size = 150
 outline_size = 8
 outline_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 extra_spacing_char = 6
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="StreamTexture" id=4]
 flags = 4
@@ -25,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 1920, 1080 )
 script = ExtResource( 1 )
+next_scene = ExtResource( 2 )
 
 [node name="Background" type="Panel" parent="."]
 anchor_right = 1.0
@@ -60,7 +64,7 @@ size_flags_vertical = 6
 [node name="TextureRect" type="TextureRect" parent="Background/Margins/HBoxContainer/Left"]
 margin_right = 224.0
 margin_bottom = 225.0
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="Menu Margins" type="MarginContainer" parent="Background/Margins/HBoxContainer"]
 margin_left = 877.0
@@ -95,11 +99,14 @@ margin_right = 788.0
 margin_bottom = 316.0
 texture = SubResource( 4 )
 
-[node name="Menu Buttons" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2" instance=ExtResource( 4 )]
+[node name="Menu Buttons" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2" instance=ExtResource( 5 )]
 margin_left = 0.0
 margin_top = 316.0
 margin_right = 788.0
 margin_bottom = 608.0
+
+[node name="Music Player" parent="." instance=ExtResource( 6 )]
+music_sound = ExtResource( 7 )
 [connection signal="exit" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" to="." method="_on_exit_press"]
 [connection signal="load_game" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" to="." method="_on_load_game_press"]
 [connection signal="new_game" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" to="." method="_on_new_game_press"]

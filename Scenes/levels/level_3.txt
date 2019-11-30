@@ -1,78 +1,104 @@
-Penicillin;20
-Antibiotics;20
-Medicine;20
-Doctor;20
-Healthy;20
-Strength;20
-Nurse;20
-Syringe;20
-Shots;20
-Healing;20
-Rejuvenation;20
-Health;20
-Exercise;20
-Diet;20
-Safety;20
-Injection;20
-Help;20
-Cancer;-20
-Death;-20
-Virus;-20
-Bacteria;-20
-Disease;-20
-Weak;-20
-Give Up;-20
-Coughing;-20
-Sick;-20
-Blood;-20
-Tired;-20
-Unhealthy;-20
-Weakness;-20
-Sneeze;-20
+Penicillin;3
+Antibiotics;3
+Medicine;2
+Doctor;1
+Healthy;1
+Strength;2
+Nurse;1
+Syringe;1
+Shots;1
+Healing;1
+Rejuvenation;3
+Health;1
+Exercise;1
+Diet;1
+Safety;1
+Injection;2
+Help;1
+Cancer;-1
+Death;-1
+Virus;-1
+Bacteria;-2
+Disease;-2
+Weak;-1
+Give Up;-2
+Coughing;-2
+Sick;-1
+Blood;-1
+Tired;-1
+Unhealthy;-2
+Weakness;-2
+Sneeze;-1
 ;;
-Penicillin;20
-Antibiotics;20
-Medicine;20
-Doctor;20
-Healthy;20
-Strength;20
-Nurse;20
-Syringe;20
-Shots;20
-Healing;20
-Rejuvenation;20
-Health;20
-Exercise;20
-Diet;20
-Safety;20
-Injection;20
-Help;20
-Cancer;-20
-Death;-20
-Virus;-20
-Bacteria;-20
-Disease;-20
-Weak;-20
-Give Up;-20
-Coughing;-20
-Sick;-20
-Blood;-20
-Tired;-20
-Unhealthy;-20
-Weakness;-20
-Sneeze;-20
+Penicillin;3
+Antibiotics;3
+Medicine;2
+Doctor;1
+Healthy;1
+Strength;2
+Nurse;1
+Syringe;1
+Shots;1
+Healing;1
+Rejuvenation;3
+Health;1
+Exercise;1
+Diet;1
+Safety;1
+Injection;2
+Help;1
+Cancer;-1
+Death;-1
+Virus;-1
+Bacteria;-2
+Disease;-2
+Weak;-1
+Give Up;-2
+Coughing;-2
+Sick;-1
+Blood;-1
+Tired;-1
+Unhealthy;-2
+Weakness;-2
+Sneeze;-1
 ;;
-Cancer;-20
-Death;-20
-Virus;-20
-Bacteria;-20
-Disease;-20
-Weak;-20
-Give Up;-20
-Coughing;-20
-Sick;-20
-Blood;-20
-Tired;-20
-Unhealthy;-20
-Weakness;-20
-Sneeze;-20
+Cancer;-1
+Death;-1
+Virus;-1
+Bacteria;-2
+Disease;-2
+Weak;-1
+Give Up;-2
+Coughing;-2
+Sick;-1
+Blood;-1
+Tired;-1
+Unhealthy;-2
+Weakness;-2
+Sneeze;-1
+;;
+;;;
+top;Tom: *cough* Prepare to die, Death!
+bot;Death: But I control death, how would you even kill me? Who would take my soul?
+top;Tom: I, I don't know. This usually does something so I'm gonna try.
+bot;Death: Okay I guess.
+;;;
+top;Tom: *cough* *cough* Hah! See, I'm winning aren't I?
+bot;Death: I mean, no? I honestly didn't feel anything. It's your time Tom, you know there's nothing you can do.
+top;Tom: There's always something I can do!
+bot;Death: Tom...
+;;;
+top;Tom: *cough* Did you *cough* feel anything that time?
+bot;Death: No Tom, I didn't. Just stop, you're just hurting yourself by struggling so much.
+top;Tom: No, Caroline didn't give up so *cough* I can't either!
+bot;Death: Tom, that isn't Caro-
+top;Tom: Shut up!
+;;;
+top;Tom: *cough* *cough* Oh god. *cough*
+bot;Death: I told you.
+bot;Death: It's time.
+;;;
+;;;;
+top;Tom: *cough* *cough* Oh god.
+bot;Death: Goodbye Tom.
+;;;

@@ -1,35 +1,38 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/levels/base_level_new.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Cutscenes/post_level_1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://audio/battlebeats.wav" type="AudioStream" id=3]
 
 [sub_resource type="ViewportTexture" id=1]
-viewport_path = NodePath("base_level/VBoxContainer/HBoxContainer/Main Interface/Word Scroller/ViewportContainer/Viewport")
+viewport_path = NodePath("base_level/particle_viewport")
 
-[node name="Control" type="Control"]
+[node name="Level 1" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="base_level" parent="." instance=ExtResource( 1 )]
+next_scene = ExtResource( 2 )
 additional_good_words = 2
 additional_bad_words = 2
 unique_good = true
 unique_bad = true
 
 [node name="Word Scroller" parent="base_level/VBoxContainer/HBoxContainer/Main Interface" index="0"]
-editor/display_folded = false
-word_spacing = -10
 extend = 3
 scroll_speed = 1.0
-scroll_type = 10
 
 [node name="Enemy" parent="base_level/VBoxContainer/HBoxContainer/Enemy Container" index="0"]
-lifeList = [ 5, 10, 15 ]
+lifeList = [ 5, 10, 10 ]
 
-[node name="Life and Timer" parent="base_level/VBoxContainer" index="1"]
-lifeList = [ 10, 10, 10 ]
+[node name="Life and Timer" parent="base_level/VBoxContainer/MarginContainer" index="0"]
+lifeList = [ 15, 15, 15 ]
 
-[node name="Attack Animation" parent="base_level" index="1"]
+[node name="Attack Particles" parent="base_level" index="3"]
 texture = SubResource( 1 )
+
+[node name="Music Player" parent="base_level" index="7"]
+music_sound = ExtResource( 3 )
 
 [editable path="base_level"]
 

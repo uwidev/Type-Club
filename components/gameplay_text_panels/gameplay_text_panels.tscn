@@ -25,22 +25,33 @@ script = ExtResource( 1 )
 margin_top = 50.0
 margin_right = 1920.0
 margin_bottom = 1030.0
+alignment = 1
 
 [node name="Top" type="CenterContainer" parent="VBoxContainer"]
 margin_right = 1920.0
-margin_bottom = 100.0
+margin_bottom = 120.0
 
 [node name="Panel" type="Panel" parent="VBoxContainer/Top"]
 margin_left = 100.0
 margin_right = 1820.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 1720, 100 )
+margin_bottom = 120.0
+rect_min_size = Vector2( 1720, 120 )
 
-[node name="Top_Text_Engine" type="ReferenceRect" parent="VBoxContainer/Top"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Top"]
 margin_left = 100.0
 margin_right = 1820.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 1720, 100 )
+margin_bottom = 120.0
+rect_min_size = Vector2( 1720, 120 )
+custom_constants/margin_right = 40
+custom_constants/margin_top = 10
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 10
+
+[node name="Top_Text_Engine" type="ReferenceRect" parent="VBoxContainer/Top/MarginContainer"]
+margin_left = 40.0
+margin_top = 10.0
+margin_right = 1680.0
+margin_bottom = 110.0
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -48,31 +59,41 @@ __meta__ = {
 FONT = SubResource( 1 )
 
 [node name="Spacing" type="Control" parent="VBoxContainer"]
-margin_top = 104.0
+margin_top = 124.0
 margin_right = 1920.0
-margin_bottom = 876.0
-rect_min_size = Vector2( 0, 772 )
+margin_bottom = 856.0
+rect_min_size = Vector2( 0, 732 )
 
 [node name="Bottom" type="CenterContainer" parent="VBoxContainer"]
-margin_top = 880.0
+margin_top = 860.0
 margin_right = 1920.0
 margin_bottom = 980.0
 
 [node name="Panel" type="Panel" parent="VBoxContainer/Bottom"]
 margin_left = 100.0
 margin_right = 1820.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 1720, 100 )
+margin_bottom = 120.0
+rect_min_size = Vector2( 1720, 120 )
 
-[node name="Bot_Text_Engine" type="ReferenceRect" parent="VBoxContainer/Bottom"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Bottom"]
 margin_left = 100.0
 margin_right = 1820.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 1720, 100 )
+margin_bottom = 120.0
+rect_min_size = Vector2( 1720, 120 )
+custom_constants/margin_right = 40
+custom_constants/margin_top = 10
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 10
+
+[node name="Bot_Text_Engine" type="ReferenceRect" parent="VBoxContainer/Bottom/MarginContainer"]
+margin_left = 40.0
+margin_top = 10.0
+margin_right = 1680.0
+margin_bottom = 110.0
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 FONT = SubResource( 2 )
-[connection signal="resume_break" from="VBoxContainer/Top/Top_Text_Engine" to="." method="_on_Top_Text_Engine_resume_break"]
-[connection signal="resume_break" from="VBoxContainer/Bottom/Bot_Text_Engine" to="." method="_on_Bot_Text_Engine_resume_break"]
+[connection signal="resume_break" from="VBoxContainer/Top/MarginContainer/Top_Text_Engine" to="." method="_on_Top_Text_Engine_resume_break"]
+[connection signal="resume_break" from="VBoxContainer/Bottom/MarginContainer/Bot_Text_Engine" to="." method="_on_Bot_Text_Engine_resume_break"]

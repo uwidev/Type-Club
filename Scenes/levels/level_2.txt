@@ -1,94 +1,121 @@
-Spreadsheet;20
-Numbers;20
-Typing;20
-Statistics;20
-Keyboard;20
-Working;20
-Clicking;20
-Writing;20
-Computer;20
-Work;20
-Computer Science;20
-Coding;20
-Document;20
-Font;20
-Focus;20
-Screen;20
-Mouse;20
-Energy;20
-Concept;20
-Power Point;20
-Boolean;20
-Python;20
+Spreadsheet;3
+Numbers;1
+Typing;1
+Statistics;3
+Keyboard;2
+Working;1
+Clicking;1
+Writing;1
+Computer;1
+Work;1
+Computer Science;4
+Coding;1
+Document;1
+Font;1
+Focus;1
+Screen;1
+Mouse;1
+Energy;1
+Concept;1
+Power Point;4
+Boolean;1
+Python;1
 ;;
-Spreadsheet;20
-Numbers;20
-Typing;20
-Statistics;20
-Keyboard;20
-Working;20
-Clicking;20
-Writing;20
-Computer;20
-Work;20
-Computer Science;20
-Coding;20
-Document;20
-Font;20
-Focus;20
-Screen;20
-Mouse;20
-Energy;20
-Concept;20
-Power Point;20
-Boolean;20
-Python;20
-Caroline;-20
-Love;-20
-Sadness;-20
-Missing;-20
-Her;-20
-Where;-20
-Cars;-20
-Crash;-20
-Loss;-20
-Hate;-20
-Anger;-20
-Unfocus;-20
-Tired;-20
+Spreadsheet;3
+Numbers;1
+Typing;1
+Statistics;3
+Keyboard;2
+Working;1
+Clicking;1
+Writing;1
+Computer;1
+Work;1
+Computer Science;4
+Coding;1
+Document;1
+Font;1
+Focus;1
+Screen;1
+Mouse;1
+Energy;1
+Concept;1
+Power Point;4
+Boolean;1
+Python;1
+Caroline;-2
+Love;-1
+Sadness;-2
+Missing;-2
+Her;-1
+Where;-1
+Cars;-1
+Crash;-1
+Loss;-1
+Hate;-1
+Anger;-1
+Unfocus;-2
+Tired;-1
 ;;
-Spreadsheet;20
-Numbers;20
-Typing;20
-Statistics;20
-Keyboard;20
-Working;20
-Clicking;20
-Writing;20
-Computer;20
-Work;20
-Computer Science;20
-Coding;20
-Document;20
-Font;20
-Focus;20
-Screen;20
-Mouse;20
-Energy;20
-Concept;20
-Power Point;20
-Boolean;20
-Python;20
-Caroline;-20
-Love;-20
-Sadness;-20
-Missing;-20
-Her;-20
-Where;-20
-Cars;-20
-Crash;-20
-Loss;-20
-Hate;-20
-Anger;-20
-Unfocus;-20
-Tired;-20
+Spreadsheet;3
+Numbers;1
+Typing;1
+Statistics;3
+Keyboard;2
+Working;1
+Clicking;1
+Writing;1
+Computer;1
+Work;1
+Computer Science;4
+Coding;1
+Document;1
+Font;1
+Focus;1
+Screen;1
+Mouse;1
+Energy;1
+Concept;1
+Power Point;4
+Boolean;1
+Python;1
+Caroline;-2
+Love;-1
+Sadness;-2
+Missing;-2
+Her;-1
+Where;-1
+Cars;-1
+Crash;-1
+Loss;-1
+Hate;-1
+Anger;-1
+Unfocus;-2
+Tired;-1
+;;
+;;;
+top;Tom: Ugh, I hate this! I want to go home!
+bot;Computer: Hey man. I know I know, I feel you. Don't worry I'm here for you.
+top;Tom: SHUT UP!
+;;;
+bot;Computer: OW! Dude what the hell, I'm your computer! What did I do to deserve this!?
+top;Tom: You're the reason why I'm still here and not at home!
+bot;Computer: Why do you even wanna go home so bad. Is something wrong?
+top;Tom: No.
+bot;Computer: Maybe you should call your wife or something.
+top;Tom: NO!!!
+;;;
+bot;Computer: God dammit dude, that's it. I've tried talking to you.
+bot;Computer: GRARRGH!!
+top;Tom: I don't care how strong you get, I'll always be stronger!
+;;;
+bot;Computer: *zzzt* Okay man, you win. Do you feel better now? 
+top;Tom: I mean, a little bit, I guess. I don't really remember why I was angry anymore.
+bot;Computer: Well great for you. *zzzt* Too bad I had to die for you to feel better.
+bot;Computer: Your wife probably isn't going to be happy when she sees your hands looking like that you know.
+top;Tom: ...
+;;;
+;;;;
+top;Tom: God dammit! *crys* I can't do this!
+bot;Computer: Well maybe you shouldn't have punched me in the face, Tom. 
+;;;

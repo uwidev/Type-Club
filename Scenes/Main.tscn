@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
-[ext_resource path="res://Assets/materials/fading_circle.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/title/title.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/materials/fading_circle.png" type="Texture" id=3]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "Close"
 length = 1.5
 tracks/0/type = "value"
@@ -19,7 +20,7 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "Open"
 length = 1.5
 tracks/0/type = "value"
@@ -35,7 +36,7 @@ tracks/0/keys = {
 "values": [ 0.0, 0.0, 1.0 ]
 }
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=3]
 code = "// https://www.youtube.com/watch?v=K9FBpJ2Ypb4&list=PLhqJJNjsQ7KHqNMYmTwtsYTeTrqrRP_fP&index=10&t=0s
 shader_type canvas_item;
 render_mode unshaded;
@@ -53,25 +54,26 @@ void fragment()
 }
 "
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
 shader_param/cutoff = 0.0
 shader_param/smooth_size = 0.5
-shader_param/mask = ExtResource( 2 )
+shader_param/mask = ExtResource( 3 )
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+scene_start = ExtResource( 2 )
 
 [node name="TransitionPanel" type="CanvasLayer" parent="."]
 
 [node name="CurtainsAnimationPlayer" type="AnimationPlayer" parent="TransitionPanel"]
-anims/Close = SubResource( 4 )
-anims/Open = SubResource( 3 )
+anims/Close = SubResource( 1 )
+anims/Open = SubResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="TransitionPanel/CurtainsAnimationPlayer"]
-material = SubResource( 2 )
+material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
