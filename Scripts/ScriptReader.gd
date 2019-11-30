@@ -70,6 +70,8 @@ func _input(ev):
         textEngine.set_buff_speed(0)
 
 func _on_Text_Engine_input_enter(input):	#Check if player typed correct prompt
+	input = input.lstrip(" ")	#left strip and right strip white spaces
+	input = input.rstrip(" ")
 	if input == afterSC:	#afterSC currently holds the prompt
 		readNextLine()
 	else:

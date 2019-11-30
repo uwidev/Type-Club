@@ -300,7 +300,8 @@ func _input(event):
 			input = input.replace("\n","")
 
 			if(event.scancode == KEY_BACKSPACE): # Delete last character
-				_delete_last_character(true)
+				if input != "":	#Only allow delete when input isn't empty
+					_delete_last_character(true)
 			elif(event.scancode == KEY_ENTER): # Finish input
 				emit_signal("input_enter", input)
 				if(!PRINT_INPUT): # Delete input
