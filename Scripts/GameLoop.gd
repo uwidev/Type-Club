@@ -42,6 +42,7 @@ signal fail
 signal life_mod
 signal stage_ready
 signal cycle_done
+signal bad_keypress
 signal sendTextLists
 signal introDialogue
 signal prepare_stage
@@ -193,6 +194,9 @@ func _on_bad_word(word):
 	if erase_on_bad:
 		wlist.erase(word)
 	emit_signal('cycle_done')
+
+func _on_Type_Engine_bad_key():
+	emit_signal("bad_keypress")
 
 # Helper functions
 func _load_next_stage():

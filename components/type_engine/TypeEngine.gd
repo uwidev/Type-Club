@@ -13,6 +13,7 @@ signal emptyList 	# Win Condition
 signal entered_good
 signal entered_bad
 signal request_scroller
+signal bad_key		#Bad key press
 var current_word	# Current typing word
 var cursor			# Incoming char index of current_word needed to type
 var correct_key
@@ -51,8 +52,8 @@ func _input(event): #LineEdit must have mouse_filter set to 'ignore' in order to
 					else:					
 						cursor -= 1
 				else:
-					#print('assigned false')
 					correct_key = false
+					emit_signal("bad_key")
 					accept_event()
 			
 			elif not event.is_pressed():
