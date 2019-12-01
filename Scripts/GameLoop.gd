@@ -29,6 +29,8 @@ export(bool) var unique_good
 export(bool) var unique_bad
 export(bool) var erase_on_good = true
 export(bool) var erase_on_bad = false
+export(String) var retry_level
+export(String) var main_menu
 
 
 enum {GENINT, GENPERCENTAGE}
@@ -55,6 +57,7 @@ onready var textpanel = find_node('Text Panels')
 onready var stageindicator = find_node('Stage Pass Indicator')
 onready var animation = find_node('AnimationPlayer')
 onready var particles = find_node('Attack Particles')
+onready var gameover = find_node('Game Over')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -225,7 +228,8 @@ func _load_next_stage():
 
 # Called by life/timer
 func _on_no_life():
-	stageindicator.apply_fail()
+	_on_enemy_life_depleted()
+	_on_stage_fail()
 	print('FAIL')
 
 
@@ -233,6 +237,23 @@ func _on_no_life():
 func _on_enemy_life_depleted():
 	gamestate = WAIT
 
+func _on_stage_fail():
+	# Pause timer and apply pass, scroller hide
+	stageindicator.apply_fail()
+	scroller.stage_clear_hide()
+	timerlife.halt_and_lock()
+	
+	# Check if we're still in WAIT, and if so
+	# queue the next normal dialogue and wait for it 
+	# before loading in next level
+	#print('gamestate: ',gamestate)
+	if gamestate == WAIT:
+		print('STAGE CLEAR')
+		gamestate == DIALOGUE
+		textpanel.next_normal_dialogue()
+		yield(textpanel, 'dialogue_finished')
+		
+		_load_next_stage()
 
 # Called from enemy when stage passed
 func _on_stage_clear():
@@ -261,6 +282,8 @@ func _on_game_over():
 	textpanel.gameover_dialogue()
 	yield(textpanel, 'dialogue_finished')
 	
+	gameover.set_visible(true)
+	
 	print('GAME OVER')
 	# Show game over, ask restart or main menu
 	
@@ -275,3 +298,10 @@ func _on_win_level_over():
 	
 	print('WIN')
 	emit_signal('end_level', next_scene)
+
+
+func _on_Game_Over_request_retry():
+	emit_signal('end_level', retry_level)
+
+func _on_Game_Over_request_main_menu():
+	emit_signal('end_level', main_menu)

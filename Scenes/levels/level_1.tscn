@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/levels/base_level_new.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Cutscenes/post_level_1.tscn" type="PackedScene" id=2]
-[ext_resource path="res://audio/battlebeats.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/enemy/level1_boss.png" type="Texture" id=3]
+[ext_resource path="res://audio/battlebeats.wav" type="AudioStream" id=4]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("base_level/particle_viewport")
@@ -17,6 +18,7 @@ additional_good_words = 2
 additional_bad_words = 2
 unique_good = true
 unique_bad = true
+retry_level = "res://Scenes/levels/level_1.tscn"
 
 [node name="Word Scroller" parent="base_level/VBoxContainer/HBoxContainer/Main Interface" index="0"]
 extend = 3
@@ -31,8 +33,11 @@ lifeList = [ 15, 15, 15 ]
 [node name="Attack Particles" parent="base_level" index="3"]
 texture = SubResource( 1 )
 
+[node name="Game Over" parent="base_level" index="6"]
+enemyImage = ExtResource( 3 )
+
 [node name="Music Player" parent="base_level" index="7"]
-music_sound = ExtResource( 3 )
+music_sound = ExtResource( 4 )
 
 [editable path="base_level"]
 
