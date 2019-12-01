@@ -68,7 +68,7 @@ func _unload_scene():
 func _load_scene(scene_path):
 	if not(scene_path is PackedScene):
 		scene_path = load(scene_path)
-	var scene_instance:Node = scene_path.instance()
+	var scene_instance:Node = scene_path.instance(PackedScene.GEN_EDIT_STATE_INSTANCE)
 	self.find_node("LoadingLayer").add_child(scene_instance)
 	print("added loaded scene!", scene_path)
 	#self._transition_animation(false)
