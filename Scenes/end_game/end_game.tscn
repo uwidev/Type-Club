@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Themes/title_screen.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/end_game/end_game.gd" type="Script" id=2]
+[ext_resource path="res://Assets/fonts/McLaren-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://components/title_button/title_button.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 200
+font_data = ExtResource( 3 )
+
+[node name="End Game" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+menu_scene = "res://Scenes/title/title.tscn"
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 150
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 286.0
+margin_right = 1920.0
+margin_bottom = 574.0
+custom_fonts/font = SubResource( 1 )
+text = "FIN"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 724.0
+margin_right = 1920.0
+margin_bottom = 794.0
+custom_constants/separation = 400
+alignment = 1
+
+[node name="Button" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+margin_left = 801.0
+margin_right = 1119.0
+margin_bottom = 70.0
+text = "Return to Menu"
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_return_to_menu_pressed"]

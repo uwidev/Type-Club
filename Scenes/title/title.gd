@@ -13,10 +13,6 @@ func _ready():
 	for button in button_list:
 		root.find_node(button, true, false).connect("button_down", self, button_list[button])
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 func _on_new_game_press():
 	emit_signal("end_level", next_scene)
 

@@ -54,9 +54,9 @@ margin_bottom = 980.0
 alignment = 1
 
 [node name="Left" type="MarginContainer" parent="Background/Margins/HBoxContainer"]
-margin_left = 317.0
+margin_left = 169.0
 margin_top = 327.0
-margin_right = 541.0
+margin_right = 393.0
 margin_bottom = 552.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -67,9 +67,9 @@ margin_bottom = 225.0
 texture = ExtResource( 3 )
 
 [node name="Menu Margins" type="MarginContainer" parent="Background/Margins/HBoxContainer"]
-margin_left = 877.0
+margin_left = 566.0
 margin_top = 116.0
-margin_right = 1705.0
+margin_right = 1720.0
 margin_bottom = 764.0
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -81,16 +81,16 @@ custom_constants/margin_bottom = 20
 [node name="VBoxContainer2" type="VBoxContainer" parent="Background/Margins/HBoxContainer/Menu Margins"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 808.0
+margin_right = 1134.0
 margin_bottom = 628.0
 size_flags_horizontal = 6
 custom_constants/separation = 100
 
 [node name="Label" type="Label" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2"]
-margin_right = 788.0
+margin_right = 1114.0
 margin_bottom = 216.0
 custom_fonts/font = SubResource( 3 )
-text = "Type Club"
+text = "A Type of Life"
 
 [node name="Main Title" type="TextureRect" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2"]
 visible = false
@@ -99,15 +99,20 @@ margin_right = 788.0
 margin_bottom = 316.0
 texture = SubResource( 4 )
 
-[node name="Menu Buttons" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2" instance=ExtResource( 5 )]
-margin_left = 0.0
+[node name="MarginContainer" type="MarginContainer" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2"]
 margin_top = 316.0
-margin_right = 788.0
+margin_right = 1114.0
 margin_bottom = 608.0
+custom_constants/margin_left = 200
+
+[node name="Menu Buttons" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/MarginContainer" instance=ExtResource( 5 )]
+margin_left = 200.0
+margin_right = 1114.0
+margin_bottom = 292.0
 
 [node name="Music Player" parent="." instance=ExtResource( 6 )]
 music_sound = ExtResource( 7 )
-[connection signal="exit" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" to="." method="_on_exit_press"]
-[connection signal="load_game" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" to="." method="_on_load_game_press"]
-[connection signal="new_game" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" to="." method="_on_new_game_press"]
-[connection signal="options" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/Menu Buttons" to="." method="_on_options_press"]
+[connection signal="exit" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/MarginContainer/Menu Buttons" to="." method="_on_exit_press"]
+[connection signal="load_game" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/MarginContainer/Menu Buttons" to="." method="_on_load_game_press"]
+[connection signal="new_game" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/MarginContainer/Menu Buttons" to="." method="_on_new_game_press"]
+[connection signal="options" from="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/MarginContainer/Menu Buttons" to="." method="_on_options_press"]

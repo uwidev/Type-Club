@@ -63,7 +63,7 @@ func _unload_scene():
 		#self.get_child(self.get_child_count()-1).free()
 		#open_scenes.remove(scene)
 		print("freeing...", scene)
-		scene.free()
+		scene.queue_free()
 
 func _load_scene(scene_path):
 	if not(scene_path is PackedScene):
@@ -78,3 +78,5 @@ func _on_transition(scene_path):
 	# Can't directly call because we can't free until the signal stops emitting and calling
 	self._transition_animation(false)
 	self.nextScene = scene_path
+#	_unload_scene()
+#	_load_scene(scene_path)
