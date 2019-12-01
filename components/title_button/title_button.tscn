@@ -20,6 +20,8 @@ button_hover = ExtResource( 3 )
 
 [node name="ButtonHover" type="AudioStreamPlayer" parent="."]
 volume_db = -5.0
+bus = "Sound Effects"
 
 [node name="ButtonSelect" type="AudioStreamPlayer" parent="."]
+bus = "Sound Effects"
 [connection signal="pressed" from="." to="." method="_on_pressed"]

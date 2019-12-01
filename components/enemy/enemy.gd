@@ -6,8 +6,8 @@ var shaking = false
 var currentLife = 0
 var futureLife = 0
 
-export(Array, int) var lifeList #List of ints representing health for each state, 0 reps stage 1
-export(Array, Texture) var textureList	#List of image textures
+export(Array, int) var lifeList = []				#List of ints representing health for each state, 0 reps stage 1
+export(Array, Texture) var textureList = [] 		#List of image textures
 export(float) var trauma_amount = .5
 export(float) var decay_rate = .4
 export(float) var max_offset = 50
@@ -24,6 +24,8 @@ signal damage_taken
 signal life_depleted
 
 func _ready():
+	textureList = textureList.duplicate()
+	lifeList = lifeList.duplicate()
 	enemy.set_texture(textureList.pop_front())
 	_start_position = enemy.get_position()
 	_trauma = 0.0

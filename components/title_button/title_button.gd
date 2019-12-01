@@ -18,11 +18,15 @@ func _ready():
 
 func _process(delta):
 	if is_hovered() and HOVER == 0:
+		if hover.is_playing():
+			hover.stop()
 		hover.play()
 		HOVER = 1
 	if not is_hovered() and HOVER == 1:
 		HOVER = 0
 		
 func _on_pressed():
+	if select.is_playing():
+		select.stop()
 	select.set_stream(button_pressed)
 	select.play()

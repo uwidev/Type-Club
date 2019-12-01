@@ -8,7 +8,7 @@ var locked = false
 
 export(int) var MaxTimeLife = 20
 export(bool) var Autostart
-export(Array, int) var lifeList #List of ints representing health for each state, 0 reps stage 1
+export(Array, int) var lifeList = []	#List of ints representing health for each state, 0 reps stage 1
 export(float) var badKeyPenalty
 
 onready var label_left = get_node("Timer/left")
@@ -19,6 +19,7 @@ onready var life_bar = get_node("Left")
 signal no_life
 
 func _ready():
+	lifeList = lifeList.duplicate()
 	get_node('Left').share(get_node('Right'))
 	timer.set_wait_time(MaxTimeLife)
 	life_bar.set_value(100)

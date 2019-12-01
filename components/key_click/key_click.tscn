@@ -9,6 +9,7 @@
 [ext_resource path="res://SE/key_up_3.wav" type="AudioStream" id=7]
 
 [node name="Key Click" type="AudioStreamPlayer"]
+bus = "Sound Effects"
 script = ExtResource( 1 )
 enabled = true
 key_down_a = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]

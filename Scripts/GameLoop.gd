@@ -8,6 +8,7 @@ var semiColon		# Position of semicolon
 var word			# Word
 var pointValue		# How much the word is worth
 var wdicts = []		# List of dictionaries, who contain word:value pairs
+var wdicts_index = 0
 var wdict = {}		# This current stage's dictionary
 var wlist = []		# Relate to this current stage
 var glist = []
@@ -70,7 +71,6 @@ func _ready():
 	
 	wlist = _generateList(enemy.lifeList.front() + additional_good_words, additional_bad_words)
 	
-
 	scroller.link_lists(wdict, wlist)
 	typer.link_dict_list(wdict, wlist)
 	textpanel.link_lists(dialogueWhereList, dialogueTextList, gameoverWhereList, gameoverTextList)
@@ -230,6 +230,7 @@ func _load_next_stage():
 func _on_no_life():
 	_on_enemy_life_depleted()
 	_on_stage_fail()
+	typer.set_text('')
 	print('FAIL')
 
 
@@ -278,6 +279,7 @@ func _on_stage_clear():
 # Called by stageindicator when game over
 func _on_game_over():
 	gamestate = END
+	typer.set_text('')
 	
 	textpanel.gameover_dialogue()
 	yield(textpanel, 'dialogue_finished')

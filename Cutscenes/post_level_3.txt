@@ -17,6 +17,6 @@ Prompt;Caroline
 Narrator;You look to your side and you see Carrie holding your hand, crying.
 Prompt;Carrie
 Carrie;I love you.
-Prompt;I know 
+Prompt;I know
 Prompt;Life
 #Image;White screen

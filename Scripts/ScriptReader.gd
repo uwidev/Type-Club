@@ -61,6 +61,7 @@ func readNextLine():
 	else:
 		print('EOF Reached, emiting end_level')
 		emit_signal("end_level", nextScene)
+		script.close()
 
 func _on_Text_Engine_resume_break():	#Enter was pressed, resume text
 	readNextLine()

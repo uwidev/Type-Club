@@ -63,12 +63,13 @@ func _unload_scene():
 		#self.get_child(self.get_child_count()-1).free()
 		#open_scenes.remove(scene)
 		print("freeing...", scene)
-		scene.queue_free()
+		scene.free()
+		print("free!")
 
 func _load_scene(scene_path):
 	if not(scene_path is PackedScene):
 		scene_path = load(scene_path)
-	var scene_instance:Node = scene_path.instance(PackedScene.GEN_EDIT_STATE_INSTANCE)
+	var scene_instance:Node = scene_path.instance()
 	self.find_node("LoadingLayer").add_child(scene_instance)
 	print("added loaded scene!", scene_path)
 	#self._transition_animation(false)
