@@ -33,6 +33,7 @@ export(Material) var label_material
 export(GDScript) var label_tween
 
 # Settings
+export(bool) var shuffle_on_attack
 export(float) var transparency_exponent = 1
 export(int) var word_spacing = 20
 export(int) var font_size = 20
@@ -389,7 +390,8 @@ func _on_end_cycle():
 	grab_focus()
 	selected.set_max(wlist.size()-1)
 	
-	wlist.shuffle()
+	if shuffle_on_attack:
+		wlist.shuffle()
 	_update_labels()
 
 
