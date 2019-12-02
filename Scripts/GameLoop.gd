@@ -201,6 +201,9 @@ func _on_bad_word(word):
 func _on_Type_Engine_bad_key():
 	emit_signal("bad_keypress")
 
+func _on_Word_Scroller_bad_first_key():
+	emit_signal("bad_keypress")
+
 # Helper functions
 func _load_next_stage():
 	if gamestate == DIALOGUE or gamestate == WAIT:
@@ -307,3 +310,4 @@ func _on_Game_Over_request_retry():
 
 func _on_Game_Over_request_main_menu():
 	emit_signal('end_level', main_menu)
+

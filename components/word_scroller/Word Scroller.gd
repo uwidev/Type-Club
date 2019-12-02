@@ -48,6 +48,7 @@ onready var tween = get_node("Tween")
 signal word_selected
 signal words_fully_visible
 signal redrew
+signal bad_first_key
 
 # A class meant to have a value that loops once it hits the end of a normal array
 class RoundIndex:
@@ -365,6 +366,8 @@ func _input(event):
 				
 				emit_signal('word_selected', wlist[selected.get_value()], 
 					typing_label.get_global_position())
+			else:
+				emit_signal("bad_first_key")
 			accept_event()
 		elif wlist.empty():
 			accept_event()
