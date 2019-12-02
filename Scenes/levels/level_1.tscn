@@ -14,8 +14,8 @@ anchor_bottom = 1.0
 
 [node name="base_level" parent="." instance=ExtResource( 1 )]
 next_scene = ExtResource( 2 )
-additional_good_words = 2
-additional_bad_words = 2
+additional_good_words = 5
+additional_bad_words = 15
 unique_good = true
 unique_bad = true
 retry_level = "res://Scenes/levels/level_1.tscn"
@@ -28,7 +28,8 @@ scroll_speed = 1.0
 lifeList = [ 5, 10, 10 ]
 
 [node name="Life and Timer" parent="base_level/VBoxContainer/MarginContainer" index="0"]
-lifeList = [ 15, 15, 15 ]
+lifeList = [ 20, 20, 20 ]
+badKeyPenalty = -0.2
 
 [node name="Attack Particles" parent="base_level" index="3"]
 texture = SubResource( 1 )

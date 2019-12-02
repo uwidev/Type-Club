@@ -35,13 +35,14 @@ Prompt;Will you marry me?
 Narrator;Caroline covers her mouth with tears in her eyes and says.
 Caroline;Yes.
 Narrator;You get married.
+Narrator;One of the happiest years of your life passes by.
 Caroline;Do you want to get a dog?
 Tom;Hmmmm, I guess. What kind?
 Caroline;Hmmmmmmmm, I dunno, something big and strong like you, like a chihuahua.
 Tom;Oh hah hah. 
 Narrator;You end up getting a golden retriever and name him Kaiju.
 Prompt;Life is good
-Narrator;Several years pass.
+Narrator;Several more happy years pass.
 Narrator;One night you come home, and Caroline isn't there. You're worried, but you're sure it's fine. 
 Narrator;You go to sleep and wake up the next day to a phone call. Caroline got in a car accident.
 Narrator;She's dead.
