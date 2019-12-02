@@ -44,6 +44,7 @@ export(float) var hidden_fade_in_speed = 2
 export(float) var hidden_fade_out_speed = 0.5
 
 onready var tween = get_node("Tween")
+onready var SE = get_node("SE")
 
 signal word_selected
 signal words_fully_visible
@@ -351,8 +352,10 @@ func _input(event):
 	if has_focus() and event is InputEventKey:
 		if event.is_pressed() and not event.is_echo() and not wlist.empty():
 			if event.get_scancode() == KEY_DOWN:	# Key up
+				SE.play_scroll()
 				_next()
 			elif event.get_scancode() == KEY_UP:	# Key down
+				SE.play_scroll()
 				_previous()
 			elif char(event.get_unicode()) == wlist[selected.get_value()].left(1):
 				label_list[0].set_visible(false)

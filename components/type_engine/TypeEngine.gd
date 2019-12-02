@@ -20,6 +20,7 @@ var correct_key
 
 onready var typing_label
 onready var sound_effects = find_node('Key Click')
+onready var attack = find_node('Attack Stream')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,6 +44,9 @@ func _input(event): #LineEdit must have mouse_filter set to 'ignore' in order to
 				elif cursor >= current_word.length() and event.get_scancode() == KEY_ENTER:
 					correct_key = true
 					sound_effects.play_key_down()
+					if wdict[current_word] > 0:
+						print('play attack sound')
+						attack.play_attack()
 				elif event.get_scancode() == KEY_BACKSPACE and cursor >= 1:
 					correct_key = false
 					sound_effects.play_backspace()

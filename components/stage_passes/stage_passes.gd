@@ -18,6 +18,8 @@ signal applied
 
 export(Array, Texture) var stateTextures
 
+onready var audio = $SE
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	image1 = find_node("NinePatchRect")
@@ -33,6 +35,7 @@ func _on_stage_ready():
 	currentStage += 1
 
 func apply_pass():	#Stage passed
+	audio.play_pass()
 	if stageStates[currentStage] == -1:
 		stageStates[currentStage] = 1
 		passCount += 1
@@ -45,6 +48,7 @@ func apply_pass():	#Stage passed
 	emit_signal("applied")
 
 func apply_fail():	#Stage failed
+	audio.play_fail()
 	if stageStates[currentStage] == -1:
 		stageStates[currentStage] = 0
 		failCount += 1

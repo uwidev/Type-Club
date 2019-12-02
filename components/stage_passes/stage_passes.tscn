@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://components/stage_passes/stage_passes.gd" type="Script" id=1]
 [ext_resource path="res://components/stage_passes/Red Cross.png" type="Texture" id=2]
 [ext_resource path="res://components/stage_passes/Green Circle.png" type="Texture" id=3]
 [ext_resource path="res://components/stage_passes/White Dash.png" type="Texture" id=4]
 [ext_resource path="res://Assets/testCircle.png" type="Texture" id=5]
+[ext_resource path="res://SE/pass.wav" type="AudioStream" id=6]
+[ext_resource path="res://components/stage_passes/SE.gd" type="Script" id=7]
+[ext_resource path="res://SE/fail.wav" type="AudioStream" id=8]
 
 [node name="Stage Pass Indicator" type="HBoxContainer"]
 margin_right = 308.0
@@ -62,3 +65,9 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_horizontal = 3
 texture = ExtResource( 4 )
+
+[node name="SE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "Sound Effects"
+script = ExtResource( 7 )
+SE = [ ExtResource( 6 ), ExtResource( 8 ) ]

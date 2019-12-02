@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://components/enemy/enemy.gd" type="Script" id=1]
 [ext_resource path="res://Assets/ui/life.png" type="Texture" id=2]
 [ext_resource path="res://Assets/testCircle.png" type="Texture" id=3]
+[ext_resource path="res://SE/enemy_hit.wav" type="AudioStream" id=4]
 
 [node name="Enemy" type="VBoxContainer"]
 margin_right = 224.0
@@ -31,3 +32,7 @@ texture = ExtResource( 3 )
 expand = true
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Enemy SE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Sound Effects"

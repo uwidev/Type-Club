@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://components/type_engine/TypeEngine.gd" type="Script" id=1]
 [ext_resource path="res://components/key_click/key_click.tscn" type="PackedScene" id=2]
 [ext_resource path="res://SE/key_up_1.wav" type="AudioStream" id=3]
 [ext_resource path="res://SE/pound2.wav" type="AudioStream" id=4]
+[ext_resource path="res://SE/extended_attack3.wav" type="AudioStream" id=5]
+[ext_resource path="res://components/type_engine/Attack Stream.gd" type="Script" id=6]
 
 [node name="Type Engine" type="LineEdit"]
 margin_right = 470.0
@@ -16,3 +18,8 @@ script = ExtResource( 1 )
 [node name="Key Click" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 3 )
 backspace = ExtResource( 4 )
+
+[node name="Attack Stream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Sound Effects"
+script = ExtResource( 6 )

@@ -15,6 +15,7 @@ export(float) var max_offset = 50
 onready var bar = $'Life Bar'
 onready var enemy = $Texture
 onready var tween = $Tween
+onready var SE = $"Enemy SE"
 
 signal end_shake
 signal start_shake
@@ -42,6 +43,7 @@ func take_damage(value):
 	tween.start()
 	
 	add_trauma(trauma_amount)
+	SE.play()
 	
 	if futureLife <= 0:
 		emit_signal('life_depleted')
