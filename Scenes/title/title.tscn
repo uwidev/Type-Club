@@ -68,9 +68,9 @@ texture = ExtResource( 3 )
 
 [node name="Menu Margins" type="MarginContainer" parent="Background/Margins/HBoxContainer"]
 margin_left = 566.0
-margin_top = 116.0
+margin_top = 190.0
 margin_right = 1720.0
-margin_bottom = 764.0
+margin_bottom = 690.0
 size_flags_horizontal = 6
 size_flags_vertical = 4
 custom_constants/margin_right = 20
@@ -82,7 +82,7 @@ custom_constants/margin_bottom = 20
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1134.0
-margin_bottom = 628.0
+margin_bottom = 480.0
 size_flags_horizontal = 6
 custom_constants/separation = 100
 
@@ -102,13 +102,13 @@ texture = SubResource( 4 )
 [node name="MarginContainer" type="MarginContainer" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2"]
 margin_top = 316.0
 margin_right = 1114.0
-margin_bottom = 608.0
+margin_bottom = 460.0
 custom_constants/margin_left = 200
 
 [node name="Menu Buttons" parent="Background/Margins/HBoxContainer/Menu Margins/VBoxContainer2/MarginContainer" instance=ExtResource( 5 )]
 margin_left = 200.0
 margin_right = 1114.0
-margin_bottom = 292.0
+margin_bottom = 144.0
 
 [node name="Music Player" parent="." instance=ExtResource( 6 )]
 music_sound = ExtResource( 7 )
