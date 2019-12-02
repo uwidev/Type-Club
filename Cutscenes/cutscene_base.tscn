@@ -1,14 +1,22 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/ScriptReader.gd" type="Script" id=1]
 [ext_resource path="res://Addons/GodotTIE/text_interface_engine.gd" type="Script" id=2]
 [ext_resource path="res://Addons/GodotTIE/GodotTIE_icon.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Cave-Story.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://SE/key_up_1.wav" type="AudioStream" id=5]
+[ext_resource path="res://components/key_click/key_click.gd" type="Script" id=6]
+[ext_resource path="res://SE/key_down_1.wav" type="AudioStream" id=7]
+[ext_resource path="res://SE/key_down_2.wav" type="AudioStream" id=8]
+[ext_resource path="res://SE/key_down_3.wav" type="AudioStream" id=9]
+[ext_resource path="res://SE/key_up_2.wav" type="AudioStream" id=10]
+[ext_resource path="res://SE/key_up_3.wav" type="AudioStream" id=11]
+[ext_resource path="res://SE/pound2.wav" type="AudioStream" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 70
 outline_size = 5
-outline_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+outline_color = Color( 0.141176, 0.141176, 0.141176, 1 )
 font_data = ExtResource( 4 )
 
 [node name="Control" type="Control"]
@@ -43,5 +51,13 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 FONT = SubResource( 1 )
+
+[node name="Key_Click" type="AudioStreamPlayer" parent="MarginContainer/Text_Engine"]
+stream = ExtResource( 5 )
+script = ExtResource( 6 )
+enabled = true
+key_down_a = [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
+key_up_a = [ ExtResource( 5 ), ExtResource( 10 ), ExtResource( 11 ) ]
+backspace = ExtResource( 12 )
 [connection signal="input_enter" from="MarginContainer/Text_Engine" to="." method="_on_Text_Engine_input_enter"]
 [connection signal="resume_break" from="MarginContainer/Text_Engine" to="." method="_on_Text_Engine_resume_break"]

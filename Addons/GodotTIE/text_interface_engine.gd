@@ -298,11 +298,16 @@ func _input(event):
 			
 			var input = _label.get_text().right(_input_index) # Get Input
 			input = input.replace("\n","")
-
+			
+			#Code will crash if there's no request for sound on inputs
+			var _key_sounds = find_node("Key_Click")
+			
 			if(event.scancode == KEY_BACKSPACE): # Delete last character
 				if input != "":	#Only allow delete when input isn't empty
+					_key_sounds.play_backspace()
 					_delete_last_character(true)
 			elif(event.scancode == KEY_ENTER): # Finish input
+				_key_sounds.play_key_down()
 				emit_signal("input_enter", input)
 				if(!PRINT_INPUT): # Delete input
 					var i = _label.get_text().length() - _input_index
@@ -313,6 +318,7 @@ func _input(event):
 			
 			elif(event.unicode >= 32 and event.unicode <= 126): # Add character
 				if(INPUT_CHARACTERS_LIMIT < 0 or input.length() < INPUT_CHARACTERS_LIMIT):
+					_key_sounds.play_key_down()
 					_label_print(_ARRAY_CHARS[event.unicode-32])
 
 # Private
