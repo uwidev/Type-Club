@@ -13,15 +13,16 @@ theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="new_game" parent="." instance=ExtResource( 3 )]
-margin_right = 218.0
+margin_right = 208.0
 margin_bottom = 70.0
 focus_neighbour_top = NodePath("../exit")
 focus_mode = 2
 enabled_focus_mode = 2
-text = "New Game"
+text = "Play Game"
 button_pressed = ExtResource( 4 )
 
 [node name="load_game" parent="." instance=ExtResource( 3 )]
+visible = false
 margin_top = 74.0
 margin_right = 218.0
 margin_bottom = 144.0
@@ -30,17 +31,18 @@ enabled_focus_mode = 2
 text = "Load game"
 
 [node name="options" parent="." instance=ExtResource( 3 )]
-margin_top = 148.0
+visible = false
+margin_top = 74.0
 margin_right = 218.0
-margin_bottom = 218.0
+margin_bottom = 144.0
 focus_mode = 2
 enabled_focus_mode = 2
 text = "Options"
 
 [node name="exit" parent="." instance=ExtResource( 3 )]
-margin_top = 222.0
-margin_right = 218.0
-margin_bottom = 292.0
+margin_top = 74.0
+margin_right = 208.0
+margin_bottom = 144.0
 focus_neighbour_bottom = NodePath("../new_game")
 focus_mode = 2
 enabled_focus_mode = 2
