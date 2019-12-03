@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/title/title.gd" type="Script" id=1]
 [ext_resource path="res://Cutscenes/pre_level_1.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/testCircle.png" type="Texture" id=3]
+[ext_resource path="res://Assets/enemy/level1_boss.png" type="Texture" id=3]
 [ext_resource path="res://Assets/fonts/McLaren-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://components/title_buttons/title_buttons.tscn" type="PackedScene" id=5]
 [ext_resource path="res://components/music_player/music_player.tscn" type="PackedScene" id=6]
@@ -54,16 +54,16 @@ margin_bottom = 980.0
 alignment = 1
 
 [node name="Left" type="MarginContainer" parent="Background/Margins/HBoxContainer"]
-margin_left = 169.0
-margin_top = 327.0
-margin_right = 393.0
-margin_bottom = 552.0
+margin_left = 131.0
+margin_top = 290.0
+margin_right = 431.0
+margin_bottom = 590.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
 [node name="TextureRect" type="TextureRect" parent="Background/Margins/HBoxContainer/Left"]
-margin_right = 224.0
-margin_bottom = 225.0
+margin_right = 300.0
+margin_bottom = 300.0
 texture = ExtResource( 3 )
 
 [node name="Menu Margins" type="MarginContainer" parent="Background/Margins/HBoxContainer"]
