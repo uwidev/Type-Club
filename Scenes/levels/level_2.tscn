@@ -19,9 +19,6 @@ additional_bad_words = 13
 unique_good = true
 retry_level = "res://Scenes/levels/level_2.tscn"
 
-[node name="Up" parent="base_level/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer" index="0"]
-rect_rotation = 0.0
-
 [node name="Enemy" parent="base_level/VBoxContainer/HBoxContainer/Enemy Container" index="0"]
 lifeList = [ 10, 15, 15 ]
 

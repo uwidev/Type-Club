@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://components/Health_Bar/timer-life.gd" type="Script" id=1]
 [ext_resource path="res://Assets/ui/life.png" type="Texture" id=2]
 [ext_resource path="res://components/Health_Bar/timer.tscn" type="PackedScene" id=3]
-
+[ext_resource path="res://components/Health_Bar/Player Damage.gd" type="Script" id=4]
+[ext_resource path="res://SE/player_damaged.wav" type="AudioStream" id=5]
+[ext_resource path="res://SE/player_damaged_large.wav" type="AudioStream" id=6]
 
 [node name="Life and Timer" type="HBoxContainer"]
 margin_right = 1736.0
@@ -41,6 +43,12 @@ value = 100.0
 texture_progress = ExtResource( 2 )
 tint_progress = Color( 0.772549, 0.247059, 0.247059, 1 )
 nine_patch_stretch = true
+
+[node name="Player Damage" type="AudioStreamPlayer" parent="."]
+bus = "Sound Effects"
+script = ExtResource( 4 )
+normal = ExtResource( 5 )
+large = ExtResource( 6 )
 [connection signal="timeout" from="Timer/Timer" to="." method="_on_no_life"]
 
 [editable path="Timer"]

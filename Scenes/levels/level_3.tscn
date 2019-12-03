@@ -23,9 +23,6 @@ retry_level = "res://Scenes/levels/level_3.tscn"
 [node name="Stage Pass Indicator" parent="base_level/VBoxContainer" index="0"]
 script = ExtResource( 3 )
 
-[node name="Up" parent="base_level/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer" index="0"]
-rect_rotation = 0.0
-
 [node name="Enemy" parent="base_level/VBoxContainer/HBoxContainer/Enemy Container" index="0"]
 lifeList = [ 15, 20, 20 ]
 
