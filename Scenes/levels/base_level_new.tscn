@@ -119,6 +119,7 @@ theme = ExtResource( 2 )
 margin_top = 200.0
 margin_bottom = 200.0
 focus_on_ready = false
+shuffle_on_attack = true
 transparency_exponent = 0.85
 extend = 2
 scroll_type = 10
@@ -209,13 +210,13 @@ margin_bottom = -2.0
 [connection signal="life_mod" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_life_mod"]
 [connection signal="prepare_stage" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_prepare_stage"]
 [connection signal="prepare_stage" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_prepare_stage"]
-[connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_sendDictList"]
 [connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Type Engine" method="_on_sendDictList"]
+[connection signal="sendDictList" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_sendDictList"]
 [connection signal="stage_ready" from="." to="VBoxContainer/Stage Pass Indicator" method="_on_stage_ready"]
 [connection signal="stage_ready" from="." to="VBoxContainer/Stage Pass Indicator" method="next_stage"]
+[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Enemy Container/Enemy" method="_on_stage_ready"]
 [connection signal="stage_ready" from="." to="VBoxContainer/MarginContainer/Life and Timer" method="_on_stage_ready"]
 [connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" method="_on_stage_ready"]
-[connection signal="stage_ready" from="." to="VBoxContainer/HBoxContainer/Enemy Container/Enemy" method="_on_stage_ready"]
 [connection signal="game_over" from="VBoxContainer/Stage Pass Indicator" to="." method="_on_game_over"]
 [connection signal="level_clear" from="VBoxContainer/Stage Pass Indicator" to="." method="_on_win_level_over"]
 [connection signal="bad_first_key" from="VBoxContainer/HBoxContainer/Main Interface/Word Scroller" to="." method="_on_Word_Scroller_bad_first_key"]

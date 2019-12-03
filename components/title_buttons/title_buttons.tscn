@@ -13,8 +13,8 @@ theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="new_game" parent="." instance=ExtResource( 3 )]
-margin_right = 208.0
-margin_bottom = 70.0
+margin_right = 417.0
+margin_bottom = 116.0
 focus_neighbour_top = NodePath("../exit")
 focus_mode = 2
 enabled_focus_mode = 2
@@ -40,9 +40,9 @@ enabled_focus_mode = 2
 text = "Options"
 
 [node name="exit" parent="." instance=ExtResource( 3 )]
-margin_top = 74.0
-margin_right = 208.0
-margin_bottom = 144.0
+margin_top = 120.0
+margin_right = 417.0
+margin_bottom = 236.0
 focus_neighbour_bottom = NodePath("../new_game")
 focus_mode = 2
 enabled_focus_mode = 2
