@@ -21,6 +21,7 @@ var correct_key
 onready var typing_label
 onready var sound_effects = find_node('Key Click')
 onready var attack = find_node('Attack Stream')
+onready var camera = get_tree().get_root().find_node('Camera', true, false)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -55,9 +56,10 @@ func _input(event): #LineEdit must have mouse_filter set to 'ignore' in order to
 						set_text('')
 					else:					
 						cursor -= 1
-				else:
+				elif event.get_scancode() >= KEY_SPACE and event.get_scancode() <= KEY_ASCIITILDE or event.get_scancode() == KEY_ENTER:
 					correct_key = false
 					emit_signal("bad_key")
+					camera.set_trauma(.3)
 					accept_event()
 			
 			elif not event.is_pressed():

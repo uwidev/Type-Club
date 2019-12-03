@@ -46,6 +46,7 @@ export(float) var hidden_fade_out_speed = 0.5
 
 onready var tween = get_node("Tween")
 onready var SE = get_node("SE")
+onready var camera = get_tree().get_root().find_node('Camera', true, false)
 
 signal word_selected
 signal words_fully_visible
@@ -370,8 +371,10 @@ func _input(event):
 				
 				emit_signal('word_selected', wlist[selected.get_value()], 
 					typing_label.get_global_position())
-			else:
+			elif event.get_scancode() >= KEY_SPACE and event.get_scancode() <= KEY_ASCIITILDE:
+				camera.set_trauma(.3)
 				emit_signal("bad_first_key")
+			
 			accept_event()
 		elif wlist.empty():
 			accept_event()

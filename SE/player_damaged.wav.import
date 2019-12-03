@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/extended_attack3.wav-5a144a9d9ad94e84c47447012adc55da.sample"
+path="res://.import/player_damaged.wav-cfe456958def924c5852efe55ed2ea0d.sample"
 
 [deps]
 
-source_file="res://SE/extended_attack3.wav"
-dest_files=[ "res://.import/extended_attack3.wav-5a144a9d9ad94e84c47447012adc55da.sample" ]
+source_file="res://SE/player_damaged.wav"
+dest_files=[ "res://.import/player_damaged.wav-cfe456958def924c5852efe55ed2ea0d.sample" ]
 
 [params]
 

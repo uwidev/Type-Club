@@ -15,6 +15,7 @@ onready var label_left = get_node("Timer/left")
 onready var label_right = get_node("Timer/right")
 onready var timer = get_node("Timer/Timer")
 onready var life_bar = get_node("Left")
+onready var se = get_node('Player Damage')
 
 signal no_life
 
@@ -67,8 +68,14 @@ func offset_life_percent(percent):
 			timer.start()
 			life_bar.set_value(timer.get_time_left()/MaxTimeLife*life_bar.get_max())
 
+
 func _on_base_level_bad_keypress():
 	offset_life(badKeyPenalty)
+	se.play_normal()
+
+func damage_large(amount):
+	offset_life(amount)
+	se.play_large()
 
 # Accepts boolean to pause or unpause
 func paused(boo):

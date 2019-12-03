@@ -59,6 +59,7 @@ onready var stageindicator = find_node('Stage Pass Indicator')
 onready var animation = find_node('AnimationPlayer')
 onready var particles = find_node('Attack Particles')
 onready var gameover = find_node('Game Over')
+onready var camera = find_node('Camera')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -145,7 +146,7 @@ func _generateList(numGood, numBad):
 	randomize()		#Randomizes a new seed for random number generator
 	# Generate good list
 	while numGood != 0 and glistSize != 0:
-		print('good ', mixedList.size(), ' : ', glistSize)
+		#print('good ', mixedList.size(), ' : ', glistSize)
 		if mixedList.size() == glistSize and unique_good:
 			break
 		randIndex = randi()%glistSize	#Returns random int between 0 and glistSize-1
@@ -159,7 +160,7 @@ func _generateList(numGood, numBad):
 	
 	# Generate bad list
 	while numBad != 0 and blistSize != 0:
-		print('bad ', mixedList.size() - tmp_numGood, ' : ', blistSize)
+		#print('bad ', mixedList.size() - tmp_numGood, ' : ', blistSize)
 		if mixedList.size() - tmp_numGood == blistSize:
 			break
 		randIndex = randi()%blistSize
@@ -200,8 +201,8 @@ func _on_good_word(word):
 		emit_signal('cycle_done')
 
 func _on_bad_word(word):
-	# some hit animation here
-	timerlife.offset_life(wdict[word])
+	camera.add_trauma(1)
+	timerlife.damage_large(wdict[word])
 	
 	if erase_on_bad:
 		wlist.erase(word)
