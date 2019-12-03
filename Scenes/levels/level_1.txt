@@ -37,6 +37,9 @@ eraser;1
 sharpener;3
 marker;1
 crayon;1
+playing;-1
+games;-1
+toys;-1
 ;;
 math;1
 pencil;2
@@ -61,15 +64,10 @@ eraser;1
 sharpener;3
 marker;1
 crayon;1
-games;-1
-toys;-1
 T.V.;-1
-incorrect;-1
-wrong;-1
 distractions;-1
 fun;-1
 kaiju;-1
-playing;-1
 tag;-1
 angry;-1
 give up;-1
@@ -89,7 +87,8 @@ top;Tommy: Haha, take THAT!
 bot;Homework: OW! Kid, what the hell are you doing? That hurt!
 top;Tommy: So what you're saying is I'm WINNING?
 bot;Homework: No! This isn't going to teach you anything, stop it!
-top;Tommy: Never!
+top;Tommy: Never! I want to play, not do homework!
+bot;Homework: You have to focus, Tommy!
 ;;;
 top;Tommy: Hah. I am so good at school, are you even trying?
 bot;Homework: Alright that's enough.

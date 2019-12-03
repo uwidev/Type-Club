@@ -116,8 +116,9 @@ custom_constants/margin_left = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer"]
 margin_left = 20.0
+margin_top = -4.0
 margin_right = 942.0
-margin_bottom = 400.0
+margin_bottom = 396.0
 
 [node name="Left Indicator" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource( 4 )]
 
@@ -137,10 +138,10 @@ use_top_left = true
 
 [node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer/Main Interface/CenterContainer"]
 margin_left = -375.0
-margin_top = -43.0
+margin_top = -38.0
 margin_right = 375.0
-margin_bottom = 42.0
-rect_min_size = Vector2( 750, 85 )
+margin_bottom = 37.0
+rect_min_size = Vector2( 750, 75 )
 
 [node name="Word Scroller" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer/Main Interface" instance=ExtResource( 5 )]
 margin_left = 388.0
