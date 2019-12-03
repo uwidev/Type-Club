@@ -54,8 +54,14 @@ func _input(event): #LineEdit must have mouse_filter set to 'ignore' in order to
 					if cursor == 1:
 						emit_signal('request_scroller')
 						set_text('')
+						release_focus()	
 					else:					
 						cursor -= 1
+				elif event.get_scancode() == KEY_UP or event.get_scancode() == KEY_DOWN \
+					or event.get_scancode() == KEY_ESCAPE:
+					emit_signal('request_scroller')
+					set_text('')
+					release_focus()				
 				elif event.get_scancode() >= KEY_SPACE and event.get_scancode() <= KEY_ASCIITILDE or event.get_scancode() == KEY_ENTER:
 					correct_key = false
 					emit_signal("bad_key")
