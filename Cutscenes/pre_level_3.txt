@@ -1,16 +1,16 @@
 Narrator;Life goes on, an empty shell of what it was.
 Narrator;Seven years later Kaiju dies too, and you wish you could follow him.
 Narrator;You retire at age 67 and buy a house on the beach.
-Narrator;One day, you see someone that looks just like Caroline walking along the beach. 
+Narrator;One day, you suddenly see Caroline walking along the beach. 
 Narrator;You run up to her and tap her on the back.
-Narrator;She turns around. It's her.
+Narrator;She turns around.
 Prompt;You're alive!
 Narrator;She looks at you with a confused face. 
 Woman;Well I'd sure hope I am. Who are you?
 Narrator;You tell her everything and she still doesn't remember.
 Woman;No my name is Carrie, I don't know anyone named Caroline.
 Narrator;"She has amnesia," you tell yourself.
-Tom;Well how would you like to go with me to the new pizza place that opened up downtown?
+Tom;W-...Well how would you like to go with me to the new pizza place that opened up downtown?
 Narrator;She smiles.
 Carrie;Sure.
 Narrator;You go to the pizza place together.

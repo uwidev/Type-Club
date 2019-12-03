@@ -82,6 +82,10 @@ top;Tommy: Well you're doing a bad job!
 top;Tommy: You just make me angry and stop me from watching Kawaii Kaiju!
 bot;Homework: I feel like school is a little more important than T.V. kid.
 top;Tommy; It isn't!
+bot;Homework: Well, if you get distracted enough, you might get in big trouble.
+top;Tommy: I won't get in trouble, I'll be able to at least defeat you once!
+bot;Homework: Only once?
+top;Tommy: S-...Shut it!
 ;;;
 top;Tommy: Haha, take THAT! 
 bot;Homework: OW! Kid, what the hell are you doing? That hurt!
@@ -95,6 +99,7 @@ bot;Homework: Alright that's enough.
 bot;Homework: GRAAARGH!!!!
 top;Tommy: Uh oh.
 bot;Homework: HAH, can you resist these DISTRACTIONS?!
+bot;Homework: If you can't solve defeat THESE problems, you'll lose everything!
 ;;;
 bot;Homework: *Blech* Damn you Tommy!
 top;Tommy: Haha yes, I am the KING of homework!
@@ -102,4 +107,6 @@ top;Tommy: Haha yes, I am the KING of homework!
 ;;;;
 top;Tommy: Ugh! I don't know what 2+2 is!
 bot;Homework: HAHAHAHA!!! You lose!
+bot;Homework: Maybe next time buddy
+bot;Homework: ...if you can get past my first two stages and my final form, that is.
 ;;;

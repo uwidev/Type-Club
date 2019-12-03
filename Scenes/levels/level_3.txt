@@ -97,6 +97,9 @@ top;Tom: *cough* Prepare to die, Death!
 bot;Death: But I control death, how would you even kill me? Who would take my soul?
 top;Tom: I, I don't know. This usually does something so I'm gonna try.
 bot;Death: Okay I guess.
+bot;Death: But be wary.
+bot;Death: One fail and you just might see the light.
+top;Tom: Not when I'm in control...!
 ;;;
 top;Tom: *cough* *cough* Hah! See, I'm winning aren't I?
 bot;Death: I mean, no? I honestly didn't feel anything. It's your time Tom, you know there's nothing you can do.
