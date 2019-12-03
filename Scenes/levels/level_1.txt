@@ -81,7 +81,7 @@ bot;Homework: Hey kid, I'm just trying to help you learn.
 top;Tommy: Well you're doing a bad job!
 top;Tommy: You just make me angry and stop me from watching Kawaii Kaiju!
 bot;Homework: I feel like school is a little more important than T.V. kid.
-top;Tommy; It isn't!
+top;Tommy: It isn't!
 bot;Homework: Well, if you get distracted enough, you might get in big trouble.
 top;Tommy: I won't get in trouble, I'll be able to at least defeat you once!
 bot;Homework: Only once?
