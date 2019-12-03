@@ -43,21 +43,21 @@ nurse;1
 nurse;1
 syringe;2
 shots;1
-shots;1
+recall;1
 healing;2
 rejuvenation;4
 health;1
-health;1
+breathe;1
 exercise;3
 diet;1
-diet;1
+contemplate;2
 safety;2
 injection;3
-help;1
 help;1
 hospital;3
 ambulance;3
 surgery;2
+relax; 1
 cancer;-1
 death;-1
 virus;-1
@@ -67,8 +67,8 @@ weak;-1
 give up;-2
 give up;-2
 give up;-2
-give up;-2
-give up;-2
+brittle;-2
+wheeze;-2
 coughing;-2
 sick;-1
 blood;-1
