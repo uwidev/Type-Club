@@ -47,7 +47,6 @@ func readNextLine():
 			textEngine.buff_text(afterSC,0.04)
 			textEngine.buff_text('>> ',0.04)
 			textEngine.buff_input()
-			textEngine.buff_text("\n",0)
 		elif readLine.begins_with("Image"):
 			image.set_texture(load(afterSC))
 			readNextLine()
@@ -71,12 +70,13 @@ func _input(ev):
         textEngine.set_buff_speed(0)
 
 func _on_Text_Engine_input_enter(input):	#Check if player typed correct prompt
+	var inputLength = input.length()
 	input = input.lstrip(" ")	#left strip and right strip white spaces
 	input = input.rstrip(" ")
 	if input == afterSC:	#afterSC currently holds the prompt
+		textEngine.buff_text("\n",0)
 		readNextLine()
 	else:
-		textEngine.buff_text(afterSC,0.04)
-		textEngine.buff_text('>> ',0.04)
+		for i in range(inputLength):
+			textEngine._delete_last_character(true)
 		textEngine.buff_input()
-		textEngine.buff_text("\n",0)
