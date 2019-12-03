@@ -141,8 +141,13 @@ func _generateList(numGood, numBad):
 	var randIndex = 0
 	var glistSize = glist.size()
 	var blistSize = blist.size()
+	var tmp_numGood = numGood
 	randomize()		#Randomizes a new seed for random number generator
+	# Generate good list
 	while numGood != 0 and glistSize != 0:
+		print('good ', mixedList.size(), ' : ', glistSize)
+		if mixedList.size() == glistSize and unique_good:
+			break
 		randIndex = randi()%glistSize	#Returns random int between 0 and glistSize-1
 		if unique_good:
 			if not mixedList.has(glist[randIndex]):
@@ -151,16 +156,20 @@ func _generateList(numGood, numBad):
 		else:
 			mixedList.append(glist[randIndex])
 			numGood -= 1
-	if blistSize != 0:
-		while numBad != 0:
-			randIndex = randi()%blistSize
-			if unique_bad:
-				if not mixedList.has(blist[randIndex]):
-					mixedList.append(blist[randIndex])
-					numBad -= 1
-			else:
+	
+	# Generate bad list
+	while numBad != 0 and blistSize != 0:
+		print('bad ', mixedList.size() - tmp_numGood, ' : ', blistSize)
+		if mixedList.size() - tmp_numGood == blistSize:
+			break
+		randIndex = randi()%blistSize
+		if unique_bad:
+			if not mixedList.has(blist[randIndex]):
 				mixedList.append(blist[randIndex])
 				numBad -= 1
+		else:
+			mixedList.append(blist[randIndex])
+			numBad -= 1
 	mixedList.shuffle()	#Shuffles list for a random order
 	return mixedList
 

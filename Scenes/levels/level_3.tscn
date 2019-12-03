@@ -18,15 +18,13 @@ next_scene = ExtResource( 2 )
 additional_good_words = 0
 additional_bad_words = 14
 unique_good = true
-unique_bad = true
 retry_level = "res://Scenes/levels/level_3.tscn"
 
 [node name="Stage Pass Indicator" parent="base_level/VBoxContainer" index="0"]
 script = ExtResource( 3 )
 
-[node name="Word Scroller" parent="base_level/VBoxContainer/HBoxContainer/Main Interface" index="0"]
-extend = 3
-scroll_speed = 1.0
+[node name="Up" parent="base_level/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer" index="0"]
+rect_rotation = 0.0
 
 [node name="Enemy" parent="base_level/VBoxContainer/HBoxContainer/Enemy Container" index="0"]
 lifeList = [ 15, 20, 20 ]
@@ -49,5 +47,3 @@ enemyImage = ExtResource( 4 )
 music_sound = ExtResource( 5 )
 
 [editable path="base_level"]
-
-[editable path="base_level/VBoxContainer/HBoxContainer/Main Interface/Word Scroller"]

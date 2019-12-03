@@ -17,12 +17,7 @@ next_scene = ExtResource( 2 )
 additional_good_words = 5
 additional_bad_words = 15
 unique_good = true
-unique_bad = true
 retry_level = "res://Scenes/levels/level_1.tscn"
-
-[node name="Word Scroller" parent="base_level/VBoxContainer/HBoxContainer/Main Interface" index="0"]
-extend = 3
-scroll_speed = 1.0
 
 [node name="Enemy" parent="base_level/VBoxContainer/HBoxContainer/Enemy Container" index="0"]
 lifeList = [ 5, 10, 10 ]
@@ -41,5 +36,3 @@ enemyImage = ExtResource( 3 )
 music_sound = ExtResource( 4 )
 
 [editable path="base_level"]
-
-[editable path="base_level/VBoxContainer/HBoxContainer/Main Interface/Word Scroller"]
