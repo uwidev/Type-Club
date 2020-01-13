@@ -28,7 +28,7 @@ lifeList = [ 15, 20, 20 ]
 textureList = [ ExtResource( 4 ) ]
 
 [node name="Life and Timer" parent="base_level/VBoxContainer/MarginContainer" index="0"]
-lifeList = [ 20, 15, 10 ]
+lifeList = [ 20, 20, 10 ]
 badKeyPenalty = -0.2
 
 [node name="Text Panels" parent="base_level" index="2"]

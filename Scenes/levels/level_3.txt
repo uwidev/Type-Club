@@ -50,7 +50,7 @@ health;1
 breathe;1
 exercise;3
 diet;1
-contemplate;2
+contemplate;3
 safety;2
 injection;3
 help;1
